@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elite Vault - Ava Addams</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/royal-acidbath" rel="stylesheet">
+  <style>
+    /* Header Styles from first code */
+    :root {
+      --primary: #e00024;
+      --gold: #D4AF37;
+      --bg: #0a0a0a;
+      --card-bg: #141414;
+      --text: #ffffff;
+      --text-secondary: #aaaaaa;
+      --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    
+    /* Premium Logo */
+    .logo {
+      font-family: 'Royal Acidbath', 'Cinzel', 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      color: var(--text);
+      text-decoration: none;
+      position: relative;
+      display: inline-block;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+    }
+    
+    .logo span {
+      color: var(--gold);
+      position: relative;
+      font-weight: 400;
+    }
+    
+    .logo span::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    
+    .logo:hover span::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    /* Image Logo */
+    .img-logo {
+      height: 40px;
+      width: auto;
+      margin-right: 10px;
+    }
+    
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 10px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      background: rgba(10, 10, 10, 0.0); /* Fully transparent */
+      transform: translateY(0);
+      transition: transform 0.6s var(--ease-out-expo), background 0.4s ease;
+      height: 60px;
+    }
+    
+    header.scrolled {
+      background: rgba(10, 10, 10, 0.9);
+    }
+    
+    header.hidden {
+      transform: translateY(-100%);
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+    
+    /* Navigation Buttons */
+    .nav-buttons {
+      display: flex;
+      gap: 15px;
+      margin-right: auto;
+      margin-left: 40px;
+    }
+    
+    .nav-btn {
+      position: relative;
+      padding: 8px 15px;
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .nav-btn::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    
+    .nav-btn:hover {
+      color: var(--text);
+    }
+    
+    .nav-btn:hover::before {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+    
+    .nav-btn.active {
+      color: var(--text);
+    }
+    
+    /* Removed red line under Home button */
+    #homeBtn.active::before {
+      transform: scaleX(0) !important;
+    }
+    
+    /* 3D Button */
+    .nav-btn-3d {
+      background: linear-gradient(135deg, var(--gold), var(--primary));
+      color: white;
+      border-radius: 5px;
+      padding: 10px 20px;
+      margin-left: 15px;
+      box-shadow: 0 5px 15px rgba(224, 0, 36, 0.3);
+    }
+    
+    .nav-btn-3d:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(224, 0, 36, 0.5);
+      color: white;
+    }
+    
+    /* Mobile Menu Button */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 24px;
+      cursor: pointer;
+      margin-right: 20px;
+    }
+    
+    /* Mobile Menu */
+    .mobile-menu {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      background: var(--bg);
+      z-index: 999;
+      padding: 20px;
+      display: none;
+      flex-direction: column;
+      gap: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .mobile-menu.active {
+      display: flex;
+    }
+    
+    /* Mobile 3D Button */
+    .mobile-nav-btn-3d {
+      background: linear-gradient(135deg, var(--gold), var(--primary));
+      color: white;
+      border-radius: 5px;
+      padding: 10px 20px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(224, 0, 36, 0.3);
+    }
+    
+    /* Animated Search System */
+    .search-container {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .search-container.active {
+      width: 300px;
+    }
+    
+    .search-input {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      padding: 0 50px 0 20px;
+      border: none;
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text);
+      font-size: 16px;
+      outline: none;
+      font-family: 'Montserrat', sans-serif;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .search-container.active .search-input {
+      opacity: 1;
+    }
+    
+    .search-trigger {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 2;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 5px 15px rgba(224, 0, 36, 0.3);
+    }
+    
+    .search-trigger:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 25px rgba(224, 0, 36, 0.5);
+    }
+    
+    .search-trigger i {
+      font-size: 16px;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .search-container.active .search-trigger {
+      background: var(--gold);
+    }
+    
+    /* Search Results Dropdown */
+    .search-results {
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 350px;
+      max-height: 400px;
+      overflow-y: auto;
+      background: var(--card-bg);
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .search-container.active .search-results {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    
+    .search-result-item {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .search-result-item:last-child {
+      border-bottom: none;
+    }
+    
+    .search-result-item:hover {
+      background: rgba(224, 0, 36, 0.1);
+    }
+    
+    .search-result-item img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-right: 15px;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .search-result-info h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    
+    .search-result-info p {
+      font-size: 12px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+    }
+    
+    .search-result-info p i {
+      margin-right: 6px;
+      color: var(--primary);
+      font-size: 10px;
+    }
+    
+    .no-results {
+      padding: 20px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-buttons {
+        display: none;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .search-container.active {
+        width: 250px;
+      }
+      
+      .search-results {
+        width: 280px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 24px;
+      }
+      
+      .search-container.active {
+        width: 200px;
+      }
+      
+      .search-results {
+        width: 100%;
+        right: -50px;
+      }
+    }
+
+    /* Rest of the styles from second code */
+    /* Prevent text selection */
+    body {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      cursor: default;
+    }
+    
+    /* Premium font styling */
+    .premium-font {
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 0.05em;
+    }
+    .premium-sans {
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 0.03em;
+    }
+    
+    /* Color-changing dividers */
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 1rem 0;
+    }
+    .divider::before, .divider::after {
+      content: "";
+      flex: 1;
+      border-bottom: 3px solid;
+      animation: colorChange 8s infinite alternate;
+    }
+    @keyframes colorChange {
+      0% { border-color: rgba(224, 0, 36, 0.7); }
+      25% { border-color: rgba(66, 153, 225, 0.7); }
+      50% { border-color: rgba(139, 92, 246, 0.7); }
+      75% { border-color: rgba(16, 185, 129, 0.7); }
+      100% { border-color: rgba(245, 158, 11, 0.7); }
+    }
+    .divider-text {
+      padding: 0 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      font-size: 1.1rem;
+      animation: colorChange 8s infinite alternate;
+    }
+    
+    /* Info icons */
+    .info-icon {
+      transition: all 0.3s ease;
+      text-align: center;
+      padding: 0.5rem;
+    }
+    .info-icon i {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    .info-value {
+      font-size: 0.9rem;
+    }
+    
+    /* Video hover preview */
+    .video-container {
+      position: relative;
+      overflow: hidden;
+    }
+    .video-preview {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+    .video-thumbnail:hover .video-preview {
+      display: block;
+    }
+    .video-thumbnail:hover .static-thumbnail {
+      display: none;
+    }
+    
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .page-item {
+      margin: 0 0.5rem;
+      transition: all 0.3s ease;
+    }
+    .page-link {
+      padding: 0.5rem 1rem;
+      border: 1px solid #333;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .page-link.active {
+      background-color: #e00024;
+      border-color: #e00024;
+    }
+    .page-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(224, 0, 36, 0.3);
+    }
+    
+    /* Premium title effect */
+    .premium-title {
+      position: relative;
+      display: inline-block;
+    }
+    .premium-title:after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, rgba(224,0,36,0) 0%, rgba(224,0,36,0.8) 50%, rgba(224,0,36,0) 100%);
+    }
+    
+    /* View All button */
+    .view-all-container {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .view-all {
+      display: inline-block;
+      background: rgba(224, 0, 36, 0.7);
+      padding: 0.75rem 2rem;
+      border-radius: 30px;
+      font-size: 1rem;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .view-all:hover {
+      background: rgba(224, 0, 36, 1);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(224, 0, 36, 0.3);
+    }
+    .view-all:active {
+      transform: translateY(-1px);
+    }
+    .view-all:after {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+      background-repeat: no-repeat;
+      background-position: 50%;
+      transform: scale(10, 10);
+      opacity: 0;
+      transition: transform .5s, opacity 1s;
+    }
+    .view-all:active:after {
+      transform: scale(0, 0);
+      opacity: .3;
+      transition: 0s;
+    }
+    
+    /* Filter tags */
+    .filter-tag {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      margin: 0.25rem;
+      background-color: transparent;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 0.9rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .filter-tag:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: all 0.5s;
+    }
+    .filter-tag:hover:before {
+      left: 100%;
+    }
+    .filter-tag:hover, .filter-tag.active {
+      background-color: rgba(224, 0, 36, 0.3);
+      border-color: rgba(224, 0, 36, 0.5);
+    }
+    .filter-tag.active {
+      animation: pulseFilter 2s infinite;
+    }
+    @keyframes pulseFilter {
+      0% { box-shadow: 0 0 0 0 rgba(224, 0, 36, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(224, 0, 36, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(224, 0, 36, 0); }
+    }
+
+    /* Back to top button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .back-to-top.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .back-to-top i {
+      color: white;
+      font-size: 20px;
+      transition: all 0.3s;
+    }
+    .back-to-top:hover {
+      background: rgba(224, 0, 36, 0.7);
+      transform: translateY(-5px);
+    }
+    .back-to-top:hover i {
+      transform: translateY(-3px);
+    }
+
+    /* Simplified video boxes */
+    .video-card {
+      position: relative;
+      transition: transform 0.3s;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .video-card:hover {
+      transform: scale(1.03);
+    }
+    .video-title {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 8px;
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 50%, transparent 100%);
+      color: #D4AF37;
+      font-weight: 900;
+      font-size: 12px;
+      line-height: 1.2;
+      max-height: 2.4em; /* Show 2 lines max */
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* Limit to 2 lines */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Small footer */
+    .footer-small {
+      padding: 10px 0;
+      font-size: 0.7rem;
+    }
+
+    /* Premium IMG link */
+    .premium-img-link {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      text-decoration: none;
+      position: relative;
+      display: inline-block;
+      padding: 0 5px;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .premium-img-link:hover {
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+    .premium-img-link::before {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    .premium-img-link:hover::before {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    /* Hero slider styles */
+    .hero-slider {
+      position: relative;
+      width: 100%;
+      height: 80vh;
+      overflow: hidden;
+    }
+    .hero-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-slide.active {
+      opacity: 1;
+    }
+
+    /* New styles for Sites List and Release Date buttons */
+    .filter-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .filter-button {
+      padding: 10px 20px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, rgba(224, 0, 36, 0.5), rgba(212, 175, 55, 0.5));
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .filter-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(224, 0, 36, 0.3);
+    }
+    
+    .filter-button.active {
+      background: linear-gradient(135deg, rgba(224, 0, 36, 0.8), rgba(212, 175, 55, 0.8));
+    }
+    
+    .filter-button:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+    
+    .filter-button:hover:after {
+      transform: translateX(100%);
+    }
+    
+    /* Sites list container */
+    .sites-list-container {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 20px;
+      max-height: 0;
+      transition: max-height 0.5s ease;
+      background: rgba(20, 20, 20, 0.9);
+      border-radius: 8px;
+    }
+    
+    .sites-list-container.show {
+      max-height: 100px;
+      padding: 10px;
+    }
+    
+    .sites-list {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 5px 0;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    
+    .sites-list::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .site-item {
+      flex: 0 0 auto;
+      padding: 8px 15px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .site-item:hover {
+      background: rgba(224, 0, 36, 0.3);
+    }
+    
+    .site-item.active {
+      background: rgba(224, 0, 36, 0.5);
+      border-color: rgba(224, 0, 36, 0.7);
+    }
+    
+    .scroll-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 30px;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      border: none;
+      color: white;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .scroll-button.left {
+      left: 10px;
+    }
+    
+    .scroll-button.right {
+      right: 10px;
+    }
+    
+    .sites-list-container:hover .scroll-button {
+      opacity: 1;
+    }
+    
+    /* Date filter container */
+    .date-filter-container {
+      display: none;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    .date-filter-container.show {
+      display: block;
+    }
+    
+    .date-option {
+      display: inline-block;
+      padding: 8px 15px;
+      margin: 0 5px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .date-option:hover {
+      background: rgba(224, 0, 36, 0.3);
+    }
+    
+    .date-option.active {
+      background: rgba(224, 0, 36, 0.5);
+    }
+  </style>
+</head>
+<body class="bg-black text-white premium-sans">
+  <!-- Header from first code -->
+  <header id="mainHeader">
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+      <i class="fas fa-bars"></i>
+    </button>
+    
+    <div class="logo-container">
+      <img src="https://i.ibb.co.com/sd6CqKNr/Chat-GPT-Image-May-5-2025-04-00-30-AM.png" alt="ELITE VAULT Logo" class="img-logo">
+      <a href="#" class="logo">ELITE <span>VAULT</span></a>
+    </div>
+    
+    <!-- Navigation Buttons -->
+    <div class="nav-buttons">
+      <button class="nav-btn active" id="homeBtn">Home</button>
+      <button class="nav-btn" id="modelsBtn">Models</button>
+      <button class="nav-btn" id="videosBtn">Videos</button>
+      <button class="nav-btn nav-btn-3d" id="threeDBtn">3D</button>
+    </div>
+    
+    <div class="search-container" id="searchContainer">
+      <input type="text" class="search-input" id="searchInput" placeholder="Search models...">
+      <div class="search-trigger" id="searchTrigger">
+        <i class="fas fa-search"></i>
+      </div>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="nav-btn active" id="mobileHomeBtn">Home</button>
+    <button class="nav-btn" id="mobileModelsBtn">Models</button>
+    <button class="nav-btn" id="mobileVideosBtn">Videos</button>
+    <button class="nav-btn mobile-nav-btn-3d" id="mobileThreeDBtn">3D</button>
+  </div>
+
+  <!-- Hero and Bio Sections (will be hidden when viewing all videos) -->
+  <div id="mainContent">
+    <!-- Hero Image Slider -->
+    <section class="hero-slider">
+      <div class="hero-slide active" style="background-image: url('https://i.ibb.co.com/B2h9X8t2/1.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('https://i.ibb.co.com/DDvZbvYW/2.jpg.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('https://i.ibb.co.com/kT0mWG1/3.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('https://i.ibb.co.com/TMbT8397/8.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('https://i.ibb.co.com/V068Gzzq/5.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('https://i.ibb.co.com/yBPj3hQh/4.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('https://i.ibb.co.com/pj3z8Tjh/6.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('https://i.ibb.co.com/pj3z8Tjh/6.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('https://i.ibb.co.com/TMbT8397/8.jpg');"></div>
+    </section>
+
+    <!-- Divider -->
+    <div class="divider">
+      <span class="divider-text premium-font">GOD-TIER</span>
+    </div>
+
+    <!-- Bio Section -->
+    <section class="bg-black py-16 px-8 md:px-24">
+      <div class="flex flex-col md:flex-row gap-12 max-w-6xl mx-auto">
+        <div class="w-full md:w-2/5">
+          <img src="https://i.ibb.co.com/B5fjL9q2/173440634-0046.jpg" alt="Ava Addams" class="w-full rounded-lg shadow-2xl transform hover:scale-105 transition duration-500" />
+        </div>
+        <div class="w-full md:w-3/5">
+          <h2 class="text-4xl font-light mb-8 premium-font premium-title">Ava Addams</h2>
+          <p class="text-gray-300 leading-relaxed mb-6 text-lg premium-sans">
+            Ava Addams has won several awards, including the 2017 AVN Award for Best Group Sex Scene (Avengers vs. X-Men XXX), the 2020 AVN Fan Award – Hottest MILF & the 2015 NightMoves Award for Best MILF Performer. She has also received numerous nominations, such as AVN's MILF/Cougar Performer of the Year (2012–2016), Best Actress (Inescapable, 2013), Best Double Penetration Sex Scene (2015), XBIZ's MILF Performer of the Year (2013–2016), and XRCO's MILF of the Year (2013–2015).
+          </p>
+          <p class="text-gray-300 leading-relaxed mb-8 text-lg premium-sans">
+            Ava Addams's rockin' body and sublime double D's were made for porn, but it's her powerful performance that has brought her to the top of the XXX industry, making her and her elegant curves the talk of Porn Valley for nearly a decade. She's definitely not acting when she steps on set to spread those legs wide. She's fucking for real. Super-orgasmic, this magnificent MILF climaxes in each and every scene, cumming multiple times in one stint, going hoarse from all the screaming. Her poor throat gets an intense workout as she gives blowjobs of mythical proportions, gazing into the camera and guzzling loads of cum 'til she gags. It's that arousing authenticity that has made this scorching seductress into a legendary pornstar, performing for only the best studios and websites, earning multiple AVN noms for MILF Performer of the Year, and developing a reputation as one of the wildest women in the booty biz.
+          </p>
+          <div class="flex space-x-6">
+            <div class="info-icon px-4 py-3">
+              <i class="fas fa-birthday-cake"></i>
+              <div class="info-value font-medium text-lg premium-font">September 16th,1981</div>
+            </div>
+            <div class="info-icon px-4 py-3">
+              <i class="fas fa-globe-europe"></i>
+              <div class="info-value font-medium text-lg premium-font">Gibraltar,UK</div>
+            </div>
+            <div class="info-icon px-4 py-3">
+              <img src="https://i.ibb.co.com/PyqWRzv/download-1.png" alt="Measurements" class="measurements-icon">
+              <div class="info-value font-medium text-lg premium-font">32DDD-23-34</div>
+            </div>
+            <div class="info-icon px-4 py-3">
+              <img src="https://i.ibb.co.com/6R6hZBhr/height.png" alt="Height" class="height-icon">
+              <div class="info-value font-medium text-lg premium-font">5'3"</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Divider -->
+  <div class="divider mt-4 mb-8">
+    <span class="divider-text premium-font">Top Rated Videos</span>
+  </div>
+
+  <!-- Latest Videos -->
+  <section class="py-8 px-8 md:px-24 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="videoGrid">
+      <!-- Videos will be loaded here -->
+    </div>
+    
+    <div class="view-all-container">
+      <a href="#" id="viewAllBtn" class="view-all">View All Videos</a>
+    </div>
+  </section>
+
+  <!-- All Videos Section (hidden by default) -->
+  <section id="allVideosSection" class="py-16 px-8 md:px-24 max-w-7xl mx-auto hidden">
+    <!-- Filter buttons -->
+    <div class="filter-buttons">
+      <button id="sitesListBtn" class="filter-button">Sites List</button>
+      <button id="releaseDateBtn" class="filter-button">Release Date</button>
+    </div>
+    
+    <!-- Sites list container -->
+    <div class="sites-list-container" id="sitesListContainer">
+      <button class="scroll-button left" id="scrollLeftBtn">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <div class="sites-list" id="sitesList">
+        <!-- Sites will be loaded here -->
+      </div>
+      <button class="scroll-button right" id="scrollRightBtn">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+    
+    <!-- Date filter container -->
+    <div class="date-filter-container" id="dateFilterContainer">
+      <span class="date-option" data-date="all">All Dates</span>
+      <span class="date-option" data-date="2019">2019</span>
+      <span class="date-option" data-date="2018">2018</span>
+      <span class="date-option" data-date="2017">2017</span>
+      <span class="date-option" data-date="2016">2016</span>
+      <span class="date-option" data-date="2015">2015</span>
+      <span class="date-option" data-date="2014">2014</span>
+      <span class="date-option" data-date="2013">2013</span>
+      <span class="date-option" data-date="older">Older</span>
+    </div>
+    
+    <div class="flex justify-between items-center mb-6">
+      <div class="flex-1">
+        <h3 class="text-3xl font-light premium-font premium-title inline-block">All Videos</h3>
+      </div>
+      <button id="backToTopRated" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded transition">
+        <i class="fas fa-arrow-left mr-2"></i> Back to Top Rated
+      </button>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="allVideosGrid">
+      <!-- All videos will be loaded here -->
+    </div>
+    <div class="pagination" id="allVideosPagination">
+      <!-- Pagination will be loaded here -->
+    </div>
+  </section>
+
+  <!-- Back to top button -->
+  <div class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-black text-center py-4 footer-small">
+    <p class="text-xs text-gray-500 mb-1 tracking-widest premium-sans">&copy; 2025 ELITE VAULT.All Rights Reserved.</p>
+    <p class="text-xs text-gray-600 uppercase tracking-widest premium-sans">All models appearing on this website are 18 or 18+</p>
+  </footer>
+
+  <script>
+    // Video data with unique IMG links and HTML page links
+    const topRatedVideos = [
+      {
+        id: 1,
+        title: "Ultimate MILF Nikki Cums Hard while Riding His Cock",
+        date: "May 15, 2024",
+        thumbnail: "https://i.ibb.co.com/0XQz0JQ/thumb-1.jpg",
+        preview: "https://prog-public-ht.project1content.com/a0c/26a/b42/d58/4b6/ea1/717/9ed/5c1/75b/b2/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_1/preview",
+        imgLink: "https://example.com/img1",
+        site: "brazzers",
+        videoLink: "video1.html"
+      },
+      {
+        id: 2,
+        title: "Bathroom Fantasy with Nikki Benz",
+        date: "April 28, 2024",
+        thumbnail: "https://i.ibb.co.com/0XQz0JQ/thumb-1.jpg",
+        preview: "https://prog-public-ht.project1content.com/177/535/f33/925/404/abd/520/e4b/06e/a3b/fa/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_2/preview",
+        imgLink: "https://example.com/img2",
+        site: "bangbros",
+        videoLink: "video2.html"
+      },
+      {
+        id: 3,
+        title: "Office Seduction - Nikki Takes Control",
+        date: "April 15, 2024",
+        thumbnail: "https://i.ibb.co.com/0XQz0JQ/thumb-1.jpg",
+        preview: "https://example.com/preview-3.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_3/preview",
+        imgLink: "https://example.com/img3",
+        site: "blacked",
+        videoLink: "video3.html"
+      },
+      {
+        id: 4,
+        title: "Nikki's Poolside Pleasure",
+        date: "March 30, 2024",
+        thumbnail: "https://i.ibb.co.com/0XQz0JQ/thumb-1.jpg",
+        preview: "https://example.com/preview-4.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_4/preview",
+        imgLink: "https://example.com/img4",
+        site: "milfy",
+        videoLink: "video4.html"
+      }
+    ];
+
+    const allVideos = [
+      ...topRatedVideos,
+      {
+        id: 5,
+        title: "Red Carpet Streaker",
+        date: "Nov 2, 2019",
+        thumbnail: "https://i.imgur.com/U4KNftj.jpeg",
+        preview: "https://prog-public-ht.project1content.com/753/a00/7a2/1d6/495/986/0ff/378/bd4/0a7/63/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_5/preview",
+        imgLink: "https://example.com/img5",
+        site: "brazeers",
+        videoLink: "video5.html"
+      },
+      {
+        id: 6,
+        title: "Sinking Some Balls",
+        date: "Sep 28, 2019",
+        thumbnail: "https://i.imgur.com/qv45LuP.jpeg",
+        preview: "https://prog-public-ht.project1content.com/c9a/40e/b49/1e5/436/6bd/9da/3ce/370/22f/f5/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_6/preview",
+        imgLink: "https://example.com/img6",
+        site: "brazzers",
+        videoLink: "video6.html"
+      },
+      {
+        id: 7,
+        title: "No Trespasssing",
+        date: "Jul 17, 2019",
+        thumbnail: "https://i.imgur.com/5MHARhU.jpeg",
+        preview: "https://prog-public-ht.project1content.com/7be/728/27e/aaa/465/fb1/4dc/dcd/c0f/20c/db/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_7/preview",
+        imgLink: "https://example.com/img7",
+        site: "brazzers",
+        videoLink: "video7.html"
+      },
+      {
+        id: 8,
+        title: "Mother Daughter Boning",
+        date: "May 27, 2019",
+        thumbnail: "https://i.ibb.co/3HFKVw0/220i88.jpg",
+        preview: "https://prog-public-ht.project1content.com/280/b5f/118/acc/42c/2ba/889/bb6/af3/7c2/86/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_8/preview",
+        imgLink: "https://example.com/img8",
+        site: "brazzers",
+        videoLink: "video8.html"
+      },
+      {
+        id: 9,
+        title: "Seduced By His Stepmom",
+        date: "May 3, 2019",
+        thumbnail: "https://i.ibb.co/6JF5Kj1f/21ahah.jpg",
+        preview: "https://prog-public-ht.project1content.com/dbe/07e/0a4/290/492/a95/bb3/d23/0ba/afe/70/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_9/preview",
+        imgLink: "https://example.com/img9",
+        site: "brazzers",
+        videoLink: "video9.html"
+      },
+      {
+        id: 10,
+        title: "Sucking The Sitter",
+        date: "April 11, 2019",
+        thumbnail: "https://i.ibb.co/W46yBncN/20jhwi.jpg",
+        preview: "https://prog-public-ht.project1content.com/d69/6b2/ea3/0d2/408/68e/ddf/5d8/781/4bd/fe/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_10/preview",
+        imgLink: "https://example.com/img10",
+        site: "brazzers",
+        videoLink: "video10.html"
+      },
+      {
+        id: 11,
+        title: "THE PACKAGE",
+        date: "Mar 26, 2019",
+        thumbnail: "https://i.ibb.co/nqsHmMzC/0216.jpg",
+        preview: "https://prog-public-ht.project1content.com/560/76e/c4a/973/4b2/6b0/d49/203/325/dff/2b/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_11/preview",
+        imgLink: "https://example.com/img11",
+        site: "brazzers",
+        videoLink: "video11.html"
+      },
+      {
+        id: 12,
+        title: "Affirmation to Tit Formation",
+        date: "Feb 26, 2019",
+        thumbnail: "https://i.ibb.co/ZRLh7nqd/1z406p.jpg",
+        preview: "https://prog-public-ht.project1content.com/536/045/8dd/819/4b6/5bb/275/d50/ae2/ae3/0c/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_12/preview",
+        imgLink: "https://example.com/img12",
+        site: "brazzers",
+        videoLink: "video12.html"
+      },
+      {
+        id: 13,
+        title: "Pictures Of Her",
+        date: "Jan 12, 2019",
+        thumbnail: "https://i.ibb.co/5hH5ZGg1/0153.jpg",
+        preview: "https://prog-public-ht.project1content.com/be0/e7a/638/871/4fe/5b5/f22/590/494/317/3c/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_13/preview",
+        imgLink: "https://example.com/img13",
+        site: "brazzers",
+        videoLink: "video13.html"
+      },
+      {
+        id: 14,
+        title: "Rent A Pornstar:The Lonely Bachelor",
+        date: "Sep 08, 2018",
+        thumbnail: "https://i.ibb.co/Z6PfGy0q/173449413-0120.jpg",
+        preview: "https://prog-public-ht.project1content.com/b65/c7f/baf/7b7/486/183/fec/6d6/a62/6f6/30/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_14/preview",
+        imgLink: "https://example.com/img14",
+        site: "brazzers",
+        videoLink: "video14.html"
+      },
+      {
+        id: 15,
+        title: "Getting Her Beauty Peep",
+        date: "August 16, 2018",
+        thumbnail: "https://i.ibb.co/Xrxk9DMY/173442565-0206.jpg",
+        preview: "https://prog-public-ht.project1content.com/7ce/35f/8d4/a51/446/b96/fc6/956/c26/f84/83/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_15/preview",
+        imgLink: "https://example.com/img15",
+        site: "brazzers",
+        videoLink: "video15.html"
+      },
+      {
+        id: 16,
+        title: "Office 4-Play: Christmas Bonuses",
+        date: "December 05, 2017",
+        thumbnail: "https://i.ibb.co/gLBTD68D/5a4086f4cd17f.jpg",
+        preview: "https://prog-public-ht.project1content.com/903/e6b/804/e89/4b7/594/fb0/e71/884/f2d/fc/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_16/preview",
+        imgLink: "https://example.com/img16",
+        site: "brazzers",
+        videoLink: "video16.html"
+      },
+      {
+        id: 17,
+        title: "One Strict Mama",
+        date: "Dec 1, 2017",
+        thumbnail: "https://i.ibb.co/HfGr3MZs/173442106-0166.jpg",
+        preview: "https://prog-public-ht.project1content.com/a53/7f9/8c9/d92/428/286/8da/112/307/549/86/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_17/preview",
+        imgLink: "https://example.com/img17",
+        site: "brazzers",
+        videoLink: "onestrictmama-ava addams.html"
+      },
+      {
+        id: 18,
+        title: "All Night Rager",
+        date: "Sep 28, 2017",
+        thumbnail: "https://i.ibb.co/0pQJhFSH/173444801-0469.jpg",
+        preview: "https://prog-public-ht.project1content.com/8af/89e/ba7/b58/40c/789/953/bb8/368/b4c/5d/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_18/preview",
+        imgLink: "https://example.com/img18",
+        site: "brazzers",
+        videoLink: "allnightrager-ava addams.html"
+      },
+      {
+        id: 19,
+        title: "Mom's Pany Bandit",
+        date: "Sep 23, 2017",
+        thumbnail: "https://i.ibb.co/0j6smXdc/173444070-0307.jpg",
+        preview: "https://prog-public-ht.project1content.com/b8a/92f/868/505/467/9b0/db4/a9a/091/6d0/67/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_18/preview",
+        imgLink: "https://example.com/img18",
+        site: "brazzers",
+        videoLink: "allnightrager-ava addams.html"
+      },
+      {
+        id: 20,
+        title: "Mom,Hands Off My Boyfriend",
+        date: "April 03, 2017",
+        thumbnail: "https://i.ibb.co/jvvZktZj/173443233-0380.jpg",
+        preview: "https://prog-public-ht.project1content.com/3de/cb9/f5b/1ae/4c6/ea0/70a/380/7d4/56e/f0/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_18/preview",
+        imgLink: "https://example.com/img18",
+        site: "brazzers",
+        videoLink: "allnightrager-ava addams.html"
+      },
+      {
+        id: 21,
+        title: "Survey My Pussy",
+        date: "December 30, 2016",
+        thumbnail: "https://i.imgur.com/HCBowb8.jpeg",
+        preview: "https://prog-public-ht.project1content.com/533/c88/07e/548/415/f85/c30/a9f/20b/6c6/94/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_18/preview",
+        imgLink: "https://example.com/img18",
+        site: "brazzers",
+        videoLink: "allnightrager-ava addams.html"
+      },
+      {
+        id: 22,
+        title: "The Dick Doctor",
+        date: "March 05, 2016",
+        thumbnail: "https://i.imgur.com/liHsQMX.jpeg",
+        preview: "https://prog-public-ht.project1content.com/8a3/9ad/f17/23f/4d0/687/e44/cda/899/956/c2/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_18/preview",
+        imgLink: "https://example.com/img18",
+        site: "brazzers",
+        videoLink: "stayawayfrommydaughterp02-ava addams.html"
+      },
+      {
+        id: 23,
+        title: "The Fucking Food Inspector",
+        date: "February 09, 2016",
+        thumbnail: "https://i.imgur.com/DwKgyMj.jpeg",
+        preview: "https://prog-public-ht.project1content.com/208/e52/1e9/c5a/46f/ba8/c04/b55/be8/709/c4/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_18/preview",
+        imgLink: "https://example.com/img18",
+        site: "brazzers",
+        videoLink: "squeakyclean-ava addams.html"
+      },
+      {
+        id: 24,
+        title: "Milf Squad Vegas:Big Cock Commandeering",
+        date: "February 4, 2016",
+        thumbnail: "https://i.imgur.com/DwKgyMj.jpeg",
+        preview: "https://prog-public-ht.project1content.com/917/023/758/38f/449/4a4/0e2/0df/109/1d8/3d/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_18/preview",
+        imgLink: "https://example.com/img18",
+        site: "brazzers",
+        videoLink: "allnightrager-ava addams.html"
+      },
+      {
+        id: 25,
+        title: "Mom's Christmas Stuffing",
+        date: "December 15, 2015",
+        thumbnail: "https://i.imgur.com/yRPdseP.jpeg",
+        preview: "https://prog-public-ht.project1content.com/042/8b1/de4/6d3/452/a8e/6fa/4c2/3e3/4f7/32/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_18/preview",
+        imgLink: "https://example.com/img18",
+        site: "brazzers",
+        videoLink: "allnightrager-ava addams.html"
+      },
+      {
+        id: 26,
+        title: "Wife Showers With The Babysitter",
+        date: "September 29, 2015",
+        thumbnail: "https://i.ibb.co/0pQJhFSH/173444801-0469.jpg",
+        preview: "https://prog-public-ht.project1content.com/fd7/96a/013/bb9/419/282/41b/07b/390/20d/ab/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_18/preview",
+        imgLink: "https://example.com/img18",
+        site: "brazzers",
+        videoLink: "allnightrager-ava addams.html"
+      },
+      {
+        id: 27,
+        title: "4th July:Big Butt Independence",
+        date: "July 4, 2015",
+        thumbnail: "https://i.ibb.co/0pQJhFSH/173444801-0469.jpg",
+        preview: "https://prog-public-ht.project1content.com/87f/1a3/8d8/68a/440/694/50f/3fc/20f/8fd/76/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_18/preview",
+        imgLink: "https://example.com/img18",
+        site: "brazzers",
+        videoLink: "allnightrager-ava addams.html"
+      },
+      {
+        id: 28,
+        title: "Brazzers House Orgy Finale",
+        date: "June 19, 2015",
+        thumbnail: "https://i.ibb.co/0pQJhFSH/173444801-0469.jpg",
+        preview: "https://prog-public-ht.project1content.com/0d2/31a/ee0/d0e/475/ebe/e27/240/cb5/268/02/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_18/preview",
+        imgLink: "https://example.com/img18",
+        site: "brazzers",
+        videoLink: "allnightrager-ava addams.html"
+      },
+      {
+        id: 29,
+        title: "All Night Rager",
+        date: "Sep 28, 2017",
+        thumbnail: "https://i.ibb.co/0pQJhFSH/173444801-0469.jpg",
+        preview: "https://prog-public-ht.project1content.com/8af/89e/ba7/b58/40c/789/953/bb8/368/b4c/5d/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_18/preview",
+        imgLink: "https://example.com/img18",
+        site: "bangbros",
+        videoLink: "allnightrager-ava addams.html"
+      },
+      {
+        id: 30,
+        title: "All Night Rager",
+        date: "Sep 28, 2017",
+        thumbnail: "https://i.ibb.co/0pQJhFSH/173444801-0469.jpg",
+        preview: "https://prog-public-ht.project1content.com/8af/89e/ba7/b58/40c/789/953/bb8/368/b4c/5d/mediabook/mediabook_320p.mp4",
+        videoUrl: "https://drive.google.com/file/d/VIDEO_ID_18/preview",
+        imgLink: "https://example.com/img18",
+        site: "bangbros",
+        videoLink: "allnightrager-ava addams.html"
+      }
+    ];
+
+    // DOM elements
+    const videoGrid = document.getElementById('videoGrid');
+    const allVideosGrid = document.getElementById('allVideosGrid');
+    const viewAllBtn = document.getElementById('viewAllBtn');
+    const backToTopRated = document.getElementById('backToTopRated');
+    const allVideosSection = document.getElementById('allVideosSection');
+    const mainContent = document.getElementById('mainContent');
+    const backToTop = document.getElementById('backToTop');
+    const mainHeader = document.getElementById('mainHeader');
+    const heroSlides = document.querySelectorAll('.hero-slide');
+    
+    // New elements for sites list and date filter
+    const sitesListBtn = document.getElementById('sitesListBtn');
+    const releaseDateBtn = document.getElementById('releaseDateBtn');
+    const sitesListContainer = document.getElementById('sitesListContainer');
+    const sitesList = document.getElementById('sitesList');
+    const scrollLeftBtn = document.getElementById('scrollLeftBtn');
+    const scrollRightBtn = document.getElementById('scrollRightBtn');
+    const dateFilterContainer = document.getElementById('dateFilterContainer');
+    const dateOptions = document.querySelectorAll('.date-option');
+    
+    let currentFilter = 'all';
+    let currentPage = 1;
+    let currentSlide = 0;
+    const slideInterval = 6000; // 6 seconds
+    let currentDateFilter = 'all';
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', function() {
+      renderTopRatedVideos();
+      startHeroSlider();
+      setupSitesList();
+      
+      // View All button event
+      viewAllBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        mainContent.classList.add('hidden');
+        document.querySelector('.divider').classList.add('hidden');
+        allVideosSection.classList.remove('hidden');
+        renderAllVideos();
+      });
+      
+      // Back to Top Rated event
+      backToTopRated.addEventListener('click', function() {
+        allVideosSection.classList.add('hidden');
+        mainContent.classList.remove('hidden');
+        document.querySelector('.divider').classList.remove('hidden');
+      });
+      
+      // Sites List button event
+      sitesListBtn.addEventListener('click', function() {
+        this.classList.toggle('active');
+        sitesListContainer.classList.toggle('show');
+        
+        // Hide date filter if showing
+        if (dateFilterContainer.classList.contains('show')) {
+          dateFilterContainer.classList.remove('show');
+          releaseDateBtn.classList.remove('active');
+        }
+      });
+      
+      // Release Date button event
+      releaseDateBtn.addEventListener('click', function() {
+        this.classList.toggle('active');
+        dateFilterContainer.classList.toggle('show');
+        
+        // Hide sites list if showing
+        if (sitesListContainer.classList.contains('show')) {
+          sitesListContainer.classList.remove('show');
+          sitesListBtn.classList.remove('active');
+        }
+      });
+      
+      // Date filter options
+      dateOptions.forEach(option => {
+        option.addEventListener('click', function() {
+          dateOptions.forEach(opt => opt.classList.remove('active'));
+          this.classList.add('active');
+          currentDateFilter = this.dataset.date;
+          renderAllVideos();
+        });
+      });
+      
+      // Scroll buttons for sites list
+      scrollLeftBtn.addEventListener('click', function() {
+        sitesList.scrollBy({ left: -200, behavior: 'smooth' });
+      });
+      
+      scrollRightBtn.addEventListener('click', function() {
+        sitesList.scrollBy({ left: 200, behavior: 'smooth' });
+      });
+
+      // Back to top button
+      window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+          backToTop.classList.add('active');
+        } else {
+          backToTop.classList.remove('active');
+        }
+        
+        // Header scroll effect
+        if (window.pageYOffset > 100) {
+          mainHeader.classList.add('scrolled');
+        } else {
+          mainHeader.classList.remove('scrolled');
+        }
+      });
+
+      backToTop.addEventListener('click', function() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+      
+      // Navigation buttons setup
+      setupNavButtons();
+      
+      // Search functionality setup
+      setupSearch();
+    });
+
+    // Setup search functionality
+    function setupSearch() {
+      const searchTrigger = document.getElementById('searchTrigger');
+      const searchInput = document.getElementById('searchInput');
+      const searchResults = document.getElementById('searchResults');
+
+      searchTrigger.addEventListener('click', function() {
+        document.getElementById('searchContainer').classList.toggle('active');
+        if (document.getElementById('searchContainer').classList.contains('active')) {
+          searchInput.focus();
+        } else {
+          searchResults.innerHTML = '';
+        }
+      });
+
+      searchInput.addEventListener('input', function(e) {
+        const query = e.target.value.toLowerCase().trim();
+        
+        if (query.length === 0) {
+          searchResults.innerHTML = '';
+          return;
+        }
+        
+        const results = allVideos.filter(video => 
+          video.title.toLowerCase().includes(query)
+        ).map(video => ({
+          title: video.title,
+          type: "video",
+          videoLink: video.videoLink
+        }));
+        
+        displaySearchResults(results);
+      });
+
+      function displaySearchResults(results) {
+        searchResults.innerHTML = '';
+        
+        if (results.length === 0) {
+          searchResults.innerHTML = '<div class="no-results">No results found</div>';
+        } else {
+          results.forEach(item => {
+            const resultItem = document.createElement('div');
+            resultItem.className = 'search-result-item';
+            resultItem.innerHTML = `
+              <div class="font-medium">${item.title}</div>
+              <small class="text-gray-400">${item.type}</small>
+            `;
+            resultItem.addEventListener('click', function() {
+              window.location.href = item.videoLink;
+              searchInput.value = '';
+              document.getElementById('searchContainer').classList.remove('active');
+              searchResults.innerHTML = '';
+            });
+            searchResults.appendChild(resultItem);
+          });
+        }
+      }
+
+      // Close search results when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('.search-container') && e.target !== searchTrigger) {
+          document.getElementById('searchContainer').classList.remove('active');
+          searchInput.value = '';
+          searchResults.innerHTML = '';
+        }
+      });
+    }
+
+    // Setup sites list
+    function setupSitesList() {
+      // Get unique sites from videos
+      const sites = [...new Set(allVideos.map(video => video.site))];
+      
+      // Add "All Sites" option
+      const allSitesItem = document.createElement('div');
+      allSitesItem.className = 'site-item active';
+      allSitesItem.textContent = 'All Sites';
+      allSitesItem.dataset.site = 'all';
+      sitesList.appendChild(allSitesItem);
+      
+      // Add each site as an option
+      sites.forEach(site => {
+        const siteItem = document.createElement('div');
+        siteItem.className = 'site-item';
+        siteItem.textContent = site.charAt(0).toUpperCase() + site.slice(1);
+        siteItem.dataset.site = site;
+        sitesList.appendChild(siteItem);
+      });
+      
+      // Add click event to site items
+      document.querySelectorAll('.site-item').forEach(item => {
+        item.addEventListener('click', function() {
+          document.querySelectorAll('.site-item').forEach(i => i.classList.remove('active'));
+          this.classList.add('active');
+          currentFilter = this.dataset.site;
+          renderAllVideos();
+        });
+      });
+    }
+
+    // Hero slider function
+    function startHeroSlider() {
+      setInterval(() => {
+        heroSlides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % heroSlides.length;
+        heroSlides[currentSlide].classList.add('active');
+      }, slideInterval);
+    }
+
+    // Setup navigation buttons
+    function setupNavButtons() {
+      // Desktop navigation
+      document.getElementById('homeBtn').addEventListener('click', () => {
+        window.location.href = "index.html";
+      });
+      
+      document.getElementById('modelsBtn').addEventListener('click', () => {
+        window.location.href = "models.html";
+      });
+      
+      document.getElementById('videosBtn').addEventListener('click', () => {
+        window.location.href = "videos.html";
+      });
+      
+      // 3D Button - Replace with your desired link
+      document.getElementById('threeDBtn').addEventListener('click', () => {
+        window.location.href = "3d.html"; // Change this to your 3D page URL
+      });
+      
+      // Mobile navigation
+      document.getElementById('mobileHomeBtn').addEventListener('click', () => {
+        window.location.href = "index.html";
+      });
+      
+      document.getElementById('mobileModelsBtn').addEventListener('click', () => {
+        window.location.href = "models.html";
+      });
+      
+      document.getElementById('mobileVideosBtn').addEventListener('click', () => {
+        window.location.href = "videos.html";
+      });
+      
+      // Mobile 3D Button
+      document.getElementById('mobileThreeDBtn').addEventListener('click', () => {
+        window.location.href = "3d.html"; // Change this to your 3D page URL
+      });
+      
+      // Mobile menu toggle
+      document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+        document.getElementById('mobileMenu').classList.toggle('active');
+      });
+    }
+
+    // Render top rated videos
+    function renderTopRatedVideos() {
+      videoGrid.innerHTML = '';
+      topRatedVideos.forEach(video => {
+        videoGrid.appendChild(createVideoCard(video));
+      });
+    }
+
+    // Render all videos with pagination
+    function renderAllVideos(page = 1) {
+      currentPage = page;
+      const videosPerPage = 8;
+      const startIndex = (page - 1) * videosPerPage;
+      const endIndex = startIndex + videosPerPage;
+      
+      // Filter videos based on current filter and date
+      let filteredVideos = allVideos;
+      
+      // Apply site filter
+      if (currentFilter !== 'all') {
+        filteredVideos = filteredVideos.filter(video => video.site === currentFilter);
+      }
+      
+      // Apply date filter
+      if (currentDateFilter !== 'all') {
+        filteredVideos = filteredVideos.filter(video => {
+          const year = new Date(video.date).getFullYear();
+          if (currentDateFilter === 'older') {
+            return year < 2022;
+          } else {
+            return year.toString() === currentDateFilter;
+          }
+        });
+      }
+      
+      const paginatedVideos = filteredVideos.slice(startIndex, endIndex);
+      
+      allVideosGrid.innerHTML = '';
+      paginatedVideos.forEach(video => {
+        allVideosGrid.appendChild(createVideoCard(video, true));
+      });
+      
+      renderPagination(filteredVideos.length, videosPerPage, page, 'allVideosPagination');
+    }
+
+    // Create video card element with improved video preview
+    function createVideoCard(video, isAllVideos = false) {
+      const card = document.createElement('div');
+      card.className = 'video-card';
+      
+      const cardContent = `
+        <div class="relative video-thumbnail" style="padding-top: 56.25%;">
+          <img src="${video.thumbnail}" alt="${video.title}" class="static-thumbnail absolute top-0 left-0 w-full h-full object-cover">
+          <video class="video-preview absolute top-0 left-0 w-full h-full object-cover" loop muted preload="none">
+            <source src="${video.preview}" type="video/mp4">
+          </video>
+          <div class="video-title premium-sans">${video.title}</div>
+        </div>
+        <div class="mt-2 text-right text-sm text-gray-400">${video.date}</div>
+      `;
+      
+      card.innerHTML = cardContent;
+      
+      // Add click event to redirect to video's HTML page
+      card.addEventListener('click', function() {
+        window.location.href = video.videoLink;
+      });
+      
+      // Get video elements
+      const thumbnailContainer = card.querySelector('.video-thumbnail');
+      const staticThumbnail = card.querySelector('.static-thumbnail');
+      const videoPreview = card.querySelector('.video-preview');
+      
+      // Improved hover events for video preview
+      thumbnailContainer.addEventListener('mouseenter', function() {
+        staticThumbnail.style.display = 'none';
+        videoPreview.style.display = 'block';
+        videoPreview.currentTime = 0;
+        videoPreview.play().catch(e => console.log('Video play error:', e));
+      });
+      
+      thumbnailContainer.addEventListener('mouseleave', function() {
+        videoPreview.pause();
+        videoPreview.style.display = 'none';
+        staticThumbnail.style.display = 'block';
+      });
+      
+      // Preload video when card is in viewport
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            videoPreview.load();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      observer.observe(card);
+      
+      return card;
+    }
+
+    // Render pagination
+    function renderPagination(totalItems, itemsPerPage, currentPage, paginationId) {
+      const totalPages = Math.ceil(totalItems / itemsPerPage);
+      const pagination = document.getElementById(paginationId);
+      
+      pagination.innerHTML = '';
+      
+      if (totalPages <= 1) return;
+      
+      // Previous button
+      if (currentPage > 1) {
+        const prevItem = document.createElement('div');
+        prevItem.className = 'page-item';
+        prevItem.innerHTML = `<a class="page-link"><i class="fas fa-chevron-left"></i></a>`;
+        prevItem.addEventListener('click', function() {
+          renderAllVideos(currentPage - 1);
+        });
+        pagination.appendChild(prevItem);
+      }
+      
+      // Page numbers
+      const maxVisiblePages = 5;
+      let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+      let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+      
+      if (endPage - startPage + 1 < maxVisiblePages) {
+        startPage = Math.max(1, endPage - maxVisiblePages + 1);
+      }
+      
+      for (let i = startPage; i <= endPage; i++) {
+        const pageItem = document.createElement('div');
+        pageItem.className = `page-item ${i === currentPage ? 'active' : ''}`;
+        pageItem.innerHTML = `<a class="page-link">${i}</a>`;
+        
+        pageItem.addEventListener('click', function() {
+          if (i !== currentPage) {
+            renderAllVideos(i);
+          }
+        });
+        
+        pagination.appendChild(pageItem);
+      }
+      
+      // Next button
+      if (currentPage < totalPages) {
+        const nextItem = document.createElement('div');
+        nextItem.className = 'page-item';
+        nextItem.innerHTML = `<a class="page-link"><i class="fas fa-chevron-right"></i></a>`;
+        nextItem.addEventListener('click', function() {
+          renderAllVideos(currentPage + 1);
+        });
+        pagination.appendChild(nextItem);
+      }
+    }
+
+    // Prevent right-click context menu
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
+  </script>
+</body>
+</html>
