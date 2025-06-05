@@ -1,0 +1,1861 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ELITE VAULT | Exclusive Model Agency</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&family=Cinzel:wght@400;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/royal-acidbath" rel="stylesheet">
+  <style>
+    /* Add this style to make text uncopyable */
+    body {
+      -webkit-user-select: none; /* Safari */
+      -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* IE10+/Edge */
+      user-select: none; /* Standard */
+    }
+    
+    /* Add this to prevent image dragging */
+    img {
+      -webkit-user-drag: none;
+      -khtml-user-drag: none;
+      -moz-user-drag: none;
+      -o-user-drag: none;
+      user-drag: none;
+    }
+    
+    :root {
+      --primary: #e00024;
+      --primary-light: rgba(224, 0, 36, 0.3);
+      --bg: #0a0a0a;
+      --card-bg: #141414;
+      --text: #ffffff;
+      --text-secondary: #aaaaaa;
+      --text-tertiary: #666666;
+      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      --gold: #D4AF37;
+      --platinum: #E5E4E2;
+      --diamond: #B9F2FF;
+      --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+      --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--gold);
+      border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary);
+    }
+    
+    /* Premium Logo */
+    .logo {
+      font-family: 'Royal Acidbath', 'Cinzel', 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      color: var(--text);
+      text-decoration: none;
+      position: relative;
+      display: inline-block;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+    }
+    
+    .logo span {
+      color: var(--gold);
+      position: relative;
+      font-weight: 400;
+    }
+    
+    .logo span::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    
+    .logo:hover span::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    /* Image Logo */
+    .img-logo {
+      height: 40px;
+      width: auto;
+      margin-right: 10px;
+    }
+    
+    /* Header */
+    header {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 95%;
+      max-width: 1400px;
+      padding: 10px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      background: rgba(10, 10, 10, 0.3);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.6s var(--ease-out-expo);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    header:hover {
+      background: rgba(10, 10, 10, 0.4);
+      border-color: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Mobile header adjustments */
+    @media (max-width: 768px) {
+      header {
+        top: 10px;
+        width: 90%;
+        padding: 10px 20px;
+      }
+    }
+    
+    header.hidden {
+      transform: translateY(-100%);
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+    
+    /* Navigation Buttons */
+    .nav-buttons {
+      display: flex;
+      gap: 15px;
+      margin-right: auto;
+      margin-left: 40px;
+    }
+    
+    .nav-btn {
+      position: relative;
+      padding: 8px 15px;
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      overflow: hidden;
+      transition: var(--transition);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .nav-btn::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    
+    .nav-btn:hover {
+      color: var(--text);
+    }
+    
+    .nav-btn:hover::before {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+    
+    .nav-btn.active {
+      color: var(--text);
+    }
+    
+    .nav-btn.active::before {
+      transform: scaleX(1);
+      background: var(--primary);
+    }
+    
+    /* 3D Button */
+    .nav-btn-3d {
+      background: linear-gradient(135deg, var(--gold), var(--primary));
+      color: white;
+      border-radius: 5px;
+      padding: 10px 20px;
+      margin-left: 15px;
+      box-shadow: 0 5px 15px rgba(224, 0, 36, 0.3);
+    }
+    
+    .nav-btn-3d:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(224, 0, 36, 0.5);
+      color: white;
+    }
+    
+    /* Mobile Menu Button */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 24px;
+      cursor: pointer;
+      margin-right: 20px;
+    }
+    
+    /* Mobile Menu */
+    .mobile-menu {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      background: var(--bg);
+      z-index: 999;
+      padding: 20px;
+      display: none;
+      flex-direction: column;
+      gap: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .mobile-menu.active {
+      display: flex;
+    }
+    
+    /* Mobile 3D Button */
+    .mobile-nav-btn-3d {
+      background: linear-gradient(135deg, var(--gold), var(--primary));
+      color: white;
+      border-radius: 5px;
+      padding: 10px 20px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(224, 0, 36, 0.3);
+    }
+    
+    /* Animated Search System */
+    .search-container {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      transition: var(--transition);
+    }
+    
+    .search-container.active {
+      width: 300px;
+    }
+    
+    .search-input {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      padding: 0 50px 0 20px;
+      border: none;
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text);
+      font-size: 16px;
+      outline: none;
+      font-family: 'Montserrat', sans-serif;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transition: var(--transition);
+    }
+    
+    .search-container.active .search-input {
+      opacity: 1;
+    }
+    
+    .search-trigger {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+      z-index: 2;
+      box-shadow: 0 5px 15px rgba(224, 0, 36, 0.3);
+    }
+    
+    .search-trigger:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 25px rgba(224, 0, 36, 0.5);
+    }
+    
+    .search-trigger i {
+      font-size: 16px;
+      transition: var(--transition);
+    }
+    
+    .search-container.active .search-trigger {
+      background: var(--gold);
+    }
+    
+    /* Search Results Dropdown */
+    .search-results {
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 350px;
+      max-height: 400px;
+      overflow-y: auto;
+      background: var(--card-bg);
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: var(--transition);
+      z-index: 1000;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .search-container.active .search-results {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    
+    .search-result-item {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .search-result-item:last-child {
+      border-bottom: none;
+    }
+    
+    .search-result-item:hover {
+      background: rgba(224, 0, 36, 0.1);
+    }
+    
+    .search-result-item img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-right: 15px;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .search-result-info h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 5px;
+      font-family: 'Playfair Display', serif;
+    }
+    
+    .search-result-info p {
+      font-size: 12px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+    }
+    
+    .search-result-info p i {
+      margin-right: 6px;
+      color: var(--primary);
+      font-size: 10px;
+    }
+    
+    .no-results {
+      padding: 20px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+    
+    /* Hero Banner */
+    .hero {
+      height: 80vh;
+      position: relative;
+      overflow: hidden;
+      margin-top: 60px;
+    }
+    
+    .banner-slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    
+    .banner-slide.active {
+      opacity: 1;
+    }
+    
+    .banner-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 5%;
+    }
+    
+    .hero h1 {
+      font-family: 'Royal Acidbath', 'Cinzel', 'Playfair Display', serif;
+      font-size: clamp(2rem, 8vw, 5rem);
+      font-weight: 400;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #ffffff, var(--gold));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s var(--ease-out-expo) 0.3s;
+    }
+    
+    .hero p {
+      font-size: clamp(1rem, 3vw, 1.5rem);
+      color: var(--text-secondary);
+      max-width: 700px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s var(--ease-out-expo) 0.5s;
+    }
+    
+    .banner-slide.active h1,
+    .banner-slide.active p {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Luxury Intro Section */
+    .luxury-intro {
+      padding: 120px 5%;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(20, 20, 20, 0.9), rgba(10, 10, 10, 1));
+    }
+    
+    .luxury-intro::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1518384401463-d3876163c195?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      opacity: 0.15;
+      z-index: -1;
+    }
+    
+    .intro-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    
+    .intro-title {
+      font-family: 'Royal Acidbath', 'Cinzel', serif;
+      font-size: clamp(1.8rem, 5vw, 3.5rem);
+      color: var(--gold);
+      margin-bottom: 30px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .intro-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 2px;
+      background: var(--gold);
+    }
+    
+    .intro-text {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--text-secondary);
+      max-width: 800px;
+      margin-bottom: 50px;
+      line-height: 1.8;
+    }
+    
+    /* Diamond Grid */
+    .diamond-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 60px;
+      perspective: 1000px;
+    }
+    
+    .diamond-card {
+      background: rgba(20, 20, 20, 0.7);
+      border-radius: 10px;
+      padding: 40px 30px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      transition: all 0.6s var(--ease-out-expo);
+      border: 1px solid rgba(212, 175, 55, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .diamond-card:hover {
+      transform: translateY(-10px) rotateY(5deg);
+      box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+      border-color: rgba(212, 175, 55, 0.3);
+    }
+    
+    .diamond-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, transparent, rgba(212, 175, 55, 0.05), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.6s var(--ease-out-expo);
+    }
+    
+    .diamond-card:hover::before {
+      transform: translateX(100%);
+    }
+    
+    .diamond-icon {
+      font-size: 50px;
+      margin-bottom: 20px;
+      color: var(--gold);
+      transition: all 0.4s ease;
+    }
+    
+    .diamond-card:hover .diamond-icon {
+      transform: scale(1.1);
+      color: var(--diamond);
+    }
+    
+    .diamond-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: var(--platinum);
+    }
+    
+    .diamond-desc {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    
+    /* Models Slider Section */
+    .models-section {
+      padding: 120px 5%;
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .models-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://images-assets.project1content.com/assets/brand/1151/banners/52561/6813a0197cd201.57857273.gif') center/cover no-repeat;
+      opacity: 0.3;
+      z-index: 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+      position: relative;
+      z-index: 1;
+      width: 100%;
+    }
+    
+    .section-title h2 {
+      font-family: 'Royal Acidbath', 'Cinzel', serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      color: var(--gold);
+      margin-bottom: 10px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 2px;
+      background: var(--gold);
+    }
+    
+    .section-title p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+    
+    /* View All Button */
+    .view-all-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 15px;
+      background: rgba(212, 175, 55, 0.1);
+      color: var(--gold);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 30px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      transition: all 0.4s var(--ease-out-expo);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 20px;
+    }
+    
+    .view-all-btn i {
+      margin-left: 8px;
+      font-size: 12px;
+      transition: transform 0.3s ease;
+    }
+    
+    .view-all-btn:hover {
+      background: rgba(212, 175, 55, 0.2);
+      color: var(--text);
+      border-color: var(--gold);
+      box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+    }
+    
+    .view-all-btn:hover i {
+      transform: translateX(3px);
+    }
+    
+    /* Models Slider Container */
+    .models-slider-container {
+      position: relative;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 50px;
+    }
+    
+    .models-slider {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 20px 0;
+      scrollbar-width: none; /* Hide default scrollbar */
+      -ms-overflow-style: none;
+    }
+    
+    .models-slider::-webkit-scrollbar {
+      display: none; /* Hide default scrollbar */
+    }
+    
+    /* Model Card */
+    .model-card {
+      flex: 0 0 auto;
+      width: 220px;
+      scroll-snap-align: start;
+      background: var(--card-bg);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: var(--transition);
+      transform: translateY(0);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+    
+    .model-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(224, 0, 36, 0.3);
+    }
+    
+    .model-image-container {
+      width: 100%;
+      height: 0;
+      padding-bottom: 133.33%; /* 3:4 Aspect Ratio */
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .model-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform 0.8s ease;
+    }
+    
+    .model-card:hover .model-image {
+      transform: scale(1.05);
+    }
+    
+    .model-info {
+      padding: 20px;
+    }
+    
+    .model-name {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-family: 'Playfair Display', serif;
+    }
+    
+    .model-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    
+    .model-stat {
+      display: flex;
+      align-items: center;
+    }
+    
+    .model-stat i {
+      margin-right: 5px;
+      color: var(--primary);
+      font-size: 12px;
+    }
+    
+    /* Slider Arrows */
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(20, 20, 20, 0.7);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.4s ease;
+      opacity: 0.7;
+    }
+    
+    .slider-arrow:hover {
+      background: var(--gold);
+      color: var(--bg);
+      opacity: 1;
+      transform: translateY(-50%) scale(1.1);
+    }
+    
+    .slider-arrow i {
+      font-size: 18px;
+    }
+    
+    .left-arrow {
+      left: 0;
+    }
+    
+    .right-arrow {
+      right: 0;
+    }
+    
+    /* Footer */
+    footer {
+      padding: 60px 5% 30px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.5);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+    
+    .footer-logo {
+      margin-bottom: 20px;
+    }
+    
+    .footer-logo .logo {
+      font-size: 28px;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+    }
+    
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.6s var(--ease-out-expo);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .social-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--gold), var(--primary));
+      opacity: 0;
+      transition: opacity 0.6s var(--ease-out-expo);
+    }
+    
+    .social-link:hover {
+      transform: translateY(-5px) rotate(10deg);
+      box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+    }
+    
+    .social-link:hover::before {
+      opacity: 1;
+    }
+    
+    .social-link i {
+      font-size: 18px;
+      color: var(--text);
+      transition: all 0.6s var(--ease-out-expo);
+      position: relative;
+    }
+    
+    .social-link:hover i {
+      color: white;
+      transform: scale(1.2);
+    }
+    
+    .copyright {
+      color: var(--text-tertiary);
+      font-size: 12px;
+      margin-top: 30px;
+    }
+    
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.6s var(--ease-out-expo);
+      box-shadow: 0 10px 25px rgba(224, 0, 36, 0.4);
+      z-index: 999;
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    
+    .back-to-top:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 15px 35px rgba(224, 0, 36, 0.6);
+      background: var(--gold);
+    }
+    
+    .back-to-top i {
+      font-size: 24px;
+      transition: all 0.4s ease;
+    }
+    
+    .back-to-top:hover i {
+      transform: translateY(-5px);
+    }
+    
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .diamond-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+      
+      .model-card {
+        width: 200px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .nav-buttons {
+        display: none;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .search-container.active {
+        width: 250px;
+      }
+      
+      .search-results {
+        width: 280px;
+      }
+      
+      .luxury-intro,
+      .models-section {
+        padding: 80px 5%;
+      }
+      
+      .diamond-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .models-slider-container {
+        padding: 0 30px;
+      }
+      
+      .slider-arrow {
+        width: 35px;
+        height: 35px;
+      }
+      
+      .social-link {
+        width: 40px;
+        height: 40px;
+      }
+      
+      .social-link i {
+        font-size: 18px;
+      }
+      
+      .back-to-top {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .back-to-top i {
+        font-size: 20px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 24px;
+      }
+      
+      .search-container.active {
+        width: 200px;
+      }
+      
+      .search-results {
+        width: 100%;
+        right: -50px;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+      }
+      
+      .intro-title,
+      .section-title h2 {
+        font-size: 2rem;
+      }
+      
+      .models-slider-container {
+        padding: 0 20px;
+      }
+      
+      .model-card {
+        width: 180px;
+      }
+      
+      footer {
+        padding: 40px 5% 20px;
+      }
+      
+      .section-title {
+        margin-bottom: 40px;
+      }
+      
+      .view-all-btn {
+        margin-top: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header id="mainHeader">
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+      <i class="fas fa-bars"></i>
+    </button>
+    
+    <div class="logo-container">
+      <img src="https://i.ibb.co.com/sd6CqKNr/Chat-GPT-Image-May-5-2025-04-00-30-AM.png" alt="ELITE VAULT Logo" class="img-logo">
+      <a href="#" class="logo">ELITE <span>VAULT</span></a>
+    </div>
+    
+    <!-- Navigation Buttons -->
+    <div class="nav-buttons">
+      <button class="nav-btn active" id="homeBtn">Home</button>
+      <button class="nav-btn" id="modelsBtn">Models</button>
+      <button class="nav-btn" id="videosBtn">Videos</button>
+      <button class="nav-btn nav-btn-3d" id="threeDBtn">3D</button>
+    </div>
+    
+    <div class="search-container" id="searchContainer">
+      <input type="text" class="search-input" id="searchInput" placeholder="Search models...">
+      <div class="search-trigger" id="searchTrigger">
+        <i class="fas fa-search"></i>
+      </div>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="nav-btn active" id="mobileHomeBtn">Home</button>
+    <button class="nav-btn" id="mobileModelsBtn">Models</button>
+    <button class="nav-btn" id="mobileVideosBtn">Videos</button>
+    <button class="nav-btn mobile-nav-btn-3d" id="mobileThreeDBtn">3D</button>
+  </div>
+
+  <!-- Hero Banner -->
+  <section class="hero">
+    <div class="banner-slide active" style="background-image: url('https://i.ibb.co.com/hRGmBCbw/Welcome-to-ELITE-VALU.png')">
+      <div class="banner-overlay">
+      </div>
+    </div>
+    <div class="banner-slide" style="background-image: url('https://i.ibb.co.com/0yq7N339/Banner-2.jpg')">
+      <div class="banner-overlay">
+      </div>
+    </div>
+    <div class="banner-slide" style="background-image: url('https://i.ibb.co.com/ZQbxgRv/Banner-3.jpg')">
+      <div class="banner-overlay">
+      </div>
+    </div>
+    <div class="banner-slide" style="background-image: url('https://i.ibb.co.com/ymQgvBBd/Banner-4.jpg')">
+      <div class="banner-overlay">
+      </div>
+    </div>
+    <div class="banner-slide" style="background-image: url('https://i.ibb.co.com/3YzZd34g/Banner-5.jpg')">
+      <div class="banner-overlay">
+      </div>
+    </div>
+  </section>
+
+  <!-- Luxury Intro Section -->
+  <section class="luxury-intro">
+    <div class="intro-content">
+      <h2 class="intro-title">Elite By Selection, Iconic By Nature</h2>
+      <p class="intro-text">
+      Every Face We Represent Tells A Story Of Precision, Rarity & Refined Models
+      </p>
+      
+      <div class="diamond-grid">
+        <div class="diamond-card">
+          <div class="diamond-icon">
+            <i class="fas fa-gem"></i>
+          </div>
+          <h3 class="diamond-title">Exclusive Models</h3>
+          <p class="diamond-desc">
+           Where desire meets distinction — premium videos starring the industry's most captivating faces
+          </p>
+        </div>
+        
+        <div class="diamond-card">
+          <div class="diamond-icon">
+            <i class="fas fa-globe"></i>
+          </div>
+          <h3 class="diamond-title">Global Reach</h3>
+          <p class="diamond-desc">
+           From viral hits to premium features, Pornstars own the screen on every major adult site
+          </p>
+        </div>
+        
+        <div class="diamond-card">
+          <div class="diamond-icon">
+            <i class="fas fa-star"></i>
+          </div>
+          <h3 class="diamond-title">Premium Images</h3>
+          <p class="diamond-desc">
+            We secure premium images and attached images with all Videos
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Models Slider Section -->
+  <section class="models-section">
+    <div class="section-title">
+      <h2>TOP MODELS</h2>
+      <p>Grace, Power & Prestige—Our Signature Models</p>
+      <a href="models.html" class="view-all-btn">
+        View All
+        <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+    
+    <div class="models-slider-container">
+      <button class="slider-arrow left-arrow" aria-label="Previous models">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      
+      <div class="models-slider" id="modelsSlider">
+        <!-- Models will be injected here by JS -->
+      </div>
+      
+      <button class="slider-arrow right-arrow" aria-label="Next models">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-logo">
+      <img src="https://i.ibb.co.com/sd6CqKNr/Chat-GPT-Image-May-5-2025-04-00-30-AM.png" alt="ELITE VAULT Logo" class="img-logo" style="height: 60px;">
+      <a href="#" class="logo">ELITE <span>VAULT</span></a>
+    </div>
+    
+    <div class="social-links">
+      <a href="https://www.instagram.com/villa_qz/" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://x.com/VillaNaughty" class="social-link" target="_blank"><i class="fab fa-twitter"></i></a>
+    </div>
+    
+    <p class="copyright">© 2025 ELITE VAULT. All rights reserved.</p>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <div class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <script>
+    // Model data (25 models)
+    const modelDatabase = [
+      { 
+        id: 1,
+        name: "Angela White", 
+        image: "https://i.ibb.co.com/GZz19Kb/profile-Angela-White.jpg", 
+        stats: {
+          height: "5'2\"",
+          location: "Australia",
+          popularity: "98%",
+          hair: "Black",
+          category: "angela"
+        },
+        link: "angelawhiteprofile.html"
+      },
+      { 
+        id: 2,
+        name: "Ava Addams", 
+        image: "https://i.ibb.co.com/rf0HWcst/profile-Ava-Addams.jpg", 
+        stats: {
+          height: "5'3\"",
+          location: "Gibraltar,UK",
+          popularity: "95%",
+          hair: "Black",
+          category: "ava addams"
+        },
+        link: "avaaddamsprofile.html"
+      },
+      { 
+        id: 3,
+        name: "Romi Rain", 
+        image: "https://i.ibb.co.com/zH07tQMW/profile-Romi-Rain.jpg", 
+        stats: {
+          height: "5'8\"",
+          location: "Boston, USA",
+          popularity: "96%",
+          hair: "Black",
+          category: "romi"
+        },
+        link: "romirainprofile.html"
+      },
+      { 
+        id: 4,
+        name: "Luna Star", 
+        image: "https://i.ibb.co.com/QvbjZLyk/profile-Luna-Star.jpg", 
+        stats: {
+          height: "5'3\"",
+          location: "Havana,Cuba",
+          popularity: "98%",
+          hair: "Brunette",
+          category: "luna star"
+        },
+        link: "lunastarprofile.html"
+      },
+      { 
+        id: 5,
+        name: "Nicolette Shea", 
+        image: "https://i.ibb.co.com/5xR0DFFd/profile-Nicolette-Shea.jpg", 
+        stats: {
+          height: "5'11\"",
+          location: "Las Vegas,Nevada",
+          popularity: "97%",
+          hair: "Blonde",
+          category: "nicolette"
+        },
+        link: "nicolettesheaprofile.html"
+      },
+      { 
+        id: 6,
+        name: "Nicole Aniston", 
+        image: "https://i.ibb.co.com/0RvWFJfX/profile-Nicole-Aniston.jpg", 
+        stats: {
+          height: "5'3\"",
+          location: "California",
+          popularity: "92%",
+          hair: "Blonde",
+          category: "nicole aniston"
+        },
+        link: "nicoleanistonprofile.html"
+      },
+      { 
+        id: 7,
+        name: "Kayley Gunner", 
+        image: "https://i.ibb.co.com/W4hjt6xH/profile-Kayley-Gunner.jpg", 
+        stats: {
+          height: "5'4\"",
+          location: "Oahu,Hawaii",
+          popularity: "99%",
+          hair: "Blonde",
+          category: "kayley gunner"
+        },
+        link: "kayleygunnerprofile.html"
+      },
+      { 
+        id: 8,
+        name: "Richelle  Ryan", 
+        image: "https://i.ibb.co.com/67XH9txq/profile-Richelle-Ryan.jpg", 
+        stats: {
+          height: "5'4\"",
+          location: "Rochester,NY",
+          popularity: "97%",
+          hair: "Blonde",
+          category: "richelle ryan"
+        },
+        link: "richelleryanprofile.html"
+      },
+      { 
+        id: 9,
+        name: "Alura Jenson", 
+        image: "https://i.ibb.co.com/M57PptmY/profile-Alura-Jenson.jpg", 
+        stats: {
+          height: "5'8\"",
+          location: "Pennsylvania,USA",
+          popularity: "99%",
+          hair: "Blonde",
+          category: "alura jenson"
+        },
+        link: "alurajensonprofile.html"
+      },
+      { 
+        id: 10,
+        name: "Sara Jay", 
+        image: "https://i.ibb.co.com/Hp9p6bPp/profile-Sara-Jay.jpg", 
+        stats: {
+          height: "5'4\"",
+          location: "Cincinnati,Ohio",
+          popularity: "94%",
+          hair: "Blonde",
+          category: "sara jay"
+        },
+        link: "sarajayprofile.html"
+      },
+      { 
+        id: 11,
+        name: "Diamond Jackson", 
+        image: "https://i.ibb.co.com/tTNxyw86/profile-Diaamond-Jackson.jpg", 
+        stats: {
+          height: "5'7\"",
+          location: "California,USA",
+          popularity: "93%",
+          hair: "Black",
+          category: "diamond jackson"
+        },
+        link: "diamonfjacksonprofile.html"
+      },
+      { 
+        id: 12,
+        name: "Kendra Lust", 
+        image: "https://i.ibb.co.com/HLsQXNNJ/profile-Nikki-Benz.jpg", 
+        stats: {
+          height: "5'4\"",
+          location: "Michigan,USA",
+          popularity: "99%",
+          hair: "Brunette",
+          category: "kendra lust"
+        },
+        link: "kendralustprofile.html"
+      },
+      { 
+        id: 13,
+        name: "Nikki Benz", 
+        image: "https://i.ibb.co.com/b5DkM4zJ/profile-Nikki-Benz.jpg", 
+        stats: {
+          height: "5'4\"",
+          location: "Ukraine",
+          popularity: "97%",
+          hair: "Blonde",
+          category: "nikki benz"
+        },
+        link: "nikkibenzprofile.html"
+      },
+      { 
+        id: 14,
+        name: "Moriah Mills", 
+        image: "https://i.ibb.co.com/pvvnjy1T/profile-Moriah-Mills.jpg", 
+        stats: {
+          height: "5'4\"",
+          location: "United States",
+          popularity: "98%",
+          hair: "Blonde",
+          category: "moriah mills"
+        },
+        link: "moriahmillsprofile.html"
+      },
+      { 
+        id: 15,
+        name: "Brandi Love", 
+        image: "https://i.ibb.co.com/wFRJxpx2/profile-Brandi-Love.jpg", 
+        stats: {
+          height: "5'7\"",
+          location: "Michigan,USA",
+          popularity: "100%",
+          hair: "Blonde",
+          category: "brandi love"
+        },
+        link: "brandiloveprofile.html"
+      },
+      { 
+        id: 16,
+        name: "Sara Retali", 
+        image: "https://i.ibb.co.com/8D4nCqdW/profile-Sara-Retali.jpg", 
+        stats: {
+          height: "5'3\"",
+          location: "Venezuela",
+          popularity: "97%",
+          hair: "Black",
+          category: "sara retali"
+        },
+        link: "https://example.com/models/giulia-rossi"
+      },
+      { 
+        id: 17,
+        name: "Holly Halston", 
+        image: "https://i.ibb.co.com/hxdzjPNX/profile-Holly-Halston.jpg", 
+        stats: {
+          height: "5'0\"",
+          location: "California,USA",
+          popularity: "99%",
+          hair: "Black",
+          category: "holly halston"
+        },
+        link: "https://example.com/models/yuki-tanaka"
+      },
+      { 
+        id: 18,
+        name: "Alexis Fawx", 
+        image: "https://i.ibb.co.com/F4KVGjsY/profile-Alexis-Fawx.jpg", 
+        stats: {
+          height: "5'4\"",
+          location: " Pennsylvania,USA",
+          popularity: "96%",
+          hair: "Blonde",
+          category: "alexis fawx"
+        },
+        link: "https://example.com/models/aisha-mohammed"
+      },
+      { 
+        id: 19,
+        name: "Dee Williams", 
+        image: "https://i.ibb.co.com/XfhYG0GZ/profile-DEE-WILLIAMS.jpg", 
+        stats: {
+          height: "5'4\"",
+          location: "Texas,USA",
+          popularity: "98%",
+          hair: "Blonde",
+          category: "dee williams"
+        },
+        link: "deewilliamsprofile.html"
+      },
+      { 
+        id: 20,
+        name: "Alettea Ocean", 
+        image: "https://i.ibb.co.com/jk8kQpFt/profile-Alettea-Ocean.jpg", 
+        stats: {
+          height: "5'8\"",
+          location: "Budapest,Hungary",
+          popularity: "100%",
+          hair: "Black",
+          category: "alettea ocean"
+        },
+        link: "https://example.com/models/marie-dubois"
+      },
+      { 
+        id: 21,
+        name: "Aspen Reign", 
+        image: "https://i.ibb.co.com/qYDXrp5f/profile-Aspen-Reign.jpg", 
+        stats: {
+          height: "5'5\"",
+          location: "Canada",
+          popularity: "99%",
+          hair: "Blonde",
+          category: "aspen reign"
+        },
+        link: "https://example.com/models/valentina-ivanova"
+      },
+      { 
+        id: 22,
+        name: "Payton Preslee", 
+        image: "https://i.ibb.co.com/GvgBWdcX/profile-Payton-Preslee.jpg", 
+        stats: {
+          height: "5'2\"",
+          location: "Warsaw, Poland",
+          popularity: "94%",
+          hair: "Black",
+          category: "payton preslee"
+        },
+        link: "https://example.com/models/layla-ahmed"
+      },
+      { 
+        id: 23,
+        name: "Abigaiil Morris", 
+        image: "https://i.ibb.co.com/67xPpqB7/profile-Abigaiil-Morris.jpg", 
+        stats: {
+          height: "5'11\"",
+          location: "Ohio,USA",
+          popularity: "94%",
+          hair: "Red",
+          category: "abigaiil morris"
+        },
+        link: "abigaiilmorrisprofile.html"
+      },
+      { 
+        id: 24,
+        name: "Bridgette B", 
+        image: "https://i.ibb.co.com/jPh4mVrh/profile-Bridgette-B.jpg", 
+        stats: {
+          height: "5'8\"",
+          location: "Barcelona,Spain",
+          popularity: "96%",
+          hair: "Blonde",
+          category: "bridgette b"
+        },
+        link: "https://example.com/models/mei-chen"
+      },
+      { 
+        id: 25,
+        name: "Rachael Cavalli", 
+        image: "https://i.ibb.co.com/fGNss6qJ/profile-Rachael-Cavalli.jpg", 
+        stats: {
+          height: "5'9\"",
+          location: "Indianapolis,Indiana,USA",
+          popularity: "99%",
+          hair: "Blonde",
+          category: "rachael cavalli"
+        },
+        link: "https://example.com/models/victoria-petrova"
+      },
+      {
+        id: 26,
+        name: "Lana Rhoades",
+        image: "https://i.ibb.co.com/cSzL4D0Z/profile-Lana-Rhoades.jpg",
+        stats: {
+          height: "5'3\"",
+          location: "Illinois,USA",
+          popularity: "99%",
+          hair: "Brown",
+          category: "lana rhoades"
+        },
+        link: "https://example.com/models/victoria-petrova"
+      }
+    ];
+
+    // DOM Elements
+    const modelsSlider = document.getElementById('modelsSlider');
+    const searchContainer = document.getElementById('searchContainer');
+    const searchTrigger = document.getElementById('searchTrigger');
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+    const bannerSlides = document.querySelectorAll('.banner-slide');
+    const backToTop = document.getElementById('backToTop');
+    const homeBtn = document.getElementById('homeBtn');
+    const modelsBtn = document.getElementById('modelsBtn');
+    const videosBtn = document.getElementById('videosBtn');
+    const threeDBtn = document.getElementById('threeDBtn');
+    const mobileHomeBtn = document.getElementById('mobileHomeBtn');
+    const mobileModelsBtn = document.getElementById('mobileModelsBtn');
+    const mobileVideosBtn = document.getElementById('mobileVideosBtn');
+    const mobileThreeDBtn = document.getElementById('mobileThreeDBtn');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mainHeader = document.getElementById('mainHeader');
+    const leftArrow = document.querySelector('.left-arrow');
+    const rightArrow = document.querySelector('.right-arrow');
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', function() {
+      renderModels();
+      startBannerSlideshow();
+      setupEventListeners();
+      setupBackToTop();
+      setupNavButtons();
+      setupSliderArrows();
+    });
+
+    // Render models to the slider
+    function renderModels() {
+      modelsSlider.innerHTML = '';
+      
+      modelDatabase.forEach(model => {
+        const card = document.createElement('div');
+        card.className = 'model-card';
+        
+        card.innerHTML = `
+          <div class="model-image-container">
+            <img src="${model.image}" alt="${model.name}" class="model-image">
+          </div>
+          <div class="model-info">
+            <h3 class="model-name">${model.name}</h3>
+            <div class="model-stats">
+              <span class="model-stat"><i class="fas fa-fire"></i> ${model.stats.popularity}</span>
+              <span class="model-stat"><i class="fas fa-ruler-vertical"></i> ${model.stats.height}</span>
+              <span class="model-stat"><i class="fas fa-map-marker-alt"></i> ${model.stats.location}</span>
+            </div>
+          </div>
+        `;
+        
+        // Add click event to redirect to model's link
+        card.addEventListener('click', () => {
+          window.location.href = model.link;
+        });
+        
+        modelsSlider.appendChild(card);
+      });
+    }
+
+    // Setup slider arrows functionality
+    function setupSliderArrows() {
+      const slider = document.querySelector('.models-slider');
+      
+      leftArrow.addEventListener('click', () => {
+        slider.scrollBy({
+          left: -300,
+          behavior: 'smooth'
+        });
+      });
+      
+      rightArrow.addEventListener('click', () => {
+        slider.scrollBy({
+          left: 300,
+          behavior: 'smooth'
+        });
+      });
+    }
+
+    // Setup navigation buttons
+    function setupNavButtons() {
+      // Desktop navigation
+      homeBtn.addEventListener('click', () => {
+        window.location.href = "index.html";
+      });
+      
+      modelsBtn.addEventListener('click', () => {
+        window.location.href = "models.html";
+      });
+      
+      videosBtn.addEventListener('click', () => {
+        window.location.href = "videos.html";
+      });
+      
+      // 3D Button - Replace with your desired link
+      threeDBtn.addEventListener('click', () => {
+        window.location.href = "3d.html"; // Change this to your 3D page URL
+      });
+      
+      // Mobile navigation
+      mobileHomeBtn.addEventListener('click', () => {
+        window.location.href = "index.html";
+      });
+      
+      mobileModelsBtn.addEventListener('click', () => {
+        window.location.href = "models.html";
+      });
+      
+      mobileVideosBtn.addEventListener('click', () => {
+        window.location.href = "videos.html";
+      });
+      
+      // Mobile 3D Button
+      mobileThreeDBtn.addEventListener('click', () => {
+        window.location.href = "3d.html"; // Change this to your 3D page URL
+      });
+      
+      // Mobile menu toggle
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('active');
+      });
+      
+      // Highlight current page button
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      if (currentPage.includes('index') || currentPage === '') {
+        homeBtn.classList.add('active');
+        mobileHomeBtn.classList.add('active');
+      } else if (currentPage.includes('models')) {
+        modelsBtn.classList.add('active');
+        mobileModelsBtn.classList.add('active');
+      } else if (currentPage.includes('videos')) {
+        videosBtn.classList.add('active');
+        mobileVideosBtn.classList.add('active');
+      } else if (currentPage.includes('3d')) {
+        threeDBtn.classList.add('active');
+        mobileThreeDBtn.classList.add('active');
+      }
+    }
+
+    // Banner slideshow (5 images, 3 second transitions)
+    function startBannerSlideshow() {
+      let currentSlide = 0;
+      
+      setInterval(() => {
+        bannerSlides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % bannerSlides.length;
+        bannerSlides[currentSlide].classList.add('active');
+      }, 3000);
+    }
+
+    // Setup event listeners
+    function setupEventListeners() {
+      // Search trigger
+      searchTrigger.addEventListener('click', () => {
+        searchContainer.classList.toggle('active');
+        if (searchContainer.classList.contains('active')) {
+          searchInput.focus();
+        } else {
+          searchInput.value = '';
+          searchResults.innerHTML = '';
+        }
+      });
+      
+      // Search input
+      searchInput.addEventListener('input', () => {
+        const query = searchInput.value.toLowerCase().trim();
+        searchModels(query);
+      });
+      
+      // Close search when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!searchContainer.contains(e.target) && e.target !== searchTrigger) {
+          searchContainer.classList.remove('active');
+          searchInput.value = '';
+          searchResults.innerHTML = '';
+        }
+      });
+      
+      // Header scroll effect
+      let lastScroll = 0;
+      window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll <= 0) {
+          mainHeader.classList.remove('hidden');
+          return;
+        }
+        
+        if (currentScroll > lastScroll && !mainHeader.classList.contains('hidden')) {
+          // Scroll down
+          mainHeader.classList.add('hidden');
+        } else if (currentScroll < lastScroll && mainHeader.classList.contains('hidden')) {
+          // Scroll up
+          mainHeader.classList.remove('hidden');
+        }
+        
+        lastScroll = currentScroll;
+      });
+    }
+    
+    // Setup back to top button
+    function setupBackToTop() {
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      });
+      
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    }
+    
+    // Search models function with advanced filtering
+    function searchModels(query) {
+      if (query.length === 0) {
+        searchResults.innerHTML = '';
+        return;
+      }
+      
+      const results = modelDatabase.filter(model => {
+        // Search in name, location, and other attributes
+        return (
+          
+          model.name.toLowerCase().includes(query) ||
+          model.stats.location.toLowerCase().includes(query) ||
+          model.stats.height.toLowerCase().includes(query) ||
+          model.stats.hair.toLowerCase().includes(query) ||
+          model.stats.category.toLowerCase().includes(query)
+        );
+      }).slice(0, 10); // Limit to 10 results
+      
+      displaySearchResults(results);
+    }
+    
+    // Display search results with animations
+    function displaySearchResults(results) {
+      searchResults.innerHTML = '';
+      
+      if (results.length === 0) {
+        searchResults.innerHTML = `
+          <div class="no-results">
+            <i class="fas fa-search" style="font-size: 24px; margin-bottom: 10px;"></i>
+            <p>No models found matching your search</p>
+          </div>
+        `;
+        return;
+      }
+      
+      results.forEach((model, index) => {
+        const resultItem = document.createElement('div');
+        resultItem.className = 'search-result-item';
+        resultItem.style.opacity = '0';
+        resultItem.style.transform = 'translateX(-10px)';
+        resultItem.style.transition = `all 0.3s ease-out ${index * 0.05}s`;
+        
+        resultItem.innerHTML = `
+          <img src="${model.image}" alt="${model.name}">
+          <div class="search-result-info">
+            <h3>${model.name}</h3>
+            <p><i class="fas fa-map-marker-alt"></i> ${model.stats.location} • <i class="fas fa-fire"></i> ${model.stats.popularity}</p>
+          </div>
+          <i class="fas fa-chevron-right" style="margin-left: auto; color: var(--text-secondary);"></i>
+        `;
+        
+        resultItem.addEventListener('click', () => {
+          // Redirect to model's link when clicked
+          window.location.href = model.link;
+        });
+        
+        searchResults.appendChild(resultItem);
+        
+        // Trigger animation
+        setTimeout(() => {
+          resultItem.style.opacity = '1';
+          resultItem.style.transform = 'translateX(0)';
+        }, 50);
+      });
+    }
+  </script>
+</body>
+</html>
