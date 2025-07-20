@@ -50,8 +50,8 @@
     
     /* Custom Scrollbar */
     ::-webkit-scrollbar {
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
     }
     
     ::-webkit-scrollbar-track {
@@ -323,28 +323,6 @@
       opacity: 1;
     }
     
-    /* Mobile 3D Button */
-    .mobile-nav-btn-3d {
-      background: linear-gradient(135deg, var(--gold), var(--primary));
-      color: white;
-      border-radius: var(--border-radius);
-      padding: 15px 25px;
-      text-align: center;
-      box-shadow: 0 5px 15px rgba(224, 0, 36, 0.3);
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      border: none;
-      cursor: pointer;
-      transition: var(--transition);
-      margin-top: 10px;
-    }
-    
-    .mobile-nav-btn-3d:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(224, 0, 36, 0.5);
-    }
-    
     /* Main Content */
     .main-content {
       padding-top: calc(var(--header-height) + 30px);
@@ -369,7 +347,7 @@
     
     .gallery-title {
       font-family: 'Cinzel', serif;
-      font-size: 32px;
+      font-size: clamp(22px, 3vw, 32px);
       font-weight: 400;
       letter-spacing: 2px;
       color: var(--gold);
@@ -403,7 +381,7 @@
       color: var(--text-secondary);
       font-family: 'Montserrat', sans-serif;
       font-weight: 600;
-      font-size: 14px;
+      font-size: clamp(11px, 2vw, 14px);
       cursor: pointer;
       padding: 10px 20px;
       border-radius: var(--border-radius);
@@ -535,7 +513,7 @@
     
     .video-title {
       font-family: 'Cinzel', serif;
-      font-size: 28px;
+      font-size: clamp(18px, 3vw, 28px);
       font-weight: 400;
       margin-bottom: 15px;
       color: var(--text);
@@ -562,7 +540,7 @@
     .model-name {
       display: inline-block;
       font-family: 'Montserrat', sans-serif;
-      font-size: 18px;
+      font-size: clamp(16px, 2vw, 18px);
       font-weight: 600;
       color: var(--gold);
       cursor: pointer;
@@ -592,91 +570,6 @@
       transform: scaleX(1);
       background: var(--primary);
       transform-origin: left;
-    }
-    
-    /* Thumbnail Grid */
-    .thumbnail-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 30px;
-      margin-top: 50px;
-    }
-    
-    .thumbnail-item {
-      position: relative;
-      border-radius: var(--border-radius);
-      overflow: hidden;
-      cursor: pointer;
-      transition: var(--transition);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-      aspect-ratio: 16/9;
-    }
-    
-    .thumbnail-item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 50%);
-      z-index: 1;
-      opacity: 0;
-      transition: var(--transition);
-    }
-    
-    .thumbnail-item:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
-    }
-    
-    .thumbnail-item:hover::before {
-      opacity: 1;
-    }
-    
-    .thumbnail-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: var(--transition);
-    }
-    
-    .thumbnail-item:hover .thumbnail-img {
-      transform: scale(1.05);
-    }
-    
-    .thumbnail-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 25px;
-      z-index: 2;
-      transform: translateY(20px);
-      opacity: 0;
-      transition: var(--transition);
-    }
-    
-    .thumbnail-item:hover .thumbnail-overlay {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    
-    .thumbnail-title {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: white;
-      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-    }
-    
-    .thumbnail-model {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 16px;
-      color: var(--gold);
-      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     }
     
     /* Image Gallery */
@@ -837,35 +730,6 @@
     .upload-btn:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 30px rgba(224, 0, 36, 0.5);
-    }
-    
-    .upload-btn::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 5px;
-      height: 5px;
-      background: rgba(255, 255, 255, 0.5);
-      opacity: 0;
-      border-radius: 100%;
-      transform: scale(1, 1) translate(-50%);
-      transform-origin: 50% 50%;
-    }
-    
-    .upload-btn:focus:not(:active)::after {
-      animation: ripple 1s ease-out;
-    }
-    
-    @keyframes ripple {
-      0% {
-        transform: scale(0, 0);
-        opacity: 0.5;
-      }
-      100% {
-        transform: scale(20, 20);
-        opacity: 0;
-      }
     }
     
     .upload-form {
@@ -1136,35 +1000,7 @@
     }
     
     /* Responsive */
-    @media (max-width: 1440px) {
-      .thumbnail-grid {
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      }
-      
-      .image-gallery {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      }
-    }
-    
     @media (max-width: 1024px) {
-      .gallery-title {
-        font-size: 28px;
-      }
-      
-      .video-title {
-        font-size: 24px;
-      }
-      
-      .thumbnail-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 20px;
-      }
-      
-      .image-gallery {
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-        gap: 20px;
-      }
-      
       .nav-buttons {
         gap: 15px;
         margin-left: 30px;
@@ -1186,27 +1022,6 @@
       
       .mobile-menu-btn {
         display: block;
-      }
-      
-      .gallery-title {
-        font-size: 24px;
-      }
-      
-      .video-title {
-        font-size: 22px;
-      }
-      
-      .view-options {
-        gap: 10px;
-      }
-      
-      .view-option {
-        padding: 8px 15px;
-        font-size: 12px;
-      }
-      
-      .thumbnail-grid {
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       }
       
       .image-gallery {
@@ -1242,18 +1057,6 @@
         align-self: flex-end;
       }
       
-      .gallery-title {
-        font-size: 22px;
-      }
-      
-      .video-title {
-        font-size: 20px;
-      }
-      
-      .thumbnail-grid {
-        grid-template-columns: 1fr;
-      }
-      
       .image-gallery {
         grid-template-columns: 1fr;
       }
@@ -1277,31 +1080,6 @@
         top: -40px;
         width: 35px;
         height: 35px;
-      }
-    }
-    
-    @media (max-width: 400px) {
-      .view-options {
-        gap: 5px;
-      }
-      
-      .view-option {
-        padding: 6px 12px;
-        font-size: 11px;
-      }
-      
-      .video-title {
-        font-size: 18px;
-      }
-      
-      .model-name {
-        font-size: 16px;
-      }
-      
-      .page-btn {
-        width: 35px;
-        height: 35px;
-        font-size: 14px;
       }
     }
   </style>
@@ -1355,7 +1133,7 @@
       <!-- Featured Video Player -->
       <div class="video-player-container">
         <div class="video-placeholder" id="videoPlaceholder">
-          <img src="https://images.unsplash.com/photo-1579547621113-e4bb2a19bdd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Video Thumbnail" class="video-thumbnail">
+          <img src="https://i.ibb.co/rGzyMGJK/260o6f.jpg" alt="Video Thumbnail" class="video-thumbnail">
           <div class="play-button">
             <i class="fas fa-play"></i>
           </div>
@@ -1367,13 +1145,8 @@
       
       <!-- Video Info -->
       <div class="video-info">
-        <h2 class="video-title">Golden Sunset Passion</h2>
-        <span class="model-name" id="modelLink">Abigaiil Morris</span>
-      </div>
-      
-      <!-- Video Thumbnail Grid -->
-      <div class="thumbnail-grid" id="videoGrid">
-        <!-- Thumbnail items will be added dynamically -->
+        <h2 class="video-title">Red Carpet Streaker</h2>
+        <span class="model-name" id="avaaddamsprofile.html">Ava Addams</span>
       </div>
       
       <!-- Image Gallery -->
@@ -1401,19 +1174,15 @@
             <input type="password" id="password" placeholder="Enter your password">
           </div>
           <div class="form-group">
-            <label for="imageTitle">Image Title</label>
-            <input type="text" id="imageTitle" placeholder="Enter image title">
-          </div>
-          <div class="form-group">
-            <label for="imageUpload">Select Image</label>
-            <input type="file" id="imageUpload" accept="image/*">
+            <label for="imageUpload">Select Images (Multiple allowed)</label>
+            <input type="file" id="imageUpload" accept="image/*" multiple>
           </div>
           <button class="submit-btn" id="submitBtn">
-            <i class="fas fa-upload"></i> Upload Image
+            <i class="fas fa-upload"></i> Upload Images
           </button>
           <div class="spinner" id="spinner"></div>
           <div class="success-message" id="successMessage">
-            <i class="fas fa-check-circle"></i> Image uploaded successfully!
+            <i class="fas fa-check-circle"></i> Images uploaded successfully!
           </div>
         </div>
       </div>
@@ -1461,10 +1230,9 @@
     const videoPlayer = document.getElementById('videoPlayer');
     const videosOption = document.getElementById('videosOption');
     const imagesOption = document.getElementById('imagesOption');
-    const videoGrid = document.getElementById('videoGrid');
-    const imageGallery = document.getElementById('imageGallery');
     const modelLink = document.getElementById('modelLink');
     const pagination = document.getElementById('pagination');
+    const imageGallery = document.getElementById('imageGallery');
     const uploadSection = document.getElementById('uploadSection');
     const uploadBtn = document.getElementById('uploadBtn');
     const uploadForm = document.getElementById('uploadForm');
@@ -1482,60 +1250,20 @@
     // API Key for ImgBB
     const IMGBB_API_KEY = 'd3f497b2f70db948c3100f96adcea7bf';
     
-    // Sample data for videos and images
+    // Sample data for videos
     const videoData = [
       {
         id: 1,
-        title: "Red Carpet Streaker",
-        model: "Ava Addams",
-        modelUrl: "avaaddamsprofile.html",
-        thumbnail: "https://i.ibb.co/rGzyMGJK/260o6f.jpg",
-        videoUrl: "https://drive.google.com/file/d/13J0rf5RAiK-ktslC0hXqaej9_qhfE4y3/preview"
-      },
-      {
-        id: 2,
-        title: "Midnight Desire",
-        model: "Alektra Blue",
-        modelUrl: "alektrablueprofile.html",
-        thumbnail: "https://images.unsplash.com/photo-1579547621113-e4bb2a19bdd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        videoUrl: "https://drive.google.com/file/d/13J0rf5RAiK-ktslC0hXqaej9_qhfE4y3/preview"
-      },
-      {
-        id: 3,
-        title: "Morning Elegance",
-        model: "Alena Croft",
-        modelUrl: "alenacroftprofile.html",
-        thumbnail: "https://images.unsplash.com/photo-1579547621113-e4bb2a19bdd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        videoUrl: "https://drive.google.com/file/d/13J0rf5RAiK-ktslC0hXqaej9_qhfE4y3/preview"
-      },
-      {
-        id: 4,
-        title: "Poolside Fantasy",
+        title: "Golden Sunset Passion",
         model: "Abigaiil Morris",
         modelUrl: "abigaiilmorrisprofile.html",
-        thumbnail: "https://images.unsplash.com/photo-1579547621113-e4bb2a19bdd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        videoUrl: "https://drive.google.com/file/d/13J0rf5RAiK-ktslC0hXqaej9_qhfE4y3/preview"
-      },
-      {
-        id: 5,
-        title: "Urban Temptation",
-        model: "Alektra Blue",
-        modelUrl: "alektrablueprofile.html",
-        thumbnail: "https://images.unsplash.com/photo-1579547621113-e4bb2a19bdd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        videoUrl: "https://drive.google.com/file/d/13J0rf5RAiK-ktslC0hXqaej9_qhfE4y3/preview"
-      },
-      {
-        id: 6,
-        title: "Silk & Shadows",
-        model: "Alena Croft",
-        modelUrl: "alenacroftprofile.html",
         thumbnail: "https://images.unsplash.com/photo-1579547621113-e4bb2a19bdd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
         videoUrl: "https://drive.google.com/file/d/13J0rf5RAiK-ktslC0hXqaej9_qhfE4y3/preview"
       }
     ];
     
-    // Image data array (will be populated with uploaded images)
-    let imageData = [];
+    // Image data array loaded from localStorage
+    let imageData = JSON.parse(localStorage.getItem('eliteVaultImages')) || [];
     
     // Pagination variables
     const itemsPerPage = 40;
@@ -1559,9 +1287,8 @@
       
       setupEventListeners();
       setupNavButtons();
-      renderVideoGrid();
-      updateImageData();
       updateFeaturedVideo(currentVideo);
+      updateImageData();
     });
     
     // Setup navigation buttons
@@ -1656,7 +1383,6 @@
       videosOption.addEventListener('click', () => {
         videosOption.classList.add('active');
         imagesOption.classList.remove('active');
-        videoGrid.style.display = 'grid';
         imageGallery.style.display = 'none';
         pagination.style.display = 'none';
         uploadSection.style.display = 'none';
@@ -1671,7 +1397,6 @@
       imagesOption.addEventListener('click', () => {
         imagesOption.classList.add('active');
         videosOption.classList.remove('active');
-        videoGrid.style.display = 'none';
         imageGallery.style.display = 'grid';
         pagination.style.display = 'flex';
         uploadSection.style.display = 'block';
@@ -1706,52 +1431,67 @@
       submitBtn.addEventListener('click', async () => {
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
-        const imageTitle = document.getElementById('imageTitle').value;
-        const imageFile = document.getElementById('imageUpload').files[0];
+        const imageFiles = document.getElementById('imageUpload').files;
         
         if (username === 'F1' && password === 'mkmk9090') {
-          if (imageFile && imageTitle) {
+          if (imageFiles.length > 0) {
             // Show loading spinner
             spinner.style.display = 'block';
             submitBtn.disabled = true;
             successMessage.style.display = 'none';
             
             try {
-              // Upload image to ImgBB
-              const imageUrl = await uploadImageToImgBB(imageFile);
+              // Upload all images to ImgBB
+              const uploadPromises = Array.from(imageFiles).map(file => uploadImageToImgBB(file));
+              const imageUrls = await Promise.all(uploadPromises);
               
-              // Add the new image to our data
-              const newImage = {
-                id: imageData.length + 1,
+              // Add the new images to our data
+              const newImages = imageUrls.map((url, index) => ({
+                id: imageData.length + index + 1,
                 model: "Uploaded Image",
                 modelUrl: "#",
-                imageUrl: imageUrl,
-                title: imageTitle
-              };
+                imageUrl: url,
+                title: imageFiles[index].name.replace(/\.[^/.]+$/, "") // Remove file extension
+              }));
               
-              imageData.unshift(newImage); // Add to beginning of array
+              // Add to beginning of array and sort by name numerically
+              imageData = [...newImages, ...imageData].sort((a, b) => {
+                // Extract numbers from titles
+                const numA = parseInt(a.title.match(/\d+/) || 0);
+                const numB = parseInt(b.title.match(/\d+/) || 0);
+                
+                // If both have numbers, compare numerically
+                if (!isNaN(numA) && !isNaN(numB)) {
+                  return numA - numB;
+                }
+                // Otherwise fall back to string comparison
+                return a.title.localeCompare(b.title);
+              });
+              
+              // Save to localStorage
+              localStorage.setItem('eliteVaultImages', JSON.stringify(imageData));
+              
               updateImageData();
               
               // Show success message
               successMessage.style.display = 'block';
-              successMessage.textContent = `Image "${imageTitle}" uploaded successfully!`;
+              successMessage.textContent = `${imageFiles.length} images uploaded successfully!`;
               
               // Reset form
               document.getElementById('username').value = '';
               document.getElementById('password').value = '';
-              document.getElementById('imageTitle').value = '';
               document.getElementById('imageUpload').value = '';
               
               // Automatically switch to images view
               imagesOption.click();
             } catch (error) {
-              alert('Error uploading image: ' + error.message);
+              alert('Error uploading images: ' + error.message);
             } finally {
               spinner.style.display = 'none';
               submitBtn.disabled = false;
             }
           } else {
-            alert('Please select an image and enter a title');
+            alert('Please select at least one image');
           }
         } else {
           alert('Invalid username or password');
@@ -1811,34 +1551,6 @@
       renderPagination();
     }
     
-    // Render video grid
-    function renderVideoGrid() {
-      videoGrid.innerHTML = '';
-      
-      videoData.forEach(video => {
-        const videoItem = document.createElement('div');
-        videoItem.className = 'thumbnail-item';
-        videoItem.innerHTML = `
-          <img src="${video.thumbnail}" alt="${video.title}" class="thumbnail-img">
-          <div class="thumbnail-overlay">
-            <h3 class="thumbnail-title">${video.title}</h3>
-            <p class="thumbnail-model">${video.model}</p>
-          </div>
-        `;
-        
-        videoItem.addEventListener('click', () => {
-          updateFeaturedVideo(video);
-          // Scroll to top smoothly
-          window.scrollTo({
-            top: 80,
-            behavior: 'smooth'
-          });
-        });
-        
-        videoGrid.appendChild(videoItem);
-      });
-    }
-    
     // Render image gallery for current page
     function renderImageGallery() {
       imageGallery.innerHTML = '';
@@ -1851,7 +1563,7 @@
         const imageItem = document.createElement('div');
         imageItem.className = 'gallery-image-container';
         imageItem.innerHTML = `
-          <img src="${image.imageUrl}" alt="${image.title}" class="gallery-image">
+          <img src="${image.imageUrl}" alt="${image.title}" class="gallery-image" loading="lazy">
           <div class="gallery-image-overlay">
             <h3 class="thumbnail-title">${image.title}</h3>
             <p class="thumbnail-model">${image.model}</p>
