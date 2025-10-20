@@ -743,7 +743,7 @@
       z-index: 1;
     }
     
-    /* Premium Models Slider Section */
+    /* Premium Models Slider Section - UPDATED BACKGROUND */
     .models-section {
       padding: 150px 5%;
       background: var(--bg);
@@ -764,6 +764,33 @@
       opacity: 0.3;
       z-index: 0;
       transition: opacity 1.5s ease-in-out;
+    }
+    
+    /* Background image container for proper aspect ratio */
+    .models-bg-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+    
+    .models-bg-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+      z-index: 0;
+    }
+    
+    .models-bg-image.active {
+      opacity: 0.3;
     }
     
     .section-title {
@@ -858,6 +885,7 @@
       max-width: 1400px;
       margin: 0 auto;
       padding: 0 60px;
+      z-index: 1;
     }
     
     .models-slider {
@@ -1423,6 +1451,11 @@
 
   <!-- Models Slider Section -->
   <section class="models-section">
+    <!-- Background Images Container -->
+    <div class="models-bg-container" id="modelsBgContainer">
+      <!-- Background images will be injected here by JS -->
+    </div>
+    
     <div class="section-title">
       <h2>TOP MODELS</h2>
       <p>Grace, Power & Prestige—Our Signature Models</p>
@@ -1838,9 +1871,10 @@
     const accessBtn = document.getElementById('accessBtn');
     const joinBtn = document.getElementById('joinBtn');
     const modelsSection = document.querySelector('.models-section');
+    const modelsBgContainer = document.getElementById('modelsBgContainer');
 
-    // Background images for hero banner and models section
-    const backgroundImages = [
+    // Background images for models section
+    const modelsBackgroundImages = [
       'https://images-assets.project1content.com/assets/brand/1151/banners/65711/68f12009b77e37.33955250.gif',
       'https://i.ibb.co.com/0yq7N339/Banner-2.jpg',
       'https://i.ibb.co.com/ZQbxgRv/Banner-3.jpg',
@@ -1851,6 +1885,7 @@
     // Initialize the page
     document.addEventListener('DOMContentLoaded', function() {
       renderModels();
+      createModelsBackgroundImages();
       startBannerSlideshow();
       startModelsBackgroundSlideshow();
       setupEventListeners();
@@ -1860,6 +1895,20 @@
       createParticles();
       setupHeroButtons();
     });
+
+    // Create background images for models section
+    function createModelsBackgroundImages() {
+      modelsBackgroundImages.forEach((imageUrl, index) => {
+        const bgImage = document.createElement('img');
+        bgImage.className = 'models-bg-image';
+        bgImage.src = imageUrl;
+        bgImage.alt = `Background ${index + 1}`;
+        if (index === 0) {
+          bgImage.classList.add('active');
+        }
+        modelsBgContainer.appendChild(bgImage);
+      });
+    }
 
     // Create floating particles for premium effect
     function createParticles() {
@@ -2035,27 +2084,19 @@
 
     // Models section background slideshow
     function startModelsBackgroundSlideshow() {
+      const bgImages = document.querySelectorAll('.models-bg-image');
       let currentImageIndex = 0;
       
-      // Function to change background image
-      function changeBackgroundImage() {
-        // Get a random image index (different from current)
-        let newIndex;
-        do {
-          newIndex = Math.floor(Math.random() * backgroundImages.length);
-        } while (newIndex === currentImageIndex && backgroundImages.length > 1);
+      setInterval(() => {
+        // Remove active class from current image
+        bgImages[currentImageIndex].classList.remove('active');
         
-        currentImageIndex = newIndex;
+        // Move to next image
+        currentImageIndex = (currentImageIndex + 1) % bgImages.length;
         
-        // Apply the new background image
-        modelsSection.style.backgroundImage = `url('${backgroundImages[currentImageIndex]}')`;
-      }
-      
-      // Change background immediately on load
-      changeBackgroundImage();
-      
-      // Change background every 12 seconds
-      setInterval(changeBackgroundImage, 12000);
+        // Add active class to new image
+        bgImages[currentImageIndex].classList.add('active');
+      }, 12000); // Change every 12 seconds
     }
 
     // Setup event listeners
