@@ -536,6 +536,100 @@
       opacity: 1;
     }
     
+    /* MODEL GALLERY Icon Styles */
+    .model-gallery-icon {
+      background: linear-gradient(135deg, var(--gold), var(--primary));
+      color: white;
+      border-radius: 15px;
+      padding: 1rem 1.5rem;
+      margin-top: 0.5rem;
+      box-shadow: 0 10px 25px rgba(224, 0, 36, 0.4);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.6s var(--ease-out-expo);
+      cursor: pointer;
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      font-size: 1.1rem;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      z-index: 1;
+      animation: galleryPulse 2s infinite alternate, galleryGlow 3s infinite alternate;
+    }
+    
+    @keyframes galleryPulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.05); }
+    }
+    
+    @keyframes galleryGlow {
+      0% { box-shadow: 0 10px 25px rgba(224, 0, 36, 0.4), 0 0 15px rgba(224, 0, 36, 0.6); }
+      50% { box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4), 0 0 20px rgba(212, 175, 55, 0.7); }
+      100% { box-shadow: 0 10px 25px rgba(224, 0, 36, 0.4), 0 0 15px rgba(224, 0, 36, 0.6); }
+    }
+    
+    .model-gallery-icon::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary), var(--gold));
+      opacity: 0;
+      transition: opacity 0.6s var(--ease-out-expo);
+      z-index: -1;
+    }
+    
+    .model-gallery-icon:hover {
+      transform: translateY(-5px) scale(1.08);
+      box-shadow: 0 15px 35px rgba(224, 0, 36, 0.6), 0 0 25px rgba(212, 175, 55, 0.8);
+    }
+    
+    .model-gallery-icon:hover::before {
+      opacity: 1;
+    }
+    
+    .model-gallery-icon i {
+      margin-right: 10px;
+      font-size: 1.3rem;
+      animation: iconFloat 3s ease-in-out infinite;
+    }
+    
+    @keyframes iconFloat {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    .model-gallery-icon::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 20%;
+      height: 200%;
+      opacity: 0;
+      transform: rotate(30deg);
+      background: rgba(255, 255, 255, 0.13);
+      background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.13) 0%,
+        rgba(255, 255, 255, 0.13) 77%,
+        rgba(255, 255, 255, 0.5) 92%,
+        rgba(255, 255, 255, 0.0) 100%
+      );
+    }
+    
+    .model-gallery-icon:hover::after {
+      opacity: 1;
+      left: 130%;
+      transition-property: left, top, opacity;
+      transition-duration: 0.7s, 0.7s, 0.15s;
+      transition-timing-function: ease;
+    }
+    
     /* Hero slider styles */
     .hero-slider {
       position: relative;
@@ -1177,6 +1271,11 @@
       .sites-list-container.show {
         max-height: 150px;
       }
+      
+      .model-gallery-icon {
+        padding: 0.8rem 1.2rem;
+        font-size: 1rem;
+      }
     }
     
     @media (max-width: 480px) {
@@ -1214,6 +1313,11 @@
       
       .back-to-top i {
         font-size: 20px;
+      }
+      
+      .model-gallery-icon {
+        padding: 0.7rem 1rem;
+        font-size: 0.9rem;
       }
     }
     
@@ -1414,6 +1518,12 @@
               <img src="https://i.ibb.co.com/6R6hZBhr/height.png" alt="Height" class="height-icon h-6 mx-auto">
               <div class="info-value font-medium text-lg premium-font">5'6"</div>
             </div>
+            <!-- NEW MODEL GALLERY ICON -->
+            <div class="info-icon px-4 py-3">
+              <div class="model-gallery-icon shine" id="modelGalleryBtn">
+                <i class="fas fa-images"></i> MODEL GALLERY
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1570,7 +1680,7 @@
         id: 6,
         title: "Carnival Queen",
         date: "September 23, 2018",
-        thumbnail: "https://i.imgur.com/qv45LuP.jpeg",
+        thumbnail: "https://i.ibb.co/QvLryV3f/CARNIVAL-QUEEN.jpg",
         preview: "https://prog-public-ht.project1content.com/eb1/b34/724/81d/439/185/010/398/cb1/df5/01/mediabook/mediabook_320p.mp4",
         videoUrl: "https://drive.google.com/file/d/VIDEO_ID_6/preview",
         imgLink: "https://example.com/img6",
@@ -1592,7 +1702,7 @@
         id: 8,
         title: "All Dolled Up:Spring Break Edition",
         date: "May 16, 2018",
-        thumbnail: "https://i.ibb.co/3HFKVw0/220i88.jpg",
+        thumbnail: "https://i.ibb.co/7JpQLP06/All-Dolled-Up-Spring-Break-Edition.jpg",
         preview: "https://prog-public-ht.project1content.com/1db/d58/00b/c2a/499/386/4e8/7ed/ed5/ac6/64/mediabook/mediabook_320p.mp4",
         videoUrl: "https://drive.google.com/file/d/VIDEO_ID_8/preview",
         imgLink: "https://example.com/img8",
@@ -1603,7 +1713,7 @@
         id: 9,
         title: "Anal Swinger",
         date: "Nov 12, 2017",
-        thumbnail: "https://i.ibb.co/6JF5Kj1f/21ahah.jpg",
+        thumbnail: "https://i.ibb.co/yF0V5Pbh/Anal-Swinger.jpg",
         preview: "https://prog-public-ht.project1content.com/903/763/393/2f2/417/993/aa5/596/390/62b/fe/mediabook/mediabook_320p.mp4",
         videoUrl: "https://drive.google.com/file/d/VIDEO_ID_9/preview",
         imgLink: "https://example.com/img9",
@@ -1623,80 +1733,80 @@
       },
       {
         id: 11,
-        title: "THE PACKAGE",
-        date: "Mar 26, 2019",
+        title: "My Husband's Best Friend",
+        date: "Oct 28, 2016",
         thumbnail: "https://i.ibb.co/nqsHmMzC/0216.jpg",
         preview: "https://prog-public-ht.project1content.com/560/76e/c4a/973/4b2/6b0/d49/203/325/dff/2b/mediabook/mediabook_320p.mp4",
         videoUrl: "https://drive.google.com/file/d/VIDEO_ID_11/preview",
         imgLink: "https://example.com/img11",
         site: "brazzers",
-        videoLink: "video11.html"
+        videoLink: "My Husband's Best Friend-august taylor.html"
       },
       {
         id: 12,
-        title: "Affirmation to Tit Formation",
-        date: "Feb 26, 2019",
+        title: "Maid To Nurture",
+        date: "Oct 01, 2016",
         thumbnail: "https://i.ibb.co/ZRLh7nqd/1z406p.jpg",
         preview: "https://prog-public-ht.project1content.com/536/045/8dd/819/4b6/5bb/275/d50/ae2/ae3/0c/mediabook/mediabook_320p.mp4",
         videoUrl: "https://drive.google.com/file/d/VIDEO_ID_12/preview",
         imgLink: "https://example.com/img12",
         site: "brazzers",
-        videoLink: "video12.html"
+        videoLink: "Maid To Nurture-august taylor.html"
       },
       {
         id: 13,
-        title: "Pictures Of Her",
-        date: "Jan 12, 2019",
+        title: "Dr. Taylor Takes Her Medicine",
+        date: "Sept 27, 2016",
         thumbnail: "https://i.ibb.co/5hH5ZGg1/0153.jpg",
         preview: "https://prog-public-ht.project1content.com/be0/e7a/638/871/4fe/5b5/f22/590/494/317/3c/mediabook/mediabook_320p.mp4",
         videoUrl: "https://drive.google.com/file/d/VIDEO_ID_13/preview",
         imgLink: "https://example.com/img13",
         site: "brazzers",
-        videoLink: "video13.html"
+        videoLink: "Dr. Taylor Takes Her Medicine-august taylor.html"
       },
       {
         id: 14,
-        title: "Rent A Pornstar:The Lonely Bachelor",
-        date: "Sep 08, 2018",
+        title: "My Wife's Ex",
+        date: "Aug 29, 2016",
         thumbnail: "https://i.ibb.co/Z6PfGy0q/173449413-0120.jpg",
         preview: "https://prog-public-ht.project1content.com/b65/c7f/baf/7b7/486/183/fec/6d6/a62/6f6/30/mediabook/mediabook_320p.mp4",
         videoUrl: "https://drive.google.com/file/d/VIDEO_ID_14/preview",
         imgLink: "https://example.com/img14",
         site: "brazzers",
-        videoLink: "video14.html"
+        videoLink: "My Wife's Ex-august taylor.html"
       },
       {
         id: 15,
-        title: "Getting Her Beauty Peep",
-        date: "August 16, 2018",
+        title: "What's My Grade Again ?",
+        date: "June 22, 2016",
         thumbnail: "https://i.ibb.co/Xrxk9DMY/173442565-0206.jpg",
         preview: "https://prog-public-ht.project1content.com/7ce/35f/8d4/a51/446/b96/fc6/956/c26/f84/83/mediabook/mediabook_320p.mp4",
         videoUrl: "https://drive.google.com/file/d/VIDEO_ID_15/preview",
         imgLink: "https://example.com/img15",
         site: "brazzers",
-        videoLink: "video15.html"
+        videoLink: "What's My Grade Again-august taylor.html"
       },
       {
         id: 16,
-        title: "Office 4-Play: Christmas Bonuses",
-        date: "December 05, 2017",
+        title: "Beady Booty",
+        date: "May 12, 2016",
         thumbnail: "https://i.ibb.co/gLBTD68D/5a4086f4cd17f.jpg",
         preview: "https://prog-public-ht.project1content.com/903/e6b/804/e89/4b7/594/fb0/e71/884/f2d/fc/mediabook/mediabook_320p.mp4",
         videoUrl: "https://drive.google.com/file/d/VIDEO_ID_16/preview",
         imgLink: "https://example.com/img16",
         site: "brazzers",
-        videoLink: "video16.html"
+        videoLink: "Beady Booty-august taylor.html"
       },
       {
         id: 17,
-        title: "One Strict Mama",
-        date: "Dec 1, 2017",
+        title: "Sharing Is Caring",
+        date: "March 18, 2016",
         thumbnail: "https://i.ibb.co/HfGr3MZs/173442106-0166.jpg",
         preview: "https://prog-public-ht.project1content.com/a53/7f9/8c9/d92/428/286/8da/112/307/549/86/mediabook/mediabook_320p.mp4",
         videoUrl: "https://drive.google.com/file/d/VIDEO_ID_17/preview",
         imgLink: "https://example.com/img17",
         site: "brazzers",
-        videoLink: "onestrictmama-ava addams.html"
+        videoLink: "Sharing Is Caring-august taylor.html"
       },
       {
         id: 18,
@@ -1711,80 +1821,80 @@
       },
       {
         id: 19,
-        title: "Mom's Pany Bandit",
-        date: "Sep 23, 2017",
+        title: "Working Out The Wives",
+        date: "Jan 16, 2016",
         thumbnail: "https://i.ibb.co/0j6smXdc/173444070-0307.jpg",
         preview: "https://prog-public-ht.project1content.com/b8a/92f/868/505/467/9b0/db4/a9a/091/6d0/67/mediabook/mediabook_320p.mp4",
         videoUrl: "https://drive.google.com/file/d/VIDEO_ID_18/preview",
         imgLink: "https://example.com/img18",
         site: "brazzers",
-        videoLink: "allnightrager-ava addams.html"
+        videoLink: "Working Out The Wives-august taylor.html"
       },
       {
         id: 20,
-        title: "Mom,Hands Off My Boyfriend",
-        date: "April 03, 2017",
+        title: "Dirty Girls Learn Dirty Words",
+        date: "Dec 29, 2015",
         thumbnail: "https://i.ibb.co/jvvZktZj/173443233-0380.jpg",
         preview: "https://prog-public-ht.project1content.com/3de/cb9/f5b/1ae/4c6/ea0/70a/380/7d4/56e/f0/mediabook/mediabook_320p.mp4",
         videoUrl: "https://drive.google.com/file/d/VIDEO_ID_18/preview",
         imgLink: "https://example.com/img18",
         site: "brazzers",
-        videoLink: "allnightrager-ava addams.html"
+        videoLink: "Dirty Girls Learn Dirty Words-august taylor.html"
       },
       {
         id: 21,
-        title: "Survey My Pussy",
-        date: "December 30, 2016",
+        title: "Shagging the Chauffeur",
+        date: "Nov 16, 2015",
         thumbnail: "https://i.imgur.com/HCBowb8.jpeg",
         preview: "https://prog-public-ht.project1content.com/533/c88/07e/548/415/f85/c30/a9f/20b/6c6/94/mediabook/mediabook_320p.mp4",
         videoUrl: "https://drive.google.com/file/d/VIDEO_ID_18/preview",
         imgLink: "https://example.com/img18",
         site: "brazzers",
-        videoLink: "allnightrager-ava addams.html"
+        videoLink: "Shagging the Chauffeur-august taylor.html"
       },
       {
         id: 22,
-        title: "The Dick Doctor",
-        date: "March 05, 2016",
+        title: "Rubbing Down A Horny Slut",
+        date: "August 6, 2015",
         thumbnail: "https://i.imgur.com/liHsQMX.jpeg",
         preview: "https://prog-public-ht.project1content.com/8a3/9ad/f17/23f/4d0/687/e44/cda/899/956/c2/mediabook/mediabook_320p.mp4",
         videoUrl: "https://drive.google.com/file/d/VIDEO_ID_18/preview",
         imgLink: "https://example.com/img18",
         site: "brazzers",
-        videoLink: "stayawayfrommydaughterp02-ava addams.html"
+        videoLink: "Rubbing Down A Horny Slut-august taylor.html"
       },
       {
         id: 23,
-        title: "The Fucking Food Inspector",
-        date: "February 09, 2016",
+        title: "You're Gonna Pay For That !",
+        date: "April 24, 2014",
         thumbnail: "https://i.imgur.com/DwKgyMj.jpeg",
         preview: "https://prog-public-ht.project1content.com/208/e52/1e9/c5a/46f/ba8/c04/b55/be8/709/c4/mediabook/mediabook_320p.mp4",
         videoUrl: "https://drive.google.com/file/d/VIDEO_ID_18/preview",
         imgLink: "https://example.com/img18",
         site: "brazzers",
-        videoLink: "squeakyclean-ava addams.html"
+        videoLink: "You're Gonna Pay For That-august taylor.html"
       },
       {
         id: 24,
-        title: "Milf Squad Vegas:Big Cock Commandeering",
-        date: "February 4, 2016",
-        thumbnail: "https://i.imgur.com/DwKgyMj.jpeg",
-        preview: "https://prog-public-ht.project1content.com/917/023/758/38f/449/4a4/0e2/0df/109/1d8/3d/mediabook/mediabook_320p.mp4",
+        title: "Good Cop, Slut Cop",
+        date: "March 26, 2014",
+        thumbnail: "https://i.ibb.co/bMVrHN4b/God-cop-Slut-cop.jpg",
+        preview: "https://prog-public-ht.project1content.com/6ec/021/035/58e/48a/bbc/c88/232/0b5/9f3/0a/mediabook/mediabook_320p.mp4",
         videoUrl: "https://drive.google.com/file/d/VIDEO_ID_18/preview",
         imgLink: "https://example.com/img18",
         site: "brazzers",
-        videoLink: "allnightrager-ava addams.html"
+        videoLink: "Good Cop, Slut Cop-august taylor.html"
       },
       {
         id: 25,
-        title: "Mom's Christmas Stuffing",
-        date: "December 15, 2015",
-        thumbnail: "https://i.imgur.com/yRPdseP.jpeg",
-        preview: "https://prog-public-ht.project1content.com/042/8b1/de4/6d3/452/a8e/6fa/4c2/3e3/4f7/32/mediabook/mediabook_320p.mp4",
+        title: "Pick Up Artist",
+        date: "March 6, 2014",
+        thumbnail: "https://i.ibb.co/DDzbbV5x/Pickup-Artist.jpg",
+        preview: "https://prog-public-ht.project1content.com/4b9/863/4bd/3cf/42a/da3/534/fd3/7e7/ee4/a0/mediabook/mediabook_320p.mp4",
         videoUrl: "https://drive.google.com/file/d/VIDEO_ID_18/preview",
         imgLink: "https://example.com/img18",
         site: "brazzers",
-        videoLink: "allnightrager-ava addams.html"
+        videoLink: "Pick Up Artist-august taylor.html"
       },
       {
         id: 26,
@@ -1853,6 +1963,7 @@
     const backToTop = document.getElementById('backToTop');
     const mainHeader = document.getElementById('mainHeader');
     const heroSlides = document.querySelectorAll('.hero-slide');
+    const modelGalleryBtn = document.getElementById('modelGalleryBtn');
     
     // New elements for sites list and date filter
     const sitesListBtn = document.getElementById('sitesListBtn');
@@ -1877,6 +1988,12 @@
       renderTopRatedVideos();
       startHeroSlider();
       setupSitesList();
+      
+      // MODEL GALLERY button event - Change the URL to your preferred destination
+      modelGalleryBtn.addEventListener('click', function() {
+        // Replace with your preferred URL
+        window.location.href = "https://example.com/model-gallery"; // CHANGE THIS TO YOUR PREFERRED URL
+      });
       
       // View All button event
       viewAllBtn.addEventListener('click', function(e) {
