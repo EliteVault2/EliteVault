@@ -1893,7 +1893,7 @@
 
         function searchModels(query) {
             if (!query) { searchResults.innerHTML = ''; return; }
-            const results = fullmodelDatabase.filter(m =>
+            const results = fullModelDatabase.filter(m =>
                 m.name.toLowerCase().includes(query) ||
                 m.stats.location.toLowerCase().includes(query) ||
                 m.stats.height.toLowerCase().includes(query) ||
