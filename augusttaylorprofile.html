@@ -83,30 +83,41 @@
             z-index: 1001; transition: width 0.1s var(--ease-smooth);
         }
 
+        /* Preloader – now with model profile image */
         .preloader {
             position: fixed; inset: 0; background: var(--obsidian); z-index: 10000;
             display: flex; align-items: center; justify-content: center;
-            transition: opacity 0.8s var(--ease-out-expo), visibility 0.8s var(--ease-out-expo);
+            transition: opacity 0.6s var(--ease-out-expo), visibility 0.6s var(--ease-out-expo);
             opacity: 1; visibility: visible;
         }
         .preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-        .preloader-logo {
-            font-family: 'Royal Acidbath', 'Cinzel', 'Playfair Display', serif;
-            font-size: 38px; letter-spacing: 4px; color: var(--text-primary);
-            text-shadow: 0 0 20px rgba(212,175,55,0.5);
-            animation: preloaderPulse 1.2s var(--ease-out-expo) infinite;
+        .preloader-inner {
+            position: relative;
+            width: 120px;
+            height: 120px;
         }
-        .preloader-logo span { color: var(--gold); }
+        .preloader-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(212,175,55,0.4);
+            animation: preloaderPulse 1.8s var(--ease-out-expo) infinite;
+        }
+        @keyframes preloaderPulse {
+            0%,100% { transform: scale(0.95); opacity: 0.9; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
         .preloader-ring {
-            width: 60px; height: 60px; border: 2px solid rgba(212,175,55,0.3);
-            border-top-color: var(--gold); border-radius: 50%;
-            margin: 20px auto 0; animation: preloaderSpin 0.9s linear infinite;
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: var(--gold);
+            border-right-color: var(--crimson);
+            animation: preloaderSpin 1s linear infinite;
         }
         @keyframes preloaderSpin { to { transform: rotate(360deg); } }
-        @keyframes preloaderPulse {
-            0%,100% { opacity:1; transform:scale(1); }
-            50% { opacity:0.7; transform:scale(1.06); }
-        }
 
         .font-display { font-family: 'Playfair Display','Cormorant Garamond',serif; }
         .font-body { font-family: 'Montserrat',sans-serif; }
@@ -427,7 +438,14 @@
     </style>
 </head>
 <body class="font-body">
-    <div class="preloader" id="preloader"><div class="preloader-inner"><div class="preloader-logo">ELITE <span>VAULT</span></div><div class="preloader-ring"></div></div></div>
+    <!-- Preloader with model profile image -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-ring"></div>
+            <img src="https://i.ibb.co.com/MxyF4SqD/0002.jpg" alt="Loading..." class="preloader-img" loading="eager">
+        </div>
+    </div>
+
     <div class="scroll-progress" id="scrollProgress"></div>
     <header id="mainHeader">
         <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
@@ -566,6 +584,7 @@
                 {id:30,title:"All Night Rager",date:"Sep 28, 2017",thumbnail:"https://i.ibb.co/0pQJhFSH/173444801-0469.jpg",preview:"https://prog-public-ht.project1content.com/8af/89e/ba7/b58/40c/789/953/bb8/368/b4c/5d/mediabook/mediabook_320p.mp4",site:"bangbros",videoLink:"allnightrager-ava addams.html"}
             ];
 
+            // Remove top-rated videos from the "all videos" section data
             const allVideosSectionData = allVideosData.slice(topRatedVideos.length);
 
             const $ = (s) => document.querySelector(s);
@@ -598,7 +617,11 @@
             let lastScrollY = 0;
             let ticking = false;
 
-            window.addEventListener('load', () => setTimeout(() => preloader.classList.add('hidden'), 800));
+            // Hide preloader quickly (fast loading)
+            window.addEventListener('load', () => {
+                setTimeout(() => preloader.classList.add('hidden'), 400);
+            });
+
             function updateScrollProgress() {
                 const h = document.documentElement.scrollHeight - window.innerHeight;
                 const p = h > 0 ? (window.scrollY / h) * 100 : 0;
@@ -673,12 +696,10 @@
                         if (currentDateFilter === 'older') return year < 2022;
                         return year.toString() === currentDateFilter;
                     });
-
                 }
 
+                // Sort by date (newest first)
                 filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
-                const start = (page - 1) * perPage;
-                const paginated = filtered.slice(start, start + perPage);
 
                 const start = (page - 1) * perPage;
                 const paginated = filtered.slice(start, start + perPage);
