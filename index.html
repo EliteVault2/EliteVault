@@ -68,10 +68,6 @@
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            background-image:
-                radial-gradient(ellipse at 25% 15%, rgba(212, 175, 55, 0.03) 0%, transparent 60%),
-                radial-gradient(ellipse at 75% 50%, rgba(196, 18, 48, 0.025) 0%, transparent 55%),
-                radial-gradient(ellipse at 40% 80%, rgba(212, 175, 55, 0.02) 0%, transparent 50%);
             background-attachment: fixed;
         }
         img {
@@ -80,6 +76,16 @@
             -moz-user-drag: none;
             -o-user-drag: none;
             user-drag: none;
+        }
+
+        /* ── Aurora Canvas ── */
+        #aurora-canvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
         }
 
         /* ── Custom Scrollbar ── */
@@ -1229,7 +1235,7 @@
             position: fixed;
             inset: 0;
             pointer-events: none;
-            z-index: -1;
+            z-index: 1;
         }
         .particle {
             position: absolute;
@@ -1425,7 +1431,10 @@
     </style>
 </head>
 <body>
-    <!-- Floating Particles -->
+    <!-- ── Aurora Background Canvas ── -->
+    <canvas id="aurora-canvas"></canvas>
+
+    <!-- Floating Particles (above aurora, below content) -->
     <div class="particles" id="particles"></div>
 
     <!-- Header -->
@@ -1569,6 +1578,122 @@
         <i class="fas fa-arrow-up"></i>
     </div>
 
+    <!-- ── Aurora WebGL Script ── -->
+    <script>
+    (function() {
+        const VERT = `
+        attribute vec2 position;
+        void main() { gl_Position = vec4(position, 0.0, 1.0); }
+        `;
+        const FRAG = `
+        precision highp float;
+        uniform float uTime, uAmplitude, uBlend;
+        uniform vec3 uColor0, uColor1, uColor2;
+        uniform vec2 uResolution;
+
+        vec3 permute(vec3 x){return mod(((x*34.0)+1.0)*x,289.0);}
+        float snoise(vec2 v){
+          vec4 C=vec4(.211324865405187,.366025403784439,-.577350269189626,.024390243902439);
+          vec2 i=floor(v+dot(v,C.yy)),x0=v-i+dot(i,C.xx);
+          vec2 i1=(x0.x>x0.y)?vec2(1,0):vec2(0,1);
+          vec4 x12=x0.xyxy+C.xxzz; x12.xy-=i1; i=mod(i,289.0);
+          vec3 p=permute(permute(i.y+vec3(0,i1.y,1))+i.x+vec3(0,i1.x,1));
+          vec3 m=max(.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.);
+          m=m*m; m=m*m;
+          vec3 x=2.*fract(p*C.www)-1.,h=abs(x)-.5,ox=floor(x+.5),a0=x-ox;
+          m*=1.79284291400159-.85373472095314*(a0*a0+h*h);
+          vec3 g; g.x=a0.x*x0.x+h.x*x0.y; g.yz=a0.yz*x12.xz+h.yz*x12.yw;
+          return 130.*dot(m,g);
+        }
+
+        void main(){
+          vec2 uv=gl_FragCoord.xy/uResolution;
+          vec3 c01=mix(uColor0,uColor1,smoothstep(0.,.5,uv.x));
+          vec3 c12=mix(uColor1,uColor2,smoothstep(.5,1.,uv.x));
+          vec3 ramp=mix(c01,c12,step(.5,uv.x));
+          float h=snoise(vec2(uv.x*2.+uTime*.1,uTime*.25))*.5*uAmplitude;
+          h=exp(h); h=(uv.y*2.-h+.2);
+          float intensity=.6*h;
+          float alpha=smoothstep(.20-uBlend*.5,.20+uBlend*.5,intensity);
+          gl_FragColor=vec4(intensity*ramp*alpha,alpha);
+        }
+        `;
+
+        // ── CUSTOMIZE AURORA ──────────────────────────────────────
+        const CONFIG = {
+            colorStops: ['#180a0c', '#0e0a16', '#0a0d14'],
+            blend: 0.5,
+            amplitude: 0.6,
+            speed: 0.25
+        };
+        // ─────────────────────────────────────────────────────────
+
+        function hexToRgb(h) {
+            return [
+                parseInt(h.slice(1, 3), 16) / 255,
+                parseInt(h.slice(3, 5), 16) / 255,
+                parseInt(h.slice(5, 7), 16) / 255
+            ];
+        }
+
+        const canvas = document.getElementById('aurora-canvas');
+        const gl = canvas.getContext('webgl', { alpha: true, premultipliedAlpha: true });
+        gl.clearColor(0, 0, 0, 0);
+        gl.enable(gl.BLEND);
+        gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+
+        function mkShader(t, s) { const sh = gl.createShader(t);
+            gl.shaderSource(sh, s);
+            gl.compileShader(sh); return sh; }
+        const prog = gl.createProgram();
+        gl.attachShader(prog, mkShader(gl.VERTEX_SHADER, VERT));
+        gl.attachShader(prog, mkShader(gl.FRAGMENT_SHADER, FRAG));
+        gl.linkProgram(prog);
+        gl.useProgram(prog);
+
+        const buf = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+        const pos = gl.getAttribLocation(prog, 'position');
+        gl.enableVertexAttribArray(pos);
+        gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+
+        const u = {
+            uTime: gl.getUniformLocation(prog, 'uTime'),
+            uAmplitude: gl.getUniformLocation(prog, 'uAmplitude'),
+            uBlend: gl.getUniformLocation(prog, 'uBlend'),
+            uColor0: gl.getUniformLocation(prog, 'uColor0'),
+            uColor1: gl.getUniformLocation(prog, 'uColor1'),
+            uColor2: gl.getUniformLocation(prog, 'uColor2'),
+            uResolution: gl.getUniformLocation(prog, 'uResolution'),
+        };
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            gl.viewport(0, 0, canvas.width, canvas.height);
+            gl.uniform2f(u.uResolution, canvas.width, canvas.height);
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        const start = performance.now();
+        (function frame(ts) {
+            requestAnimationFrame(frame);
+            const t = (ts - start) * 0.001;
+            const [c0, c1, c2] = CONFIG.colorStops.map(hexToRgb);
+            gl.uniform1f(u.uTime, t * CONFIG.speed);
+            gl.uniform1f(u.uAmplitude, CONFIG.amplitude);
+            gl.uniform1f(u.uBlend, CONFIG.blend);
+            gl.uniform3fv(u.uColor0, c0);
+            gl.uniform3fv(u.uColor1, c1);
+            gl.uniform3fv(u.uColor2, c2);
+            gl.clear(gl.COLOR_BUFFER_BIT);
+            gl.drawArrays(gl.TRIANGLES, 0, 3);
+        })();
+    })();
+    </script>
+
     <script src="fullModelDatabase.js">
     </script>
     <script>
@@ -1576,13 +1701,13 @@
         const modelDatabase = [
             { id: 1, name: "Angela White", image: "https://i.ibb.co.com/GZz19Kb/profile-Angela-White.jpg",
                 stats: { height: "5'2\"", location: "Australia", popularity: "98%", hair: "Black",
-                category: "angela" }, link: "angelawhiteprofile.html" },
+                    category: "angela" }, link: "angelawhiteprofile.html" },
             { id: 2, name: "Ava Addams", image: "https://i.ibb.co.com/rf0HWcst/profile-Ava-Addams.jpg",
                 stats: { height: "5'3\"", location: "Gibraltar,UK", popularity: "95%", hair: "Black",
                     category: "ava addams" }, link: "avaaddamsprofile.html" },
             { id: 3, name: "Romi Rain", image: "https://i.ibb.co.com/zH07tQMW/profile-Romi-Rain.jpg",
                 stats: { height: "5'8\"", location: "Boston, USA", popularity: "96%", hair: "Black",
-                category: "romi" }, link: "romirainprofile.html" },
+                    category: "romi" }, link: "romirainprofile.html" },
             { id: 4, name: "Luna Star", image: "https://i.ibb.co.com/QvbjZLyk/profile-Luna-Star.jpg",
                 stats: { height: "5'3\"", location: "Havana,Cuba", popularity: "98%", hair: "Brunette",
                     category: "luna star" }, link: "lunastarprofile.html" },
@@ -1612,7 +1737,7 @@
                     category: "kendra lust" }, link: "kendralustprofile.html" },
             { id: 13, name: "Nikki Benz", image: "https://i.ibb.co.com/b5DkM4zJ/profile-Nikki-Benz.jpg",
                 stats: { height: "5'4\"", location: "Ukraine", popularity: "97%", hair: "Blonde",
-                category: "nikki benz" }, link: "nikkibenzprofile.html" },
+                    category: "nikki benz" }, link: "nikkibenzprofile.html" },
             { id: 14, name: "Moriah Mills", image: "https://i.ibb.co.com/pvvnjy1T/profile-Moriah-Mills.jpg",
                 stats: { height: "5'4\"", location: "United States", popularity: "98%", hair: "Blonde",
                     category: "moriah mills" }, link: "moriahmillsprofile.html" },
@@ -1636,7 +1761,7 @@
                     category: "alettea ocean" }, link: "https://example.com/models/marie-dubois" },
             { id: 21, name: "Aspen Reign", image: "https://i.ibb.co.com/qYDXrp5f/profile-Aspen-Reign.jpg",
                 stats: { height: "5'5\"", location: "Canada", popularity: "99%", hair: "Blonde",
-                category: "aspen reign" }, link: "https://example.com/models/valentina-ivanova" },
+                    category: "aspen reign" }, link: "https://example.com/models/valentina-ivanova" },
             { id: 22, name: "Payton Preslee", image: "https://i.ibb.co.com/GvgBWdcX/profile-Payton-Preslee.jpg",
                 stats: { height: "5'2\"", location: "Warsaw, Poland", popularity: "94%", hair: "Black",
                     category: "payton preslee" }, link: "https://example.com/models/layla-ahmed" },
@@ -1729,7 +1854,8 @@
                     mainHeader.classList.remove('hidden');
                     return;
                 }
-                if (currentScroll > lastScroll && !mainHeader.classList.contains('hidden') && currentScroll > 100) {
+                if (currentScroll > lastScroll && !mainHeader.classList.contains('hidden') && currentScroll >
+                    100) {
                     mainHeader.classList.add('hidden');
                 } else if (currentScroll < lastScroll && mainHeader.classList.contains('hidden')) {
                     mainHeader.classList.remove('hidden');
@@ -1831,7 +1957,6 @@
                 card.addEventListener('click', () => { window.location.href = model.link; });
                 modelsSlider.appendChild(card);
             });
-            // Reveal visible cards
             setTimeout(() => revealVisibleElements(), 200);
         }
 
@@ -1862,7 +1987,8 @@
                 'active');
                 mobileModelsBtn.classList.add('active'); } else if (cp.includes('videos')) { videosBtn.classList.add(
                 'active');
-                mobileVideosBtn.classList.add('active'); } else if (cp.includes('3d')) { threeDBtn.classList.add('active');
+                mobileVideosBtn.classList.add('active'); } else if (cp.includes('3d')) { threeDBtn.classList.add(
+                'active');
                 mobileThreeDBtn.classList.add('active'); }
         }
 
