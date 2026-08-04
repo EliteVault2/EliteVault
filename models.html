@@ -4,9 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ELITE VAULT | Exclusive Model Agency</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://i.ibb.co.com">
+    <link rel="dns-prefetch" href="https://randomuser.me">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <style>
+        /* ===== PERFORMANCE: font-display swap ===== */
+        @font-face {
+            font-family: 'Cinzel';
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Montserrat';
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Playfair Display';
+            font-display: swap;
+        }
+
         :root {
             --gold: #D4AF37;
             --gold-light: #E8C84A;
@@ -38,6 +56,7 @@
             --card-aspect: 4 / 5;
         }
 
+        /* ===== PERFORMANCE: contain & will-change hints ===== */
         * {
             margin: 0;
             padding: 0;
@@ -63,7 +82,7 @@
             position: relative;
         }
 
-        /* Ambient orbs */
+        /* ===== PERFORMANCE: GPU-accelerated orbs ===== */
         .ambient-orb {
             position: fixed;
             border-radius: 50%;
@@ -72,6 +91,8 @@
             filter: blur(120px);
             opacity: 0.04;
             animation: orbDrift 22s ease-in-out infinite;
+            will-change: transform;
+            contain: layout style paint;
         }
         .ambient-orb.orb-1 {
             top: -15%;
@@ -116,7 +137,7 @@
             }
         }
 
-        /* Grain overlay */
+        /* ===== PERFORMANCE: grain overlay with reduced opacity ===== */
         .grain {
             position: fixed;
             inset: 0;
@@ -124,9 +145,10 @@
             z-index: 1;
             opacity: 0.03;
             background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stretch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            contain: layout style paint;
         }
 
-        /* Scroll progress bar */
+        /* ===== PERFORMANCE: scroll-progress lightweight ===== */
         .scroll-progress {
             position: fixed;
             top: 0;
@@ -137,9 +159,11 @@
             transition: width 0.1s linear;
             border-radius: 0 2px 2px 0;
             box-shadow: 0 0 12px var(--gold-glow);
+            will-change: width;
+            contain: layout style paint;
         }
 
-        /* Header */
+        /* ===== HEADER ===== */
         header {
             position: fixed;
             top: 0;
@@ -157,6 +181,7 @@
             border-bottom: 1px solid var(--glass-border);
             transition: transform 0.5s var(--ease-out-expo), background 0.5s, box-shadow 0.5s;
             will-change: transform;
+            contain: layout style paint;
         }
         header.scrolled {
             background: rgba(6, 6, 12, 0.8);
@@ -178,6 +203,7 @@
             width: auto;
             filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.4));
             transition: var(--transition-bounce);
+            will-change: transform, filter;
         }
         .img-logo:hover {
             filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.65));
@@ -280,7 +306,7 @@
             transform: translateY(-1px) scale(0.96);
         }
 
-        /* Search */
+        /* ===== SEARCH ===== */
         .search-wrap {
             position: relative;
             z-index: 3;
@@ -435,7 +461,7 @@
             color: var(--text-tertiary);
         }
 
-        /* Mobile menu */
+        /* ===== MOBILE MENU ===== */
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -500,7 +526,7 @@
             font-size: 14px;
         }
 
-        /* Main content */
+        /* ===== MAIN CONTENT ===== */
         .main-content {
             padding-top: 100px;
             min-height: 100vh;
@@ -578,7 +604,7 @@
             animation: fadeInUp 0.9s var(--ease-out-expo) 0.2s both;
         }
 
-        /* Toolbar */
+        /* ===== TOOLBAR ===== */
         .toolbar {
             display: flex;
             justify-content: center;
@@ -659,7 +685,7 @@
             color: #fff;
         }
 
-        /* Alphabet */
+        /* ===== ALPHABET FILTER ===== */
         .alphabet-filter {
             display: flex;
             justify-content: center;
@@ -711,7 +737,7 @@
             font-weight: 700;
         }
 
-        /* Models grid */
+        /* ===== MODELS GRID ===== */
         .models-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -726,6 +752,8 @@
             margin-right: auto;
             gap: 12px;
         }
+
+        /* ===== PERFORMANCE: card with contain & content-visibility ===== */
         .model-card {
             background: var(--card-bg);
             border-radius: var(--radius-md);
@@ -738,8 +766,10 @@
             animation: cardReveal 0.6s var(--ease-out-expo) forwards;
             border: 1px solid rgba(255, 255, 255, 0.05);
             cursor: pointer;
-            will-change: transform;
-            group: true;
+            will-change: transform, opacity, box-shadow;
+            contain: layout style paint;
+            content-visibility: auto;
+            contain-intrinsic-size: 0 380px;
         }
         @keyframes cardReveal {
             to {
@@ -778,12 +808,15 @@
             position: relative;
             z-index: 1;
         }
+
+        /* ===== PERFORMANCE: image container with aspect-ratio ===== */
         .model-image-container {
             position: relative;
             width: 100%;
             aspect-ratio: var(--card-aspect);
             overflow: hidden;
             background: #0a0a12;
+            contain: layout style paint;
         }
         .model-image {
             position: absolute;
@@ -794,6 +827,7 @@
             object-fit: cover;
             transition: transform 0.8s var(--ease-out-expo);
             will-change: transform;
+            background: #0a0a12;
         }
         .model-card:hover .model-image {
             transform: scale(1.06);
@@ -900,7 +934,7 @@
             font-size: 9px;
         }
 
-        /* List view card */
+        /* ===== LIST VIEW ===== */
         .models-grid.list-view .model-card {
             display: flex;
             flex-direction: row;
@@ -925,7 +959,7 @@
             font-size: 16px;
         }
 
-        /* Pagination */
+        /* ===== PAGINATION ===== */
         .pagination {
             display: flex;
             justify-content: center;
@@ -993,7 +1027,7 @@
             user-select: none;
         }
 
-        /* Quick view modal */
+        /* ===== MODAL ===== */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -1082,7 +1116,7 @@
             box-shadow: 0 8px 24px rgba(212, 175, 55, 0.4);
         }
 
-        /* Toast */
+        /* ===== TOAST ===== */
         .toast {
             position: fixed;
             bottom: 28px;
@@ -1105,7 +1139,7 @@
             transform: translateX(-50%) translateY(0);
         }
 
-        /* Footer */
+        /* ===== FOOTER ===== */
         footer {
             background: rgba(8, 8, 14, 0.7);
             backdrop-filter: blur(16px);
@@ -1161,7 +1195,7 @@
             letter-spacing: 1px;
         }
 
-        /* Back to top */
+        /* ===== BACK TO TOP ===== */
         .back-to-top {
             position: fixed;
             bottom: 24px;
@@ -1207,7 +1241,7 @@
             font-size: 14px;
         }
 
-        /* Skeleton loading */
+        /* ===== SKELETON ===== */
         .skeleton {
             background: linear-gradient(90deg, #1a1a24 25%, #222230 50%, #1a1a24 75%);
             background-size: 200% 100%;
@@ -1223,7 +1257,7 @@
             }
         }
 
-        /* Responsive */
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
             .models-grid {
                 grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
@@ -1380,7 +1414,7 @@
     <header id="mainHeader">
         <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
         <div class="logo-wrap">
-            <img src="https://i.ibb.co.com/sd6CqKNr/Chat-GPT-Image-May-5-2025-04-00-30-AM.png" alt="ELITE VAULT Logo" class="img-logo" loading="eager">
+            <img src="https://i.ibb.co.com/sd6CqKNr/Chat-GPT-Image-May-5-2025-04-00-30-AM.png" alt="ELITE VAULT Logo" class="img-logo" loading="eager" decoding="async">
             <a href="index.html" class="logo">ELITE <span>VAULT</span></a>
         </div>
         <div class="nav-buttons">
@@ -1391,7 +1425,7 @@
         </div>
         <div class="search-wrap">
             <div class="search-container" id="searchContainer">
-                <input type="text" class="search-input" id="searchInput" placeholder="Search models...">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search models..." autocomplete="off">
                 <div class="search-trigger" id="searchTrigger" aria-label="Search"><i class="fas fa-search"></i></div>
                 <div class="search-results" id="searchResults"></div>
             </div>
@@ -1948,8 +1982,8 @@
                     popularity: null, url: "westsionnaprofile.html" },
                 { id: 250, name: "Wilde Quinn", image: "https://randomuser.me/api/portraits/women/77.jpg", location: "",
                     popularity: null, url: "wildequinnprofile.html" },
-                { id: 251, name: "White Jennifer", image: "https://randomuser.me/api/portraits/women/78.jpg", location: "",
-                    popularity: null, url: "whitejenniferprofile.html" },
+                { id: 251, name: "Karissa Shannon", image: "https://i.ibb.co/5H2rxb8/Karissa-Shannon.jpg", location: "Michigan,USA",
+                    popularity: 93, url: "karissashannonprofile.html" },
                 { id: 252, name: "Yiny Leon", image: "https://i.ibb.co/V0RZ71nz/image.jpg", location: "Puerto Rico",
                     popularity: 98, url: "yinyleonprofile.html" },
                 { id: 253, name: "Zoey Holiday", image: "https://i.ibb.co/8L2xxr7z/AI-Generated-Image-2025-06-06.png",
@@ -2217,8 +2251,8 @@
                     popularity: 93, url: "heidihazeprofile.html" },
                 { id: 386, name: "Brandy Salazar", image: "https://i.ibb.co/1fM23gtd/brandy-salazar.jpg",
                     location: "Venezuela", popularity: 96, url: "brandysalazarprofile.html" },
-                { id: 387, name: "Payton Preslee", image: "https://i.ibb.co/dsMBYGRr/Payton-Preslee.jpg",
-                    location: "Chicago,Illinois,USA", popularity: 99, url: "paytonpresleeprofile.html" },
+                { id: 387, name: "Payton Preslee", image: "https://i.ibb.co/LzdsRk92/Payton-Preslee.jpg",
+                    location: "Chicago,USA", popularity: 99, url: "paytonpresleeprofile.html" },
                 { id: 388, name: "Mariana Martix", image: "https://i.ibb.co.com/hR2b4Lqp/Mariana-Matrix.png",
                     location: "Colombia", popularity: 94, url: "marianamartixprofile.html" },
                 { id: 389, name: "Veronica Rodriguez", image: "https://i.ibb.co.com/YFkD570k/Untitled-Project.jpg",
@@ -2290,10 +2324,10 @@
                 { id: 419, name: "Syren De Mer", image: "https://i.ibb.co/kk2f1gx/syren-de-mer.jpg", location: "Washington,USA",
                     popularity: 97, url: "syrendemerprofile.html" },
                 { id: 420, name: "Kathleen Glawe", image: "https://i.ibb.co/cSS4VR1q/kathleen-galwe.jpg", location: "Germany",
-                    popularity: 94, url: "kathleenglaweprofile.html" },
+                    popularity: 94, url: "kathleenglaweprofile.html" }
             ];
 
-            // ============ DOM REFS ============
+            // ============ DOM REFS (cached) ============
             const $ = (s) => document.querySelector(s);
             const $$ = (s) => document.querySelectorAll(s);
             const searchContainer = $('#searchContainer');
@@ -2323,10 +2357,13 @@
             let currentView = 'grid';
             let favorites = JSON.parse(localStorage.getItem('evFavorites') || '[]');
             let toastTimer = null;
+            let scrollRAF = null;
+            let lastScrollY = 0;
 
             // ============ TOAST ============
             function showToast(msg) {
-                if (toastTimer) clearTimeout(toastTimer);
+                if (toastTimer) { clearTimeout(toastTimer);
+                    toastTimer = null; }
                 toast.textContent = msg;
                 toast.classList.add('show');
                 toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
@@ -2337,25 +2374,23 @@
                 e.stopPropagation();
                 e.preventDefault();
                 const idx = favorites.indexOf(modelId);
-                if (idx > -1) {
-                    favorites.splice(idx, 1);
-                    showToast('Removed from favorites');
-                } else {
-                    favorites.push(modelId);
-                    showToast('Added to favorites ✦');
-                }
+                if (idx > -1) { favorites.splice(idx, 1);
+                    showToast('Removed from favorites'); } else { favorites.push(modelId);
+                    showToast('Added to favorites ✦'); }
                 localStorage.setItem('evFavorites', JSON.stringify(favorites));
                 renderModels();
                 updatePagination();
             }
+
             function isFavorited(modelId) { return favorites.includes(modelId); }
 
             // ============ QUICK VIEW MODAL ============
             function openQuickView(model, e) {
-                if (e.target.closest('.favorite-btn')) return;
-                modalContent.innerHTML = `
+                if (e && e.target && e.target.closest('.favorite-btn')) return;
+                modalContent.innerHTML =
+                    `
               <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
-              <img src="${model.image}" alt="${model.name}" class="modal-image" loading="eager">
+              <img src="${model.image}" alt="${model.name}" class="modal-image" loading="lazy" decoding="async">
               <div class="modal-info">
                 <h2>${model.name}</h2>
                 <p><i class="fas fa-map-marker-alt" style="color:var(--gold);margin-right:6px;"></i>${model.location||'N/A'}</p>
@@ -2364,7 +2399,8 @@
               </div>`;
                 modalOverlay.classList.add('active');
                 document.body.style.overflow = 'hidden';
-                $('#modalClose').addEventListener('click', closeModal);
+                const closeBtn = document.getElementById('modalClose');
+                if (closeBtn) closeBtn.addEventListener('click', closeModal);
             }
 
             function closeModal() {
@@ -2387,14 +2423,16 @@
                     mobileThreeDBtn: '3d.html',
                 };
                 Object.entries(navMap).forEach(([id, url]) => {
-                    const el = $('#' + id);
+                    const el = document.getElementById(id);
                     if (!el) return;
                     if (url) el.addEventListener('click', () => { window.location.href = url; });
                     else el.addEventListener('click', (e) => {
                         e.preventDefault();
-                        $$('.nav-btn').forEach(b => b.classList.remove('active'));
-                        $('#modelsBtn')?.classList.add('active');
-                        $('#mobileModelsBtn')?.classList.add('active');
+                        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                        const modelsBtn = document.getElementById('modelsBtn');
+                        const mobileModelsBtn = document.getElementById('mobileModelsBtn');
+                        if (modelsBtn) modelsBtn.classList.add('active');
+                        if (mobileModelsBtn) mobileModelsBtn.classList.add('active');
                         mobileMenu.classList.remove('active');
                     });
                 });
@@ -2407,7 +2445,9 @@
                 });
             }
 
-            // ============ SEARCH ============
+            // ============ SEARCH (debounced) ============
+            let searchDebounceTimer = null;
+
             function setupSearch() {
                 searchTrigger.addEventListener('click', () => {
                     searchContainer.classList.toggle('active');
@@ -2423,17 +2463,24 @@
                     }
                 });
                 searchInput.addEventListener('input', () => {
-                    currentSearchQuery = searchInput.value.toLowerCase().trim();
-                    if (!currentSearchQuery) { searchResults.innerHTML = '';
+                    if (searchDebounceTimer) clearTimeout(searchDebounceTimer);
+                    searchDebounceTimer = setTimeout(() => {
+                        currentSearchQuery = searchInput.value.toLowerCase().trim();
+                        if (!currentSearchQuery) {
+                            searchResults.innerHTML = '';
+                            currentPage = 1;
+                            renderModels();
+                            updatePagination();
+                            return;
+                        }
+                        const filtered = modelData.filter(m => m.name.toLowerCase().includes(
+                            currentSearchQuery) ||
+                            (m.location && m.location.toLowerCase().includes(currentSearchQuery)));
+                        displaySearchResults(filtered);
                         currentPage = 1;
                         renderModels();
-                        updatePagination(); return; }
-                    const filtered = modelData.filter(m => m.name.toLowerCase().includes(currentSearchQuery) ||
-                        (m.location && m.location.toLowerCase().includes(currentSearchQuery)));
-                    displaySearchResults(filtered);
-                    currentPage = 1;
-                    renderModels();
-                    updatePagination();
+                        updatePagination();
+                    }, 180);
                 });
                 document.addEventListener('click', (e) => {
                     if (!searchContainer.contains(e.target) && !searchTrigger.contains(e.target)) {
@@ -2453,23 +2500,27 @@
                         '<div class="no-results"><i class="fas fa-search"></i><p>No Models Found</p></div>';
                     return;
                 }
+                const frag = document.createDocumentFragment();
                 results.slice(0, 5).forEach((m, i) => {
                     const div = document.createElement('div');
                     div.className = 'search-result-item';
                     div.style.opacity = '0';
                     div.style.transform = 'translateX(-8px)';
                     div.style.transition = `all 0.3s ease-out ${i*0.04}s`;
-                    div.innerHTML = `
-                <img src="${m.image}" alt="${m.name}"><div class="search-result-info"><h3>${m.name}</h3><p><i class="fas fa-map-marker-alt"></i>${m.location||'N/A'} · <i class="fas fa-fire"></i>${m.popularity||'N/A'}%</p></div>
+                    div.innerHTML =
+                        `
+                <img src="${m.image}" alt="${m.name}" loading="lazy" decoding="async">
+                <div class="search-result-info"><h3>${m.name}</h3><p><i class="fas fa-map-marker-alt"></i>${m.location||'N/A'} · <i class="fas fa-fire"></i>${m.popularity||'N/A'}%</p></div>
                 <i class="fas fa-chevron-right" style="margin-left:auto;color:var(--text-tertiary);"></i>`;
                     div.addEventListener('click', () => { window.location.href = m.url; });
-                    searchResults.appendChild(div);
+                    frag.appendChild(div);
                     requestAnimationFrame(() => { div.style.opacity = '1';
                         div.style.transform = 'translateX(0)'; });
                 });
+                searchResults.appendChild(frag);
             }
 
-            // ============ RENDER ============
+            // ============ RENDER (batch DOM) ============
             function renderModels() {
                 modelsGrid.innerHTML = '';
                 let filtered = [...modelData];
@@ -2488,14 +2539,16 @@
                 const start = (currentPage - 1) * modelsPerPage;
                 const show = filtered.slice(start, start + modelsPerPage);
                 modelCountBadge.textContent = `✦ ${filtered.length} ELITE MODELS ✦`;
+                const frag = document.createDocumentFragment();
                 show.forEach((m, i) => {
                     const fav = isFavorited(m.id);
                     const card = document.createElement('div');
                     card.className = 'model-card';
                     card.style.animationDelay = `${i*0.025}s`;
-                    card.innerHTML = `
+                    card.innerHTML =
+                        `
                 <div class="model-image-container">
-                  <img src="${m.image}" alt="${m.name}" class="model-image" loading="lazy">
+                  <img src="${m.image}" alt="${m.name}" class="model-image" loading="lazy" decoding="async">
                   <div class="model-badge">✦ ELITE</div>
                   <button class="favorite-btn${fav?' favorited':''}" data-id="${m.id}" aria-label="Favorite"><i class="fas fa-heart"></i></button>
                 </div>
@@ -2512,8 +2565,9 @@
                         e));
                     card.addEventListener('click', (e) => { if (!e.target.closest('.favorite-btn'))
                         openQuickView(m, e); });
-                    modelsGrid.appendChild(card);
+                    frag.appendChild(card);
                 });
+                modelsGrid.appendChild(frag);
             }
 
             function updatePagination() {
@@ -2525,16 +2579,18 @@
                     if (!dis && fn) b.addEventListener('click', fn);
                     return b;
                 };
-                pagination.appendChild(mkBtn('<i class="fas fa-chevron-left"></i>', false, currentPage === 1, () => {
-                    if (currentPage > 1) { currentPage--;
+                const goToPage = (p) => {
+                    if (p !== currentPage) {
+                        currentPage = p;
                         renderModels();
                         updatePagination();
-                        window.scrollTo({ top: 300, behavior: 'smooth' }); }
+                        window.scrollTo({ top: 300, behavior: 'smooth' });
+                    }
+                };
+                pagination.appendChild(mkBtn('<i class="fas fa-chevron-left"></i>', false, currentPage === 1, () => {
+                    if (currentPage > 1) goToPage(currentPage - 1);
                 }));
-                pagination.appendChild(mkBtn('1', currentPage === 1, false, () => { currentPage = 1;
-                    renderModels();
-                    updatePagination();
-                    window.scrollTo({ top: 300, behavior: 'smooth' }); }));
+                pagination.appendChild(mkBtn('1', currentPage === 1, false, () => goToPage(1)));
                 if (totalPages > 1) {
                     let sp, ep;
                     if (totalPages <= 5) { sp = 2;
@@ -2547,30 +2603,19 @@
                         d.textContent = '...';
                         pagination.appendChild(d); }
                     for (let i = sp; i <= ep; i++) {
-                        if (i < totalPages) pagination.appendChild(mkBtn(String(i), currentPage === i, false, () => {
-                            currentPage = i;
-                            renderModels();
-                            updatePagination();
-                            window.scrollTo({ top: 300, behavior: 'smooth' });
-                        }));
+                        if (i < totalPages) pagination.appendChild(mkBtn(String(i), currentPage === i, false,
+                        () => goToPage(i)));
                     }
                     if (ep < totalPages - 1) { const d = document.createElement('span');
                         d.className = 'page-dots';
                         d.textContent = '...';
                         pagination.appendChild(d); }
-                    pagination.appendChild(mkBtn(String(totalPages), currentPage === totalPages, false, () => {
-                        currentPage = totalPages;
-                        renderModels();
-                        updatePagination();
-                        window.scrollTo({ top: 300, behavior: 'smooth' });
-                    }));
+                    pagination.appendChild(mkBtn(String(totalPages), currentPage === totalPages, false, () =>
+                        goToPage(totalPages)));
                 }
                 pagination.appendChild(mkBtn('<i class="fas fa-chevron-right"></i>', false, currentPage ===
                     totalPages, () => {
-                    if (currentPage < totalPages) { currentPage++;
-                        renderModels();
-                        updatePagination();
-                        window.scrollTo({ top: 300, behavior: 'smooth' }); }
+                    if (currentPage < totalPages) goToPage(currentPage + 1);
                 }));
             }
 
@@ -2578,97 +2623,117 @@
             function buildAlphabetFilter() {
                 alphabetFilter.innerHTML = '';
                 const letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
+                const frag = document.createDocumentFragment();
                 const allBtn = document.createElement('button');
                 allBtn.className = 'alphabet-btn active';
                 allBtn.dataset.letter = 'all';
                 allBtn.textContent = 'All';
                 allBtn.addEventListener('click', () => {
-                    $$('.alphabet-btn').forEach(b => b.classList.remove('active'));
+                    document.querySelectorAll('.alphabet-btn').forEach(b => b.classList.remove('active'));
                     allBtn.classList.add('active');
                     currentLetter = 'all';
                     currentPage = 1;
                     renderModels();
                     updatePagination();
                 });
-                alphabetFilter.appendChild(allBtn);
+                frag.appendChild(allBtn);
                 letters.forEach(l => {
                     const btn = document.createElement('button');
                     btn.className = 'alphabet-btn';
                     btn.dataset.letter = l;
                     btn.textContent = l.toUpperCase();
                     btn.addEventListener('click', () => {
-                        $$('.alphabet-btn').forEach(b => b.classList.remove('active'));
+                        document.querySelectorAll('.alphabet-btn').forEach(b => b.classList.remove(
+                        'active'));
                         btn.classList.add('active');
                         currentLetter = l;
                         currentPage = 1;
                         renderModels();
                         updatePagination();
                     });
-                    alphabetFilter.appendChild(btn);
+                    frag.appendChild(btn);
                 });
+                alphabetFilter.appendChild(frag);
             }
 
-            // ============ EVENTS ============
+            // ============ EVENTS (throttled scroll) ============
             function setupEvents() {
-                let lastScroll = 0;
-                window.addEventListener('scroll', () => {
-                    const s = window.pageYOffset;
-                    const docH = document.documentElement.scrollHeight - window.innerHeight;
-                    scrollProgress.style.width = docH > 0 ? `${(s/docH)*100}%` : '0%';
-                    if (s <= 0) mainHeader.classList.remove('hidden', 'scrolled');
-                    else {
-                        if (s > 40) mainHeader.classList.add('scrolled');
-                        else mainHeader.classList.remove('scrolled');
-                        if (s > lastScroll && s > 100 && !mainHeader.classList.contains('hidden'))
-                            mainHeader.classList.add('hidden');
-                        else if (s < lastScroll && mainHeader.classList.contains('hidden')) mainHeader
-                            .classList.remove('hidden');
-                    }
-                    lastScroll = s;
-                    if (s > 300) backToTopBtn.classList.add('visible');
-                    else backToTopBtn.classList.remove('visible');
-                }, { passive: true });
+                // Throttled scroll handler using requestAnimationFrame
+                const handleScroll = () => {
+                    if (scrollRAF) return;
+                    scrollRAF = requestAnimationFrame(() => {
+                        const s = window.pageYOffset;
+                        const docH = document.documentElement.scrollHeight - window.innerHeight;
+                        scrollProgress.style.width = docH > 0 ? `${(s/docH)*100}%` : '0%';
+                        if (s <= 0) {
+                            mainHeader.classList.remove('hidden', 'scrolled');
+                        } else {
+                            if (s > 40) mainHeader.classList.add('scrolled');
+                            else mainHeader.classList.remove('scrolled');
+                            if (s > lastScrollY && s > 100 && !mainHeader.classList.contains('hidden'))
+                                mainHeader.classList.add('hidden');
+                            else if (s < lastScrollY && mainHeader.classList.contains('hidden'))
+                                mainHeader.classList.remove('hidden');
+                        }
+                        lastScrollY = s;
+                        if (s > 300) backToTopBtn.classList.add('visible');
+                        else backToTopBtn.classList.remove('visible');
+                        scrollRAF = null;
+                    });
+                };
+                window.addEventListener('scroll', handleScroll, { passive: true });
 
                 backToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
-                $('#popularBtn').addEventListener('click', () => {
-                    currentSearchQuery = '';
-                    searchInput.value = '';
-                    searchResults.innerHTML = '';
-                    $('#popularBtn').classList.add('active');
-                    $('#alphabeticalBtn').classList.remove('active');
-                    alphabetFilter.classList.remove('active');
-                    currentFilter = 'popular';
-                    currentPage = 1;
-                    renderModels();
-                    updatePagination();
-                });
-                $('#alphabeticalBtn').addEventListener('click', () => {
-                    currentSearchQuery = '';
-                    searchInput.value = '';
-                    searchResults.innerHTML = '';
-                    $('#alphabeticalBtn').classList.add('active');
-                    $('#popularBtn').classList.remove('active');
-                    alphabetFilter.classList.add('active');
-                    currentFilter = 'alphabetical';
-                    currentPage = 1;
-                    renderModels();
-                    updatePagination();
-                });
+                const popBtn = document.getElementById('popularBtn');
+                const alphaBtn = document.getElementById('alphabeticalBtn');
+                if (popBtn) {
+                    popBtn.addEventListener('click', () => {
+                        currentSearchQuery = '';
+                        searchInput.value = '';
+                        searchResults.innerHTML = '';
+                        popBtn.classList.add('active');
+                        if (alphaBtn) alphaBtn.classList.remove('active');
+                        alphabetFilter.classList.remove('active');
+                        currentFilter = 'popular';
+                        currentPage = 1;
+                        renderModels();
+                        updatePagination();
+                    });
+                }
+                if (alphaBtn) {
+                    alphaBtn.addEventListener('click', () => {
+                        currentSearchQuery = '';
+                        searchInput.value = '';
+                        searchResults.innerHTML = '';
+                        alphaBtn.classList.add('active');
+                        if (popBtn) popBtn.classList.remove('active');
+                        alphabetFilter.classList.add('active');
+                        currentFilter = 'alphabetical';
+                        currentPage = 1;
+                        renderModels();
+                        updatePagination();
+                    });
+                }
 
-                // View toggle
-                $('#gridViewBtn').addEventListener('click', () => {
-                    currentView = 'grid';
-                    modelsGrid.classList.remove('list-view');
-                    $('#gridViewBtn').classList.add('active');
-                    $('#listViewBtn').classList.remove('active');
-                });
-                $('#listViewBtn').addEventListener('click', () => {
-                    currentView = 'list';
-                    modelsGrid.classList.add('list-view');
-                    $('#listViewBtn').classList.add('active');
-                    $('#gridViewBtn').classList.remove('active');
-                });
+                const gridBtn = document.getElementById('gridViewBtn');
+                const listBtn = document.getElementById('listViewBtn');
+                if (gridBtn) {
+                    gridBtn.addEventListener('click', () => {
+                        currentView = 'grid';
+                        modelsGrid.classList.remove('list-view');
+                        gridBtn.classList.add('active');
+                        if (listBtn) listBtn.classList.remove('active');
+                    });
+                }
+                if (listBtn) {
+                    listBtn.addEventListener('click', () => {
+                        currentView = 'list';
+                        modelsGrid.classList.add('list-view');
+                        listBtn.classList.add('active');
+                        if (gridBtn) gridBtn.classList.remove('active');
+                    });
+                }
             }
 
             // ============ INIT ============
@@ -2679,15 +2744,20 @@
                 buildAlphabetFilter();
                 renderModels();
                 updatePagination();
-                // Set initial view
                 if (currentView === 'list') {
                     modelsGrid.classList.add('list-view');
-                    $('#listViewBtn').classList.add('active');
-                    $('#gridViewBtn').classList.remove('active');
+                    const listBtn = document.getElementById('listViewBtn');
+                    const gridBtn = document.getElementById('gridViewBtn');
+                    if (listBtn) listBtn.classList.add('active');
+                    if (gridBtn) gridBtn.classList.remove('active');
                 }
             }
 
-            document.addEventListener('DOMContentLoaded', init);
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
         })();
     </script>
 </body>
