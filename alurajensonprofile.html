@@ -53,7 +53,7 @@
     .logo span::after { content:''; position:absolute; bottom:-5px; left:0; width:100%; height:1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); transform: scaleX(0); transition: transform 0.5s; }
     .logo:hover span::after { transform: scaleX(1); }
 
-    /* Header (smaller) */
+    /* Header */
     header {
       position: fixed; top:0; left:0; right:0; z-index: 1000;
       display: flex; justify-content: space-between; align-items: center;
@@ -118,7 +118,7 @@
     .search-result-item:hover { background: rgba(224,0,36,0.15); }
     .no-results { padding: 20px; text-align: center; color: #aaa; }
 
-    /* Hero slider (banner) */
+    /* Hero slider */
     .hero-slider { position: relative; height: 92vh; width: 100%; overflow: hidden; }
     .hero-slide {
       position: absolute; inset:0; background-size: cover; background-position: center;
@@ -135,37 +135,26 @@
     .divider-text { padding:0 1.5rem; font-weight:600; letter-spacing:0.2em; color: var(--gold); text-shadow:0 0 10px rgba(212,175,55,0.6); font-size:1.2rem; }
     @keyframes colorChange { 0%{filter:hue-rotate(0);} 100%{filter:hue-rotate(360deg);} }
 
-    /* Bio & profile card with 3D tilt + glare */
+    /* Bio & profile card */
     .bio-section { position: relative; overflow: hidden; }
     .bio-section::before {
       content:''; position:absolute; inset:0; background: url('https://i.ibb.co/VWHYK03Z/0016.jpg') center/cover;
       filter: blur(14px) brightness(0.2); z-index:-1; transform: scale(1.2);
     }
-    .profile-tilt-wrapper {
-      perspective: 1000px;
-      width: 100%;
-      cursor: pointer;
-    }
+    .profile-tilt-wrapper { perspective: 1000px; width: 100%; cursor: pointer; }
     .profile-card {
       position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.6);
       width: 100%; aspect-ratio: 3/4; background: #000;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       transform-style: preserve-3d;
     }
-    .profile-card:hover {
-      box-shadow: 0 40px 80px rgba(0,0,0,0.8), 0 0 30px rgba(212,175,55,0.3);
-    }
-    .profile-card img {
-      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-      opacity: 0; transition: opacity 1s ease-in-out;
-    }
+    .profile-card:hover { box-shadow: 0 40px 80px rgba(0,0,0,0.8), 0 0 30px rgba(212,175,55,0.3); }
+    .profile-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1s ease-in-out; }
     .profile-card img.active { opacity: 1; }
     .glare {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
       background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.25) 0%, transparent 60%);
-      pointer-events: none;
-      mix-blend-mode: overlay;
-      z-index: 3;
+      pointer-events: none; mix-blend-mode: overlay; z-index: 3;
     }
 
     .info-icon { text-align:center; padding:0.3rem 0.8rem; border-radius: 20px; transition: 0.3s; position: relative; background: rgba(255,255,255,0.03); backdrop-filter: blur(4px); }
@@ -188,28 +177,15 @@
       transition: box-shadow 0.3s ease, border-color 0.3s ease;
       box-shadow: 0 10px 20px rgba(0,0,0,0.4);
     }
-    .video-card:hover {
-      border-color: rgba(212,175,55,0.4);
-      box-shadow: 0 15px 25px rgba(0,0,0,0.6);
-    }
-    .video-container {
-      position: relative; width: 100%; padding-top: 56.25%; background: #000; overflow: hidden;
-    }
-    .static-thumbnail, .video-preview {
-      position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;
-    }
+    .video-card:hover { border-color: rgba(212,175,55,0.4); box-shadow: 0 15px 25px rgba(0,0,0,0.6); }
+    .video-container { position: relative; width: 100%; padding-top: 56.25%; background: #000; overflow: hidden; }
+    .static-thumbnail, .video-preview { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; }
     .video-preview { display:none; z-index:2; }
     .video-info { padding: 1rem 1.2rem; background: rgba(10,10,10,0.6); }
-    .video-title {
-      font-weight: 700; color: #fff; font-size: 1rem; line-height: 1.4;
-      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-    }
-    .video-date {
-      display: inline-block; background: rgba(0,0,0,0.7); padding: 4px 12px;
-      border-radius: 20px; font-size: 0.7rem; color: #ddd; margin-top: 8px;
-    }
+    .video-title { font-weight: 700; color: #fff; font-size: 1rem; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .video-date { display: inline-block; background: rgba(0,0,0,0.7); padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; color: #ddd; margin-top: 8px; }
 
-    /* Filter and all videos */
+    /* Filter */
     .filter-buttons { display:flex; justify-content:center; gap:15px; flex-wrap:wrap; margin-bottom:2rem; }
     .filter-button {
       background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.15); color:#ddd; font-weight:600;
@@ -222,6 +198,7 @@
     .site-item { background: rgba(255,255,255,0.05); border-radius:30px; cursor:pointer; white-space:nowrap; transition:0.3s; border:1px solid transparent; padding:6px 16px; display:flex; align-items:center; gap:8px; }
     .site-item.active, .site-item:hover { background: #e00024; }
     .site-item img { height: 22px; width: auto; object-fit: contain; }
+    .site-item span.site-text { font-weight: 600; font-size: 0.9rem; letter-spacing: 0.5px; }
     .site-item.all-sites { padding:8px 18px; }
     .scroll-button { position:absolute; background:rgba(0,0,0,0.7); border:none; color:white; width:40px; height:40px; border-radius:50%; cursor:pointer; }
     .date-filter-container { display:none; margin-bottom:1.5rem; background:rgba(20,20,20,0.8); padding:15px; border-radius:20px; }
@@ -233,61 +210,25 @@
     .page-link { padding:0.8rem 1.2rem; background:rgba(255,255,255,0.05); border-radius:12px; cursor:pointer; transition:0.2s; border:1px solid rgba(255,255,255,0.1); }
     .page-link.active, .page-link:hover { background:linear-gradient(135deg, #e00024, #b8860b); border-color:transparent; }
 
-    /* Back to top */
-    .back-to-top {
-      position:fixed; bottom:25px; right:25px; width:45px; height:45px; border-radius:50%;
-      background:rgba(0,0,0,0.8); display:flex; align-items:center; justify-content:center; cursor:pointer;
-      opacity:0; visibility:hidden; transition:0.3s; z-index:99; border:2px solid var(--gold);
-      box-shadow: 0 0 15px rgba(212,175,55,0.5);
-    }
+    .back-to-top { position:fixed; bottom:25px; right:25px; width:45px; height:45px; border-radius:50%; background:rgba(0,0,0,0.8); display:flex; align-items:center; justify-content:center; cursor:pointer; opacity:0; visibility:hidden; transition:0.3s; z-index:99; border:2px solid var(--gold); box-shadow: 0 0 15px rgba(212,175,55,0.5); }
     .back-to-top.active { opacity:1; visibility:visible; }
     .back-to-top i { color:var(--gold); font-size:1.3rem; transition: transform 0.4s; }
     .back-to-top:hover { animation: backToTopPulse 1s infinite; }
     .back-to-top:hover i { transform: translateY(-3px); }
-    @keyframes backToTopPulse {
-      0% { box-shadow: 0 0 10px rgba(212,175,55,0.5); }
-      50% { box-shadow: 0 0 20px rgba(212,175,55,0.9); }
-      100% { box-shadow: 0 0 10px rgba(212,175,55,0.5); }
-    }
+    @keyframes backToTopPulse { 0% { box-shadow: 0 0 10px rgba(212,175,55,0.5); } 50% { box-shadow: 0 0 20px rgba(212,175,55,0.9); } 100% { box-shadow: 0 0 10px rgba(212,175,55,0.5); } }
 
-    /* Footer & upload button */
     footer { background:rgba(0,0,0,0.9); border-top:1px solid rgba(212,175,55,0.3); }
-    .upload-btn {
-      background: linear-gradient(135deg, #b8860b, #e00024); border: none; color: white;
-      padding: 12px 24px; border-radius: 40px; cursor: pointer; font-weight:700; letter-spacing:1px;
-      display:inline-flex; align-items:center; gap:8px; box-shadow: 0 0 15px rgba(212,175,55,0.7);
-      animation: glowPulse 2s infinite;
-    }
+    .upload-btn { background: linear-gradient(135deg, #b8860b, #e00024); border: none; color: white; padding: 12px 24px; border-radius: 40px; cursor: pointer; font-weight:700; letter-spacing:1px; display:inline-flex; align-items:center; gap:8px; box-shadow: 0 0 15px rgba(212,175,55,0.7); animation: glowPulse 2s infinite; }
     .upload-btn i { font-size:1.2rem; }
-    @keyframes glowPulse {
-      0% { box-shadow: 0 0 10px rgba(212,175,55,0.5); }
-      50% { box-shadow: 0 0 25px rgba(212,175,55,1); }
-      100% { box-shadow: 0 0 10px rgba(212,175,55,0.5); }
-    }
+    @keyframes glowPulse { 0% { box-shadow: 0 0 10px rgba(212,175,55,0.5); } 50% { box-shadow: 0 0 25px rgba(212,175,55,1); } 100% { box-shadow: 0 0 10px rgba(212,175,55,0.5); } }
 
-    /* Modal */
-    .modal-overlay {
-      position: fixed; inset:0; background:rgba(0,0,0,0.8); backdrop-filter: blur(5px);
-      display:none; align-items:center; justify-content:center; z-index:2000;
-    }
+    .modal-overlay { position: fixed; inset:0; background:rgba(0,0,0,0.8); backdrop-filter: blur(5px); display:none; align-items:center; justify-content:center; z-index:2000; }
     .modal-overlay.active { display:flex; }
-    .modal-content {
-      background: #1a1a1a; border-radius: 20px; padding: 2rem; width: 90%; max-width: 450px;
-      border:1px solid rgba(212,175,55,0.4); box-shadow: 0 30px 60px rgba(0,0,0,0.8);
-      animation: modalFadeIn 0.3s; position: relative;
-    }
+    .modal-content { background: #1a1a1a; border-radius: 20px; padding: 2rem; width: 90%; max-width: 450px; border:1px solid rgba(212,175,55,0.4); box-shadow: 0 30px 60px rgba(0,0,0,0.8); animation: modalFadeIn 0.3s; position: relative; }
     @keyframes modalFadeIn { from{ opacity:0; transform:scale(0.9);} to{opacity:1; transform:scale(1);} }
-    .modal-input {
-      width:100%; padding:12px 16px; margin:8px 0 16px; background: rgba(255,255,255,0.05);
-      border:1px solid rgba(255,255,255,0.2); border-radius:8px; color:white; outline:none;
-    }
-    .modal-btn {
-      background: linear-gradient(135deg, #e00024, #b8860b); border:none; color:white; padding:12px 28px;
-      border-radius:30px; font-weight:700; cursor:pointer; width:100%; letter-spacing:1px;
-    }
-    .close-modal {
-      position:absolute; top:15px; right:15px; background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;
-    }
+    .modal-input { width:100%; padding:12px 16px; margin:8px 0 16px; background: rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.2); border-radius:8px; color:white; outline:none; }
+    .modal-btn { background: linear-gradient(135deg, #e00024, #b8860b); border:none; color:white; padding:12px 28px; border-radius:30px; font-weight:700; cursor:pointer; width:100%; letter-spacing:1px; }
+    .close-modal { position:absolute; top:15px; right:15px; background:none; border:none; color:white; font-size:1.5rem; cursor:pointer; }
 
     @media (max-width: 900px) {
       .nav-buttons { display: none; }
@@ -301,7 +242,7 @@
   </style>
 </head>
 <body>
-  <!-- HEADER (smaller) -->
+  <!-- HEADER -->
   <header id="mainHeader" class="animate__animated animate__fadeInDown">
     <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
     <div class="logo-container">
@@ -329,9 +270,9 @@
     <button class="nav-btn mobile-nav-btn-3d">3D</button>
   </div>
 
-  <!-- MAIN CONTENT (HOME) -->
+  <!-- MAIN CONTENT -->
   <div id="mainContent">
-    <!-- HERO SLIDER (banner below header) -->
+    <!-- HERO SLIDER -->
     <section class="hero-slider">
       <div class="hero-slide active" style="background-image: url('https://i.ibb.co/ynnV4bhz/1.png');"></div>
       <div class="hero-slide" style="background-image: url('https://i.ibb.co/PZPMhPJS/2.jpg');"></div>
@@ -348,7 +289,7 @@
     <!-- Divider -->
     <div class="divider"><span class="divider-text premium-font">GOD-TIER</span></div>
 
-    <!-- BIO SECTION with 3D tilt profile card -->
+    <!-- BIO SECTION -->
     <section class="bio-section py-16 px-6 md:px-20 animate__animated animate__fadeIn">
       <div class="flex flex-col md:flex-row gap-12 max-w-6xl mx-auto">
         <div class="w-full md:w-2/5">
@@ -389,7 +330,7 @@
     </div>
   </section>
 
-  <!-- ALL VIDEOS SECTION (HIDDEN) -->
+  <!-- ALL VIDEOS SECTION -->
   <section id="allVideosSection" class="py-16 px-6 md:px-20 max-w-7xl mx-auto hidden">
     <div class="filter-buttons">
       <button id="sitesListBtn" class="filter-button">Sites List</button>
@@ -424,14 +365,14 @@
 
   <!-- FOOTER -->
   <footer class="text-center py-8 mt-16">
-    <p class="text-sm text-gray-400 tracking-widest">© 2025 ELITE VAULT. All Rights Reserved.</p>
+    <p class="text-sm text-gray-400 tracking-widest">© 2026 ELITE VAULT. All Rights Reserved.</p>
     <p class="text-xs text-gray-500 mt-2">All models appearing on this website are 18+</p>
     <div class="mt-6">
       <button class="upload-btn" id="uploadBtn"><i class="fas fa-upload"></i> UPLOAD</button>
     </div>
   </footer>
 
-  <!-- MODAL (login + add video) -->
+  <!-- MODAL -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal-content">
       <button class="close-modal" id="closeModalBtn"><i class="fas fa-times"></i></button>
@@ -578,7 +519,6 @@
         }, 2700);
       }
 
-      // === 3D Tilt & Glare ===
       function setupProfileTilt() {
         const wrapper = document.getElementById('tiltWrapper');
         const card = document.getElementById('profileCard');
@@ -590,12 +530,11 @@
           const y = e.clientY - rect.top;
           const centerX = rect.width / 2;
           const centerY = rect.height / 2;
-          const rotateX = ((y - centerY) / centerY) * -8; // -8deg to 8deg
+          const rotateX = ((y - centerY) / centerY) * -8;
           const rotateY = ((x - centerX) / centerX) * 8;
           
           card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
           
-          // Glare position
           const glareX = (x / rect.width) * 100;
           const glareY = (y / rect.height) * 100;
           glare.style.setProperty('--mouse-x', glareX + '%');
@@ -675,30 +614,92 @@
         }
       }
 
+      // ===== FIXED SITES LIST: dynamically adapts to any sites, no errors =====
       function setupSitesList() {
-        const siteLogos = {
-          brazzers: "https://logo.clearbit.com/brazzers.com",
-          bangbros: "https://logo.clearbit.com/bangbros.com",
-          blacked: "https://logo.clearbit.com/blacked.com",
-          milfy: "https://logo.clearbit.com/milfy.com"
-        };
-        const sites = [...new Set(allVideos.map(v => v.site))];
-        const container = document.getElementById('sitesList');
-        let html = '<div class="site-item all-sites active" data-site="all">ALL SITES</div>';
-        sites.forEach(s => {
-          const logoUrl = siteLogos[s] || `https://via.placeholder.com/60x20?text=${s}`;
-          html += `<div class="site-item" data-site="${s}"><img src="${logoUrl}" alt="${s}" loading="lazy"></div>`;
-        });
-        container.innerHTML = html;
-        container.querySelectorAll('.site-item').forEach(item => {
-          item.addEventListener('click', function() {
-            container.querySelectorAll('.site-item').forEach(i => i.classList.remove('active'));
-            this.classList.add('active');
-            currentFilter = this.dataset.site;
-            renderAllVideos(1);
-          });
-        });
-      }
+        // Optional mapping – add new logos here as needed
+  const siteLogos = {
+    brazzers: "https://upload.wikimedia.org/wikipedia/commons/c/cc/Brazzers_logo.svg",
+    bangbros: "https://i.ibb.co/wFkVYxrh/bangbros-seeklogo.png",
+    blacked: "https://i.ibb.co/p6WcRWY0/blacked.png",
+    devilsfilm: "https://upload.wikimedia.org/wikipedia/commons/4/47/Devil%27s_Film_logo.svg",
+    milfy: "https://i.ibb.co/DDzbbV5x/Pickup-Artist.jpg"
+  };
+
+  // Combine site names from both arrays (top-rated and all videos)
+  const allSiteNames = [...new Set([
+    ...topRatedVideos.map(v => v.site),
+    ...allVideos.map(v => v.site)
+  ])];
+
+  const container = document.getElementById('sitesList');
+  container.innerHTML = ''; // clear
+
+  // Create "ALL SITES" button
+  const allSitesItem = document.createElement('div');
+  allSitesItem.className = 'site-item all-sites active';
+  allSitesItem.dataset.site = 'all';
+  allSitesItem.textContent = 'ALL SITES';
+  container.appendChild(allSitesItem);
+
+  // Create site items dynamically
+  allSiteNames.forEach(site => {
+    const item = document.createElement('div');
+    item.className = 'site-item';
+    item.dataset.site = site;
+
+    const logoUrl = siteLogos[site];
+    if (logoUrl) {
+      // Create image element with robust error handling
+      const img = document.createElement('img');
+      img.src = logoUrl;
+      img.alt = site;
+      img.loading = 'lazy';
+      img.style.height = '22px';
+      img.style.width = 'auto';
+      img.style.objectFit = 'contain';
+      img.style.display = 'block';
+
+      // Fallback text element (initially hidden)
+      const textSpan = document.createElement('span');
+      textSpan.className = 'site-text';
+      textSpan.textContent = site;
+      textSpan.style.display = 'none';
+      textSpan.style.fontWeight = '600';
+      textSpan.style.fontSize = '0.9rem';
+      textSpan.style.letterSpacing = '0.5px';
+
+      // If image fails, hide it and show text
+      img.addEventListener('error', () => {
+        img.style.display = 'none';
+        textSpan.style.display = 'block';
+      });
+
+      item.appendChild(img);
+      item.appendChild(textSpan);
+    } else {
+      // No logo – just use text
+      const textSpan = document.createElement('span');
+      textSpan.className = 'site-text';
+      textSpan.textContent = site;
+      textSpan.style.fontWeight = '600';
+      textSpan.style.fontSize = '0.9rem';
+      textSpan.style.letterSpacing = '0.5px';
+      item.appendChild(textSpan);
+    }
+
+    container.appendChild(item);
+  });
+
+  // Attach click handlers
+  container.querySelectorAll('.site-item').forEach(item => {
+    item.addEventListener('click', function() {
+      container.querySelectorAll('.site-item').forEach(i => i.classList.remove('active'));
+      this.classList.add('active');
+      currentFilter = this.dataset.site;
+      renderAllVideos(1);
+    });
+  });
+}
 
       function setupNavigationAndSearch() {
         const searchContainer = document.getElementById('searchContainer');
@@ -776,6 +777,8 @@
           };
           allVideos.push(newVideo);
           renderAllVideos(currentPage);
+          // Also update site list dynamically (since new site 'custom' may appear)
+          setupSitesList();
           modalOverlay.classList.remove('active');
           document.getElementById('videoTitle').value = '';
           document.getElementById('videoDate').value = '';
