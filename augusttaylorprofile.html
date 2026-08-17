@@ -1,856 +1,867 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Elite Vault — August Taylor</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700;800;900&family=Montserrat:wght@200;300;400;500;600;700;800&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/royal-acidbath" rel="stylesheet">
-    <style>
-        :root {
-            --obsidian: #08080c;
-            --charcoal: #111118;
-            --smoke: #1a1a24;
-            --gold: #D4AF37;
-            --gold-bright: #F0D060;
-            --gold-pale: #C9A030;
-            --champagne: #F7E7C8;
-            --cream: #FBF5E8;
-            --platinum: #E8E8EC;
-            --crimson: #C8102E;
-            --crimson-deep: #9B0D22;
-            --text-primary: #F0EDE8;
-            --text-secondary: #B8B5AE;
-            --text-muted: #7A7672;
-            --glass-bg: rgba(18, 18, 28, 0.45);
-            --glass-border: rgba(255, 255, 255, 0.10);
-            --glass-highlight: rgba(255, 255, 255, 0.15);
-            --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
-            --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
-            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-            --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.45);
-            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.6);
-            --shadow-gold: 0 8px 32px rgba(212, 175, 55, 0.25);
-            --shadow-crimson: 0 8px 32px rgba(200, 16, 46, 0.3);
-            --radius-sm: 8px;
-            --radius-md: 14px;
-            --radius-lg: 20px;
-            --radius-xl: 28px;
-            --radius-full: 50px;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>ELITE VAULT | August Taylor — Ultra Premium</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/royal-acidbath" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <style>
+    :root {
+      --primary: #e00024;
+      --gold: #D4AF37;
+      --bg: #050505;
+      --card-bg: #141414;
+      --text: #ffffff;
+      --text-secondary: #aaaaaa;
+      --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+      --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
+      --glass: rgba(20, 20, 20, 0.7);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: radial-gradient(ellipse at 30% 20%, #1a1a1a 0%, #070707 80%);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      cursor: default;
+      scrollbar-width: thin;
+      scrollbar-color: var(--gold) #141414;
+    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html {
-            scroll-behavior: smooth;
-            scrollbar-width: thin;
-            scrollbar-color: var(--gold-pale) transparent;
-        }
-        ::-webkit-scrollbar { width: 5px; height: 5px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--gold-pale); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+    .premium-font { font-family: 'Playfair Display', serif; letter-spacing: 0.03em; }
+    .premium-sans { font-family: 'Montserrat', sans-serif; letter-spacing: 0.02em; }
 
-        body {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            cursor: default;
-            background: var(--obsidian);
-            font-family: 'Montserrat', sans-serif;
-            color: var(--text-primary);
-            overflow-x: hidden;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            position: relative;
-        }
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: -1; opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-            background-size: 256px 256px;
-        }
+    /* LOGO */
+    .logo-container { display: flex; align-items: center; gap: 8px; }
+    .img-logo { height: 36px; width: auto; filter: drop-shadow(0 0 10px rgba(212,175,55,0.5)); transition: transform 0.6s var(--ease-out-expo); }
+    .logo-container:hover .img-logo { transform: rotate(-8deg) scale(1.05); }
+    .logo { font-family: 'Royal Acidbath','Cinzel', serif; font-size: 22px; letter-spacing: 3px; color: #fff; text-decoration: none; text-transform: uppercase; text-shadow: 0 0 12px rgba(212,175,55,0.4); }
+    .logo span { color: var(--gold); position: relative; }
+    .logo span::after { content:''; position:absolute; bottom:-5px; left:0; width:100%; height:1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); transform: scaleX(0); transition: transform 0.5s; }
+    .logo:hover span::after { transform: scaleX(1); }
 
-        .scroll-progress {
-            position: fixed; top: 0; left: 0; height: 2px;
-            background: linear-gradient(90deg, var(--gold), var(--crimson), var(--gold));
-            z-index: 1001; transition: width 0.1s var(--ease-smooth);
-        }
+    /* Header */
+    header {
+      position: fixed; top:0; left:0; right:0; z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 4%; height: 60px;
+      background: rgba(5,5,5,0.2);
+      backdrop-filter: blur(0px);
+      transition: all 0.4s var(--ease-out-expo);
+    }
+    header.scrolled {
+      background: rgba(5,5,5,0.92);
+      backdrop-filter: blur(14px);
+      height: 52px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+    }
+    header.hidden { transform: translateY(-100%); }
+    .nav-buttons { display: flex; gap: 10px; margin-left: 20px; }
+    .nav-btn {
+      background: transparent; border: none; color: rgba(255,255,255,0.7);
+      font-weight: 600; font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+      cursor: pointer; padding: 6px 10px; position: relative; transition: 0.3s;
+    }
+    .nav-btn::after {
+      content:''; position:absolute; bottom:0; left:50%; transform: translateX(-50%);
+      width:0; height:2px; background: var(--gold); transition: width 0.4s;
+    }
+    .nav-btn:hover { color: #fff; }
+    .nav-btn:hover::after { width: 100%; }
+    .nav-btn.active { color: #fff; }
+    .nav-btn.active::after { width: 100%; }
+    .nav-btn-3d {
+      background: linear-gradient(135deg, #b8860b, #e00024);
+      border-radius: 40px; padding: 8px 20px; color: white; font-weight: 700;
+      box-shadow: 0 8px 20px rgba(224,0,36,0.4); transition: all 0.4s; border: none;
+    }
+    .nav-btn-3d:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 15px 30px rgba(224,0,36,0.6); }
+    .mobile-menu-btn { display: none; background: none; border: none; color: white; font-size: 24px; cursor: pointer; }
 
-        /* Preloader – now with model profile image */
-        .preloader {
-            position: fixed; inset: 0; background: var(--obsidian); z-index: 10000;
-            display: flex; align-items: center; justify-content: center;
-            transition: opacity 0.6s var(--ease-out-expo), visibility 0.6s var(--ease-out-expo);
-            opacity: 1; visibility: visible;
-        }
-        .preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-        .preloader-inner {
-            position: relative;
-            width: 120px;
-            height: 120px;
-        }
-        .preloader-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-            box-shadow: 0 0 30px rgba(212,175,55,0.4);
-            animation: preloaderPulse 1.8s var(--ease-out-expo) infinite;
-        }
-        @keyframes preloaderPulse {
-            0%,100% { transform: scale(0.95); opacity: 0.9; }
-            50% { transform: scale(1.05); opacity: 1; }
-        }
-        .preloader-ring {
-            position: absolute;
-            inset: -8px;
-            border-radius: 50%;
-            border: 3px solid transparent;
-            border-top-color: var(--gold);
-            border-right-color: var(--crimson);
-            animation: preloaderSpin 1s linear infinite;
-        }
-        @keyframes preloaderSpin { to { transform: rotate(360deg); } }
+    /* Search */
+    .search-container { position: relative; width: 36px; height: 36px; transition: width 0.4s var(--ease-out-expo); }
+    .search-container.active { width: 220px; }
+    .search-input {
+      position: absolute; right: 0; top:0; width: 100%; height: 100%;
+      border-radius: 30px; border: none; padding: 0 40px 0 18px;
+      background: rgba(255,255,255,0.08); backdrop-filter: blur(10px);
+      color: white; outline: none; font-size: 13px; opacity: 0; transition: opacity 0.3s;
+    }
+    .search-container.active .search-input { opacity: 1; }
+    .search-trigger {
+      position: absolute; right:0; top:0; width:36px; height:36px; border-radius: 50%;
+      background: #e00024; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; z-index: 2; transition: all 0.3s; box-shadow: 0 5px 15px rgba(224,0,36,0.4);
+    }
+    .search-container.active .search-trigger { background: var(--gold); }
+    .search-results {
+      position: absolute; top: 48px; right: 0; width: 300px; max-height: 350px; overflow-y: auto;
+      background: rgba(15,15,15,0.95); border-radius: 16px; backdrop-filter: blur(12px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.7); opacity: 0; visibility: hidden; transform: translateY(10px);
+      transition: 0.3s; z-index: 999; border: 1px solid rgba(212,175,55,0.2);
+    }
+    .search-container.active .search-results { opacity: 1; visibility: visible; transform: translateY(0); }
+    .search-result-item { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer; }
+    .search-result-item:hover { background: rgba(224,0,36,0.15); }
+    .no-results { padding: 20px; text-align: center; color: #aaa; }
 
-        .font-display { font-family: 'Playfair Display','Cormorant Garamond',serif; }
-        .font-body { font-family: 'Montserrat',sans-serif; }
-        .font-logo { font-family: 'Royal Acidbath','Cinzel','Playfair Display',serif; }
+    /* Hero slider - fixed auto aspect ratio, no crop */
+    .hero-slider {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background: #000;
+      margin-top: 60px; /* under fixed header */
+      display: grid; /* stack slides in same grid area */
+    }
+    .hero-slide {
+      grid-area: 1 / 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 1.6s var(--ease-in-out-expo);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero-slide.active { opacity: 1; z-index: 2; pointer-events: auto; }
+    .hero-slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain; /* no crop */
+    }
+    .hero-slide::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.8));
+      pointer-events: none;
+    }
 
-        header {
-            position: fixed; top:0; left:0; right:0; padding:12px 5%;
-            display:flex; justify-content:space-between; align-items:center;
-            z-index:1000; background:transparent;
-            transition: all 0.6s var(--ease-out-expo); height:72px;
-        }
-        header.scrolled {
-            background: rgba(10,10,18,0.88); backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px); box-shadow:0 8px 40px rgba(0,0,0,0.5);
-            border-bottom:1px solid rgba(255,255,255,0.04); height:62px;
-        }
-        header.hidden { transform: translateY(-100%); }
-        .logo-container { display:flex; align-items:center; gap:10px; z-index:10; }
-        .img-logo { height:42px; filter:drop-shadow(0 0 8px rgba(212,175,55,0.5)); transition: all 0.6s var(--ease-out-expo); }
-        .logo-container:hover .img-logo { transform:rotate(-4deg) scale(1.06); filter:drop-shadow(0 0 14px rgba(212,175,55,0.7)); }
-        .logo {
-            font-family: 'Royal Acidbath','Cinzel','Playfair Display',serif;
-            font-size:21px; letter-spacing:2.5px; color:var(--text-primary);
-            text-decoration:none; text-transform:uppercase;
-            text-shadow:0 0 8px rgba(212,175,55,0.25); white-space:nowrap;
-        }
-        .logo span { color:var(--gold); position:relative; }
-        .logo span::after {
-            content:''; position:absolute; bottom:-2px; left:0; width:100%; height:1px;
-            background:linear-gradient(90deg,transparent,var(--gold),transparent);
-            transform:scaleX(0); transform-origin:right; transition: transform 0.6s var(--ease-out-expo);
-        }
-        .logo:hover span::after { transform:scaleX(1); transform-origin:left; }
+    /* Divider */
+    .divider { display:flex; align-items:center; margin: 3rem 0; }
+    .divider::before, .divider::after { content:""; flex:1; height:2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); animation: colorChange 8s infinite; }
+    .divider-text { padding:0 1.5rem; font-weight:600; letter-spacing:0.2em; color: var(--gold); text-shadow:0 0 10px rgba(212,175,55,0.6); font-size:1.2rem; }
+    @keyframes colorChange { 0%{filter:hue-rotate(0);} 100%{filter:hue-rotate(360deg);} }
 
-        .nav-buttons { display:flex; gap:6px; margin-right:auto; margin-left:35px; align-items:center; }
-        .nav-btn {
-            position:relative; padding:9px 18px; background:transparent; border:none;
-            color:var(--text-secondary); font-weight:600; font-size:13px; cursor:pointer;
-            transition: all 0.4s var(--ease-out-expo); text-transform:uppercase;
-            letter-spacing:1.2px; border-radius:30px; white-space:nowrap;
-        }
-        .nav-btn::before {
-            content:''; position:absolute; bottom:2px; left:50%; transform:translateX(-50%);
-            width:60%; height:1.5px; background:var(--gold); border-radius:10px;
-            transform:translateX(-50%) scaleX(0); transition: transform 0.4s var(--ease-out-expo);
-        }
-        .nav-btn:hover { color:var(--text-primary); background:rgba(255,255,255,0.03); }
-        .nav-btn:hover::before { transform:translateX(-50%) scaleX(1); }
-        .nav-btn.active { color:var(--text-primary); background:rgba(255,255,255,0.04); }
-        .nav-btn.active::before { transform:translateX(-50%) scaleX(1); background:var(--gold-bright); height:2px; }
+    /* Bio & profile card */
+    .bio-section { position: relative; overflow: hidden; }
+    .bio-section::before {
+      content:''; position:absolute; inset:0; background: url('https://i.ibb.co/VWHYK03Z/0016.jpg') center/cover;
+      filter: blur(14px) brightness(0.2); z-index:-1; transform: scale(1.2);
+    }
+    .profile-tilt-wrapper { perspective: 1000px; width: 100%; cursor: pointer; }
+    .profile-card {
+      position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+      width: 100%; aspect-ratio: 3/4; background: #000;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transform-style: preserve-3d;
+    }
+    .profile-card:hover { box-shadow: 0 40px 80px rgba(0,0,0,0.8), 0 0 30px rgba(212,175,55,0.3); }
+    .profile-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1s ease-in-out; }
+    .profile-card img.active { opacity: 1; }
+    .glare {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.25) 0%, transparent 60%);
+      pointer-events: none; mix-blend-mode: overlay; z-index: 3;
+    }
 
-        .nav-btn-cta {
-            background:linear-gradient(135deg,var(--gold-pale),var(--crimson));
-            color:#fff; border-radius:30px; padding:11px 24px; margin-left:12px;
-            box-shadow:0 6px 20px rgba(200,16,46,0.35); position:relative;
-            overflow:hidden; transition:all 0.6s var(--ease-out-expo);
-            font-weight:700; letter-spacing:1.5px; font-size:13px; text-transform:uppercase;
-            border:none; cursor:pointer; white-space:nowrap;
-        }
-        .nav-btn-cta::before {
-            content:''; position:absolute; inset:0;
-            background:linear-gradient(135deg,var(--crimson),var(--gold-pale));
-            opacity:0; transition:opacity 0.6s var(--ease-out-expo); z-index:-1;
-        }
-        .nav-btn-cta:hover { transform:translateY(-3px) scale(1.04); box-shadow:0 12px 30px rgba(200,16,46,0.5); }
-        .nav-btn-cta:hover::before { opacity:1; }
+    .info-icon { text-align:center; padding:0.3rem 0.8rem; border-radius: 20px; transition: 0.3s; position: relative; background: rgba(255,255,255,0.03); backdrop-filter: blur(4px); }
+    .info-icon i, .info-icon img { color: var(--gold); font-size:1.8rem; height:36px; width:auto; margin-bottom:0.3rem; }
+    .info-value { font-size:0.9rem; font-weight:500; }
 
-        .mobile-menu-btn { display:none; background:none; border:none; color:var(--text-primary); font-size:22px; cursor:pointer; padding:8px; border-radius:50%; }
-        .mobile-menu-btn:hover { color:var(--gold); background:rgba(255,255,255,0.05); }
-        .mobile-menu {
-            position:fixed; top:72px; left:0; width:100%; background:rgba(10,10,18,0.95);
-            z-index:999; padding:20px 5%; display:none; flex-direction:column; gap:10px;
-            border-bottom:1px solid rgba(255,255,255,0.06); backdrop-filter:blur(20px);
-            -webkit-backdrop-filter:blur(20px); transform:translateY(-20px); opacity:0;
-            transition:all 0.5s var(--ease-out-expo); border-radius:0 0 20px 20px;
-        }
-        .mobile-menu.active { display:flex; transform:translateY(0); opacity:1; }
-        .mobile-nav-btn-cta {
-            background:linear-gradient(135deg,var(--gold-pale),var(--crimson)); color:#fff;
-            border-radius:30px; padding:13px 20px; text-align:center; font-weight:700;
-            letter-spacing:1.5px; font-size:14px; text-transform:uppercase; border:none;
-            transition:all 0.5s var(--ease-out-expo); cursor:pointer;
-        }
+    .model-gallery-icon {
+      background: linear-gradient(135deg, #b8860b, #e00024); border-radius: 30px; padding: 0.9rem 1.8rem;
+      font-weight:700; letter-spacing:1.5px; cursor:pointer; display:inline-flex; align-items:center; gap:8px;
+      box-shadow: 0 10px 25px rgba(224,0,36,0.4); transition: 0.4s; border: none; color:white;
+    }
+    .model-gallery-icon:hover { transform: translateY(-5px); box-shadow: 0 20px 35px rgba(224,0,36,0.6); }
+    .model-gallery-icon i { font-size:1.4rem; }
 
-        .search-container { position:relative; width:42px; height:42px; transition:all 0.6s var(--ease-out-expo); z-index:10; }
-        .search-container.active { width:300px; }
-        .search-input {
-            position:absolute; top:0; right:0; width:100%; height:100%;
-            padding:0 50px 0 20px; border:1px solid rgba(255,255,255,0.1);
-            border-radius:50px; background:rgba(20,20,30,0.7); color:var(--text-primary);
-            font-size:15px; outline:none; opacity:0; transition:all 0.6s var(--ease-out-expo);
-            backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
-        }
-        .search-container.active .search-input { opacity:1; }
-        .search-trigger {
-            position:absolute; top:0; right:0; width:42px; height:42px; border-radius:50%;
-            background:var(--crimson); display:flex; align-items:center; justify-content:center;
-            cursor:pointer; z-index:2; transition:all 0.6s var(--ease-out-expo);
-            box-shadow:0 4px 16px rgba(200,16,46,0.35); border:none;
-        }
-        .search-trigger:hover { transform:scale(1.08); box-shadow:0 8px 24px rgba(200,16,46,0.5); }
-        .search-trigger i { font-size:15px; color:#fff; }
-        .search-container.active .search-trigger { background:var(--gold); box-shadow:0 4px 16px rgba(212,175,55,0.4); }
+    /* Video cards */
+    .video-grid { display:grid; gap:2rem; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+    .video-card {
+      background: var(--glass); border-radius: 16px; overflow:hidden; cursor:pointer;
+      backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.08);
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    }
+    .video-card:hover { border-color: rgba(212,175,55,0.4); box-shadow: 0 15px 25px rgba(0,0,0,0.6); }
+    .video-container { position: relative; width: 100%; padding-top: 56.25%; background: #000; overflow: hidden; }
+    .static-thumbnail, .video-preview { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; }
+    .video-preview { display:none; z-index:2; }
+    .video-info { padding: 1rem 1.2rem; background: rgba(10,10,10,0.6); }
+    .video-title { font-weight: 700; color: #fff; font-size: 1rem; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .video-date { display: inline-block; background: rgba(0,0,0,0.7); padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; color: #ddd; margin-top: 8px; }
 
-        .search-results {
-            position:absolute; top:55px; right:0; width:360px; max-height:420px; overflow-y:auto;
-            background:rgba(20,20,28,0.95); border-radius:16px; box-shadow:var(--shadow-lg);
-            opacity:0; visibility:hidden; transform:translateY(10px);
-            transition:all 0.5s var(--ease-out-expo); z-index:1000;
-            border:1px solid rgba(255,255,255,0.08); backdrop-filter:blur(14px);
-            -webkit-backdrop-filter:blur(14px);
-        }
-        .search-container.active .search-results { opacity:1; visibility:visible; transform:translateY(0); }
-        .search-result-item {
-            display:flex; align-items:center; padding:12px 16px; gap:12px;
-            border-bottom:1px solid rgba(255,255,255,0.04); cursor:pointer;
-            transition:all 0.3s var(--ease-out-expo); animation: fadeSlide 0.4s ease both;
-        }
-        @keyframes fadeSlide {
-            from { opacity:0; transform:translateX(-10px); }
-            to { opacity:1; transform:translateX(0); }
-        }
-        .search-result-item:hover { background:rgba(200,16,46,0.1); }
-        .search-result-thumb {
-            width:60px; height:60px; border-radius:10px; object-fit:cover;
-            flex-shrink:0; border:1px solid rgba(255,255,255,0.2);
-        }
-        .search-result-info { flex:1; min-width:0; }
-        .search-result-info h3 {
-            font-size:14px; font-weight:600; color:var(--text-primary);
-            white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-            margin-bottom:4px;
-        }
-        .search-result-meta {
-            display:flex; align-items:center; gap:8px; font-size:11px; color:var(--text-muted);
-        }
-        .search-result-meta .site-badge {
-            background:rgba(212,175,55,0.15); color:var(--gold); padding:2px 8px;
-            border-radius:20px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;
-        }
+    /* Filter */
+    .filter-buttons { display:flex; justify-content:center; gap:15px; flex-wrap:wrap; margin-bottom:2rem; }
+    .filter-button {
+      background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.15); color:#ddd; font-weight:600;
+      padding: 12px 28px; border-radius: 40px; cursor:pointer; transition: all 0.3s; letter-spacing:1px;
+    }
+    .filter-button.active, .filter-button:hover { background: linear-gradient(135deg, #e00024, #b8860b); border-color: transparent; color:white; transform: scale(1.02); }
+    .sites-list-container { max-height:0; overflow:hidden; transition: max-height 0.5s ease; background:rgba(20,20,20,0.8); border-radius:20px; margin-bottom:1rem; }
+    .sites-list-container.show { max-height:150px; padding:15px; }
+    .sites-list { display:flex; gap:12px; overflow-x:auto; padding:8px; }
+    .site-item { background: rgba(255,255,255,0.05); border-radius:30px; cursor:pointer; white-space:nowrap; transition:0.3s; border:1px solid transparent; padding:6px 16px; display:flex; align-items:center; gap:8px; }
+    .site-item.active, .site-item:hover { background: #e00024; }
+    .site-item img { height: 22px; width: auto; object-fit: contain; }
+    .site-item span.site-text { font-weight: 600; font-size: 0.9rem; letter-spacing: 0.5px; }
+    .site-item.all-sites { padding:8px 18px; }
+    .scroll-button { position:absolute; background:rgba(0,0,0,0.7); border:none; color:white; width:40px; height:40px; border-radius:50%; cursor:pointer; }
+    .date-filter-container { display:none; margin-bottom:1.5rem; background:rgba(20,20,20,0.8); padding:15px; border-radius:20px; }
+    .date-filter-container.show { display:block; }
+    .date-option { display:inline-block; padding:8px 18px; margin:5px; border-radius:30px; background:rgba(255,255,255,0.05); cursor:pointer; transition:0.3s; }
+    .date-option.active, .date-option:hover { background:#e00024; color:white; }
 
-        .hero-slider { position:relative; width:100%; height:100vh; overflow:hidden; min-height:600px; }
-        .hero-slide {
-            position:absolute; inset:0; opacity:0; transition:opacity 1.6s var(--ease-in-out-expo);
-            background-size:cover; background-position:center; z-index:1; transform:scale(1.08);
-        }
-        .hero-slide.active { opacity:1; z-index:3; transform:scale(1); }
-        .hero-slide::before {
-            content:''; position:absolute; inset:0;
-            background:linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 45%, rgba(0,0,0,0.6) 85%, rgba(0,0,0,0.85) 100%);
-            z-index:2;
-        }
-        .hero-overlay-text { position:absolute; bottom:15%; left:8%; z-index:10; max-width:600px; pointer-events:none; }
-        .hero-tag {
-            display:inline-block; background:rgba(212,175,55,0.15); border:1px solid rgba(212,175,55,0.4);
-            color:var(--gold-bright); padding:6px 18px; border-radius:30px; font-size:11px;
-            letter-spacing:2px; text-transform:uppercase; font-weight:600; margin-bottom:16px;
-            backdrop-filter:blur(6px);
-        }
-        .hero-overlay-text h1 {
-            font-family:'Playfair Display',serif; font-size:clamp(2.5rem,5vw,4.5rem);
-            font-weight:700; color:#fff; text-shadow:0 4px 30px rgba(0,0,0,0.5);
-            letter-spacing:0.02em; line-height:1.1;
-        }
-        .hero-overlay-text h1 span { color:var(--gold); }
+    .pagination { display:flex; justify-content:center; gap:10px; margin-top:2rem; }
+    .page-link { padding:0.8rem 1.2rem; background:rgba(255,255,255,0.05); border-radius:12px; cursor:pointer; transition:0.2s; border:1px solid rgba(255,255,255,0.1); }
+    .page-link.active, .page-link:hover { background:linear-gradient(135deg, #e00024, #b8860b); border-color:transparent; }
 
-        .divider {
-            display:flex; align-items:center; margin:2.5rem 0; padding:0 5%;
-        }
-        .divider::before,.divider::after {
-            content:""; flex:1; border-bottom:2px solid;
-            animation:dividerColorShift 10s infinite alternate; border-radius:2px;
-        }
-        @keyframes dividerColorShift {
-            0%{border-color:rgba(200,16,46,0.6)} 25%{border-color:rgba(139,92,246,0.6)}
-            50%{border-color:rgba(212,175,55,0.6)} 75%{border-color:rgba(245,158,11,0.6)}
-            100%{border-color:rgba(200,16,46,0.6)}
-        }
-        .divider-text {
-            padding:0 2.5rem; text-transform:uppercase; letter-spacing:0.25em;
-            font-weight:600; color:var(--text-primary); font-size:1rem;
-            animation:dividerColorShift 10s infinite alternate; text-shadow:0 0 8px currentColor;
-            font-family:'Montserrat',sans-serif; white-space:nowrap;
-        }
+    .back-to-top { position:fixed; bottom:25px; right:25px; width:45px; height:45px; border-radius:50%; background:rgba(0,0,0,0.8); display:flex; align-items:center; justify-content:center; cursor:pointer; opacity:0; visibility:hidden; transition:0.3s; z-index:99; border:2px solid var(--gold); box-shadow: 0 0 15px rgba(212,175,55,0.5); }
+    .back-to-top.active { opacity:1; visibility:visible; }
+    .back-to-top i { color:var(--gold); font-size:1.3rem; transition: transform 0.4s; }
+    .back-to-top:hover { animation: backToTopPulse 1s infinite; }
+    .back-to-top:hover i { transform: translateY(-3px); }
+    @keyframes backToTopPulse { 0% { box-shadow: 0 0 10px rgba(212,175,55,0.5); } 50% { box-shadow: 0 0 20px rgba(212,175,55,0.9); } 100% { box-shadow: 0 0 10px rgba(212,175,55,0.5); } }
 
-        .bio-section { position:relative; overflow:hidden; padding:60px 0; }
-        .bio-section::before {
-            content:''; position:absolute; inset:0;
-            background:url('https://i.ibb.co.com/B2h9X8t2/1.jpg') center/cover no-repeat;
-            filter:blur(18px) brightness(0.22); z-index:-1; transform:scale(1.05);
-        }
-        .bio-image-wrap {
-            position:relative; border-radius:var(--radius-lg); overflow:hidden;
-            box-shadow:var(--shadow-lg); transition:all 0.8s var(--ease-out-expo);
-            transform:perspective(800px) rotateY(0deg);
-        }
-        .bio-image-wrap:hover { transform:perspective(800px) rotateY(8deg) scale(1.03); }
-        .bio-image { width:100%; display:block; border-radius:var(--radius-lg); }
+    footer { background:rgba(0,0,0,0.9); border-top:1px solid rgba(212,175,55,0.3); }
+    .upload-btn { background: linear-gradient(135deg, #b8860b, #e00024); border: none; color: white; padding: 12px 24px; border-radius: 40px; cursor: pointer; font-weight:700; letter-spacing:1px; display:inline-flex; align-items:center; gap:8px; box-shadow: 0 0 15px rgba(212,175,55,0.7); animation: glowPulse 2s infinite; }
+    .upload-btn i { font-size:1.2rem; }
+    @keyframes glowPulse { 0% { box-shadow: 0 0 10px rgba(212,175,55,0.5); } 50% { box-shadow: 0 0 25px rgba(212,175,55,1); } 100% { box-shadow: 0 0 10px rgba(212,175,55,0.5); } }
 
-        .info-icon { padding:0.7rem 1rem; text-align:center; border-radius:var(--radius-md); transition:all 0.5s var(--ease-out-expo); }
-        .info-icon i { font-size:1.4rem; margin-bottom:0.4rem; color:var(--gold); }
-        .info-value { font-size:0.85rem; color:var(--text-secondary); font-weight:500; }
-        .info-icon img { height:22px; margin:0 auto 0.4rem; filter:brightness(1.3); }
+    .modal-overlay { position: fixed; inset:0; background:rgba(0,0,0,0.8); backdrop-filter: blur(5px); display:none; align-items:center; justify-content:center; z-index:2000; }
+    .modal-overlay.active { display:flex; }
+    .modal-content { background: #1a1a1a; border-radius: 20px; padding: 2rem; width: 90%; max-width: 450px; border:1px solid rgba(212,175,55,0.4); box-shadow: 0 30px 60px rgba(0,0,0,0.8); animation: modalFadeIn 0.3s; position: relative; }
+    @keyframes modalFadeIn { from{ opacity:0; transform:scale(0.9);} to{opacity:1; transform:scale(1);} }
+    .modal-input { width:100%; padding:12px 16px; margin:8px 0 16px; background: rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.2); border-radius:8px; color:white; outline:none; }
+    .modal-btn { background: linear-gradient(135deg, #e00024, #b8860b); border:none; color:white; padding:12px 28px; border-radius:30px; font-weight:700; cursor:pointer; width:100%; letter-spacing:1px; }
+    .close-modal { position:absolute; top:15px; right:15px; background:none; border:none; color:white; font-size:1.5rem; cursor:pointer; }
 
-        .model-gallery-btn {
-            display:inline-flex; align-items:center; gap:10px;
-            background:linear-gradient(135deg,var(--gold-pale),var(--crimson)); color:#fff;
-            border-radius:var(--radius-full); padding:0.9rem 1.8rem;
-            box-shadow:0 8px 28px rgba(200,16,46,0.4); transition:all 0.6s var(--ease-out-expo);
-            font-weight:700; letter-spacing:1.5px; font-size:0.95rem; text-transform:uppercase;
-            border:none; cursor:pointer; text-decoration:none;
-        }
-        .model-gallery-btn:hover { transform:translateY(-4px) scale(1.05); }
-
-        /* Glass video cards */
-        .video-card {
-            background:rgba(20,20,30,0.45); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-            border:1px solid rgba(255,255,255,0.1); border-radius:var(--radius-lg);
-            box-shadow:0 8px 32px rgba(0,0,0,0.4); overflow:hidden; cursor:pointer;
-            transition:all 0.5s var(--ease-out-expo);
-        }
-        .video-card:hover { transform:translateY(-6px) scale(1.02); border-color:rgba(212,175,55,0.3); box-shadow:0 16px 40px rgba(200,16,46,0.2); }
-        .video-container { position:relative; width:100%; padding-top:75%; background:#000; overflow:hidden; }
-        .static-thumbnail { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; transition:all 0.5s var(--ease-out-expo); }
-        .video-card:hover .static-thumbnail { transform:scale(1.06); filter:brightness(0.7); }
-        .video-preview { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; display:none; z-index:2; }
-
-        .video-info { padding:10px 12px; background:rgba(18,18,26,0.7); backdrop-filter:blur(6px); }
-        .video-title {
-            color:var(--gold); font-weight:700; font-size:13px; line-height:1.3;
-            display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical;
-            overflow:hidden; text-overflow:ellipsis; min-height:54px;
-            font-family:'Times New Roman', serif; letter-spacing:0.02em;
-        }
-        .video-date {
-            display:inline-block; background:rgba(0,0,0,0.5); padding:3px 8px;
-            border-radius:20px; font-size:10px; font-weight:600; color:var(--text-secondary);
-            margin-top:6px; font-family:'Times New Roman', serif;
-        }
-
-        .view-all-container { text-align:center; margin:40px 0; }
-        .view-all {
-            display:inline-flex; align-items:center; gap:8px;
-            background:linear-gradient(135deg,rgba(200,16,46,0.7),rgba(212,175,55,0.7));
-            padding:1rem 2.8rem; border-radius:var(--radius-full); font-size:0.95rem;
-            transition:all 0.6s var(--ease-out-expo); text-transform:uppercase;
-            letter-spacing:2px; font-weight:700; color:#fff; border:none; cursor:pointer;
-            text-decoration:none;
-        }
-        .view-all:hover { transform:translateY(-4px) scale(1.04); box-shadow:0 16px 40px rgba(200,16,46,0.45); }
-
-        .filter-buttons { display:flex; justify-content:center; gap:14px; margin-bottom:30px; flex-wrap:wrap; }
-        .filter-button {
-            padding:11px 26px; border-radius:var(--radius-full); background:rgba(255,255,255,0.04);
-            color:var(--text-secondary); border:1px solid rgba(255,255,255,0.1); cursor:pointer;
-            font-weight:600; text-transform:uppercase; letter-spacing:1.3px; font-size:13px;
-            transition:all 0.5s var(--ease-out-expo);
-        }
-        .filter-button:hover { background:rgba(200,16,46,0.15); border-color:rgba(200,16,46,0.4); color:#fff; }
-        .filter-button.active { background:linear-gradient(135deg,rgba(200,16,46,0.7),rgba(212,175,55,0.6)); border-color:transparent; color:#fff; }
-
-        .sites-list-container {
-            width:100%; overflow:hidden; position:relative; margin-bottom:25px;
-            max-height:0; transition:max-height 0.7s var(--ease-out-expo);
-            background:var(--glass-bg); border-radius:var(--radius-lg);
-            backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-            border:1px solid var(--glass-border);
-        }
-        .sites-list-container.show { max-height:130px; padding:16px; }
-        .sites-list { display:flex; gap:12px; overflow-x:auto; scroll-behavior:smooth; padding:6px 0; }
-        .site-item {
-            flex:0 0 auto; padding:10px 22px; border-radius:var(--radius-full);
-            background:rgba(255,255,255,0.05); cursor:pointer; transition:all 0.5s var(--ease-out-expo);
-            border:1px solid rgba(255,255,255,0.1); font-weight:500; font-size:13px; color:var(--text-secondary);
-        }
-        .site-item:hover { background:rgba(200,16,46,0.2); border-color:rgba(200,16,46,0.4); color:#fff; }
-        .site-item.active { background:linear-gradient(135deg,rgba(200,16,46,0.5),rgba(212,175,55,0.4)); border-color:transparent; color:#fff; }
-
-        .date-filter-container { display:none; margin-bottom:25px; justify-content:center; flex-wrap:wrap; gap:8px; }
-        .date-filter-container.show { display:flex; animation:fadeInDown 0.6s var(--ease-out-expo); }
-        @keyframes fadeInDown { from{opacity:0;transform:translateY(-12px);} to{opacity:1;transform:translateY(0);} }
-        .date-option {
-            display:inline-block; padding:9px 20px; border-radius:var(--radius-full);
-            background:rgba(255,255,255,0.05); cursor:pointer; transition:all 0.5s var(--ease-out-expo);
-            font-weight:500; font-size:13px; color:var(--text-secondary); border:1px solid rgba(255,255,255,0.08);
-        }
-        .date-option:hover { background:rgba(200,16,46,0.2); color:#fff; }
-        .date-option.active { background:linear-gradient(135deg,rgba(200,16,46,0.5),rgba(212,175,55,0.4)); color:#fff; }
-
-        .pagination { display:flex; justify-content:center; margin-top:3rem; gap:6px; flex-wrap:wrap; }
-        .page-link {
-            padding:0.7rem 1.1rem; border:1px solid rgba(255,255,255,0.1); border-radius:var(--radius-md);
-            cursor:pointer; transition:all 0.4s var(--ease-out-expo); min-width:40px;
-            background:rgba(255,255,255,0.03); color:var(--text-secondary); font-weight:600; font-size:13px;
-        }
-        .page-link.active { background:linear-gradient(135deg,var(--gold-pale),var(--crimson)); border-color:transparent; color:#fff; }
-        .page-link:hover { transform:translateY(-2px); border-color:var(--gold-pale); color:#fff; }
-
-        .back-to-top {
-            position:fixed; bottom:35px; right:35px; width:50px; height:50px;
-            background:rgba(10,10,18,0.8); border-radius:50%; display:flex;
-            justify-content:center; align-items:center; cursor:pointer; z-index:100;
-            opacity:0; visibility:hidden; transition:all 0.6s var(--ease-out-expo);
-            backdrop-filter:blur(8px); border:1px solid rgba(212,175,55,0.4);
-            box-shadow:var(--shadow-md); transform:translateY(10px);
-        }
-        .back-to-top.active { opacity:1; visibility:visible; transform:translateY(0); }
-        .back-to-top i { color:var(--gold); font-size:20px; }
-        .back-to-top:hover { background:linear-gradient(135deg,var(--gold-pale),var(--crimson)); border-color:transparent; }
-
-        footer { position:relative; padding:35px 0; background:rgba(8,8,14,0.8); backdrop-filter:blur(10px); border-top:1px solid rgba(212,175,55,0.15); }
-
-        @media (max-width:768px) {
-            .nav-buttons { display:none; }
-            .mobile-menu-btn { display:block; }
-            .search-container.active { width:220px; }
-        }
-    </style>
+    @media (max-width: 900px) {
+      .nav-buttons { display: none; }
+      .mobile-menu-btn { display: block; }
+      .profile-card { aspect-ratio: 1/1; }
+    }
+    .mobile-menu { display:none; flex-direction:column; background:rgba(5,5,5,0.98); padding:20px; gap:15px; position:fixed; top:60px; left:0; right:0; z-index:999; backdrop-filter: blur(10px); }
+    .mobile-menu.active { display:flex; }
+    .mobile-nav-btn-3d { background: linear-gradient(135deg, #e00024, #b8860b); text-align:center; padding:15px; border-radius:40px; }
+  </style>
 </head>
-<body class="font-body">
-    <!-- Preloader with model profile image -->
-    <div class="preloader" id="preloader">
-        <div class="preloader-inner">
-            <div class="preloader-ring"></div>
-            <img src="https://i.ibb.co.com/MxyF4SqD/0002.jpg" alt="Loading..." class="preloader-img" loading="eager">
-        </div>
+<body>
+  <!-- HEADER -->
+  <header id="mainHeader" class="animate__animated animate__fadeInDown">
+    <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+    <div class="logo-container">
+      <img src="https://i.ibb.co.com/sd6CqKNr/Chat-GPT-Image-May-5-2025-04-00-30-AM.png" alt="ELITE VAULT" class="img-logo floating">
+      <a href="#" class="logo">ELITE <span>VAULT</span></a>
     </div>
-
-    <div class="scroll-progress" id="scrollProgress"></div>
-    <header id="mainHeader">
-        <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
-        <div class="logo-container">
-            <img src="https://i.ibb.co.com/sd6CqKNr/Chat-GPT-Image-May-5-2025-04-00-30-AM.png" alt="Logo" class="img-logo">
-            <a href="#" class="logo">ELITE <span>VAULT</span></a>
-        </div>
-        <div class="nav-buttons">
-            <button class="nav-btn active" id="homeBtn">Home</button>
-            <button class="nav-btn" id="modelsBtn">Models</button>
-            <button class="nav-btn" id="videosBtn">Videos</button>
-            <button class="nav-btn-cta" id="threeDBtn">✦ 3D Experience</button>
-        </div>
-        <div class="search-container" id="searchContainer">
-            <input type="text" class="search-input" id="searchInput" placeholder="Search videos...">
-            <button class="search-trigger" id="searchTrigger"><i class="fas fa-search"></i></button>
-            <div class="search-results" id="searchResults"></div>
-        </div>
-    </header>
-    <div class="mobile-menu" id="mobileMenu">
-        <button class="nav-btn active" id="mobileHomeBtn">Home</button>
-        <button class="nav-btn" id="mobileModelsBtn">Models</button>
-        <button class="nav-btn" id="mobileVideosBtn">Videos</button>
-        <button class="mobile-nav-btn-cta" id="mobileThreeDBtn">✦ 3D Experience</button>
+    <div class="nav-buttons">
+      <button class="nav-btn active" id="homeBtn">Home</button>
+      <button class="nav-btn" id="modelsBtn">Models</button>
+      <button class="nav-btn" id="videosBtn">Videos</button>
+      <button class="nav-btn nav-btn-3d pulse" id="threeDBtn">3D</button>
     </div>
+    <div class="search-container" id="searchContainer">
+      <input type="text" class="search-input" id="searchInput" placeholder="Search models...">
+      <div class="search-trigger" id="searchTrigger"><i class="fas fa-search"></i></div>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </header>
 
-    <div id="mainContent">
-        <section class="hero-slider">
-            <div class="hero-slide active" style="background-image:url('https://i.ibb.co.com/7qTMNx3/1.jpg');"></div>
-            <div class="hero-slide" style="background-image:url('https://i.ibb.co.com/rRQYRQqb/2.jpg');"></div>
-            <div class="hero-slide" style="background-image:url('https://i.ibb.co.com/j9Zsyz1W/3.jpg');"></div>
-            <div class="hero-slide" style="background-image:url('https://i.ibb.co.com/zT58R0C3/4.jpg');"></div>
-            <div class="hero-slide" style="background-image:url('https://i.ibb.co.com/v47LVKfd/5.jpg');"></div>
-            <div class="hero-slide" style="background-image:url('https://i.ibb.co.com/397WLSRt/6.jpg');"></div>
-            <div class="hero-slide" style="background-image:url('https://i.ibb.co.com/fYGyD0xy/7.jpg');"></div>
-            <div class="hero-slide" style="background-image:url('https://i.ibb.co.com/WvM74q05/8.jpg');"></div>
-            <div class="hero-slide" style="background-image:url('https://i.ibb.co.com/MxSM98rP/9.jpg');"></div>
-            <div class="hero-slide" style="background-image:url('https://i.ibb.co.com/GvZXWvjJ/10.jpg');"></div>
-            <div class="hero-slide" style="background-image:url('https://i.ibb.co.com/81CCkDj/11.jpg');"></div>
-            <div class="hero-overlay-text"><span class="hero-tag">Exclusive</span><h1>August <span>Taylor</span></h1></div>
-        </section>
-        <div class="divider"><span class="divider-text font-body">GOD-TIER</span></div>
-        <section class="bio-section px-6 md:px-20">
-            <div class="flex flex-col md:flex-row gap-10 max-w-6xl mx-auto">
-                <div class="w-full md:w-2/5"><div class="bio-image-wrap"><img src="https://i.ibb.co.com/MxyF4SqD/0002.jpg" alt="August Taylor" class="bio-image"></div></div>
-                <div class="w-full md:w-3/5">
-                    <h2 class="text-4xl md:text-5xl font-light mb-6 font-display text-white">August <span class="text-yellow-500">Taylor</span></h2>
-                    <p class="text-gray-300 leading-relaxed mb-5 text-base md:text-lg font-body">August Taylor, an American mixed-race performer of primarily Asian descent, entered the adult industry in 2013 at the age of 22, bringing a distinctive and athletic presence to the scene.</p>
-                    <p class="text-gray-400 leading-relaxed mb-8 text-base md:text-lg font-body">Feast your eyes on curvaceous starlet August Taylor and she'll have you coming back for seconds. This slutty minx hails from Georgia, and has the thick curves we love so much.</p>
-                    <div class="flex flex-wrap gap-3 items-center">
-                        <div class="info-icon"><i class="fas fa-birthday-cake"></i><div class="info-value">May 28, 1991</div></div>
-                        <div class="info-icon"><i class="fas fa-map-marker-alt"></i><div class="info-value">Georgia, USA</div></div>
-                        <div class="info-icon"><img src="https://i.ibb.co.com/PyqWRzv/download-1.png" alt="Measurements" style="height:20px;"><div class="info-value">34DDD-28-35</div></div>
-                        <div class="info-icon"><img src="https://i.ibb.co.com/6R6hZBhr/height.png" alt="Height" style="height:20px;"><div class="info-value">5'6"</div></div>
-                        <div class="info-icon" style="padding:0;"><a class="model-gallery-btn" id="modelGalleryBtn" href="javascript:void(0)"><i class="fas fa-images"></i> MODEL GALLERY</a></div>
-                    </div>
-                </div>
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="nav-btn active">Home</button>
+    <button class="nav-btn">Models</button>
+    <button class="nav-btn">Videos</button>
+    <button class="nav-btn mobile-nav-btn-3d">3D</button>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div id="mainContent">
+    <!-- HERO SLIDER - auto aspect ratio, no cropping -->
+    <section class="hero-slider" id="heroSlider">
+      <div class="hero-slide active"><img src="https://i.ibb.co/cczvfPSm/banner-1.jpg" alt="Banner 1"></div>
+      <div class="hero-slide"><img src="https://i.ibb.co/35mhMgBW/banner-2.jpg" alt="Banner 2"></div>
+      <div class="hero-slide"><img src="https://i.ibb.co/4wrTDHZH/banner-3.jpg" alt="Banner 3"></div>
+      <div class="hero-slide"><img src="https://i.ibb.co/HTTCWS5R/banner-4.jpg" alt="Banner 4"></div>
+      <div class="hero-slide"><img src="https://i.ibb.co/ymFH4Kj1/banner-5.jpg" alt="Banner 5"></div>
+      <div class="hero-slide"><img src="https://i.ibb.co/zHbLMcNn/banner-6.jpg" alt="Banner 6"></div>
+      <div class="hero-slide"><img src="https://i.ibb.co/JFWkMN2G/banner-7.jpg" alt="Banner 7"></div>
+      <div class="hero-slide"><img src="https://i.ibb.co/svFcQ6Ts/banner-8.jpg" alt="Banner 8"></div>
+      <div class="hero-slide"><img src="https://i.ibb.co/1fxb4mQb/banner-9.jpg" alt="Banner 9"></div>
+      <div class="hero-slide"><img src="https://i.ibb.co/yFzcJgdm/banner-10.jpg" alt="Banner 10"></div>
+    </section>
+
+    <!-- Divider -->
+    <div class="divider"><span class="divider-text premium-font">GOD-TIER</span></div>
+
+    <!-- BIO SECTION -->
+    <section class="bio-section py-16 px-6 md:px-20 animate__animated animate__fadeIn">
+      <div class="flex flex-col md:flex-row gap-12 max-w-6xl mx-auto">
+        <div class="w-full md:w-2/5">
+          <div class="profile-tilt-wrapper" id="tiltWrapper">
+            <div class="profile-card" id="profileCard">
+              <img src="https://i.ibb.co/SDSFrnsH/1.jpg" class="active" alt="August Taylor 1">
+              <img src="https://i.ibb.co/Wvs8FFMF/2.jpg" alt="August Taylor 2">
+              <img src="https://i.ibb.co/R4NGR09Q/3.jpg" alt="August Taylor 3">
+              <img src="https://i.ibb.co/dJzgFqxf/4.png" alt="August Taylor 4">
+              <img src="https://i.ibb.co/5gt9KLtj/5.jpg" alt="August Taylor 5">
+              <img src="https://i.ibb.co/tpL9rhgC/6.jpg" alt="August Taylor 6">
+              <img src="https://i.ibb.co/7JRCQ2jf/7.jpg" alt="August Taylor 7">
+              <img src="https://i.ibb.co/ycTDF3wh/8.jpg" alt="August Taylor 8">
+              <div class="glare" id="glareElement"></div>
             </div>
-        </section>
+          </div>
+        </div>
+        <div class="w-full md:w-3/5">
+          <h2 class="text-4xl md:text-5xl font-light mb-6 premium-font premium-title">August Taylor</h2>
+          <p class="text-gray-300 leading-relaxed mb-4 text-lg">August Taylor, stage name of Michelle Novacich, was born in the state American from Georgia, daughter of the marriage between the actors Peter Edward Tasciotti & Karen Novacich, in a family with Czech, Italian & Filipina.She grew up in Ft. Lauderdale, in the state of Florida.</p>
+          <p class="text-gray-300 leading-relaxed mb-8 text-lg">Few more details are known about his biography prior to 2013, when at 22 years old he recorded his first film, which was not made public until 2014. As an actress pornographic, she has worked for prominent studios in the industry like Evil Angel, Jules Jordan Video, Digital Sin, Elegant Angel, Pure Play Media, Bangbros ["Wicked Pictures","Girlfriends Films","Devil's Film","Penthouse","Naughty America"] Brazzers, Kink.com or New Sensations, among others.
+
+With similar features that have led to comparisons with actresses Ava Devine and Sybil. Stallone, in 2015 filmed for Brazzers, alongside Ramón Nomar, his first scene of anal sex. Two years later, she would record her first double penetration, published on the website of actor Criss Strokes.
+
+In 2018, she was nominated for the Urban X Awards for MILF Artist of the Year.
+She has starred in over 130 films as an actress.</p>
+          <div class="flex flex-wrap gap-4">
+            <div class="info-icon"><i class="fas fa-birthday-cake"></i><div class="info-value">May 28th, 1991</div></div>
+            <div class="info-icon"><i class="fas fa-globe-europe"></i><div class="info-value">Georgia, USA</div></div>
+            <div class="info-icon"><img src="https://i.ibb.co.com/PyqWRzv/download-1.png" alt="measure"><div class="info-value">34DDD-28-35</div></div>
+            <div class="info-icon"><img src="https://i.ibb.co.com/6R6hZBhr/height.png" alt="height"><div class="info-value">5'6"</div></div>
+            <div class="info-icon"><div class="model-gallery-icon" id="modelGalleryBtn"><i class="fas fa-images"></i>GALLERY</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Divider & top rated -->
+  <div class="divider mt-4 mb-8"><span class="divider-text premium-font">Top Rated Videos</span></div>
+
+  <!-- TOP VIDEOS GRID -->
+  <section class="py-8 px-6 md:px-20 max-w-7xl mx-auto">
+    <div class="video-grid" id="videoGrid"></div>
+    <div class="text-center mt-10">
+      <button id="viewAllBtn" class="filter-button active" style="font-size:1.1rem; padding:15px 40px;">VIEW ALL VIDEOS</button>
     </div>
+  </section>
 
-    <div class="divider mt-3 mb-6"><span class="divider-text font-body">Top Rated Videos</span></div>
-    <section class="py-6 px-6 md:px-20 max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5" id="videoGrid"></div>
-        <div class="view-all-container"><a href="#" id="viewAllBtn" class="view-all">View All Videos <i class="fas fa-arrow-right"></i></a></div>
-    </section>
+  <!-- ALL VIDEOS SECTION -->
+  <section id="allVideosSection" class="py-16 px-6 md:px-20 max-w-7xl mx-auto hidden">
+    <div class="filter-buttons">
+      <button id="sitesListBtn" class="filter-button">Sites List</button>
+      <button id="releaseDateBtn" class="filter-button">Release Date</button>
+    </div>
+    <div class="sites-list-container relative" id="sitesListContainer">
+      <button class="scroll-button left" id="scrollLeftBtn" style="left:10px; top:50%;"><i class="fas fa-chevron-left"></i></button>
+      <div class="sites-list" id="sitesList"></div>
+      <button class="scroll-button right" id="scrollRightBtn" style="right:10px; top:50%;"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    <div class="date-filter-container" id="dateFilterContainer">
+      <!-- Dynamic date options will be generated here -->
+    </div>
+    <div class="flex justify-between items-center mb-8">
+      <h3 class="text-3xl font-light premium-font">All Videos</h3>
+      <button id="backToTopRated" class="filter-button"><i class="fas fa-arrow-left"></i> Back</button>
+    </div>
+    <div class="video-grid" id="allVideosGrid"></div>
+    <div class="pagination" id="allVideosPagination"></div>
+  </section>
 
-    <section id="allVideosSection" class="py-12 px-6 md:px-20 max-w-7xl mx-auto hidden">
-        <div class="filter-buttons">
-            <button id="sitesListBtn" class="filter-button">Sites List</button>
-            <button id="releaseDateBtn" class="filter-button">Release Date</button>
-        </div>
-        <div class="sites-list-container" id="sitesListContainer">
-            <button class="scroll-button left" id="scrollLeftBtn"><i class="fas fa-chevron-left"></i></button>
-            <div class="sites-list" id="sitesList"></div>
-            <button class="scroll-button right" id="scrollRightBtn"><i class="fas fa-chevron-right"></i></button>
-        </div>
-        <div class="date-filter-container" id="dateFilterContainer">
-            <span class="date-option active" data-date="all">All Dates</span>
-            <span class="date-option" data-date="2019">2019</span>
-            <span class="date-option" data-date="2018">2018</span>
-            <span class="date-option" data-date="2017">2017</span>
-            <span class="date-option" data-date="2016">2016</span>
-            <span class="date-option" data-date="2015">2015</span>
-            <span class="date-option" data-date="2014">2014</span>
-            <span class="date-option" data-date="2013">2013</span>
-            <span class="date-option" data-date="older">Older</span>
-        </div>
-        <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
-            <h3 class="text-3xl font-light font-display text-white">All Videos</h3>
-            <button id="backToTopRated" class="bg-gray-800 hover:bg-gray-700 px-6 py-3 rounded-full transition-all duration-500 flex items-center gap-2 text-sm font-semibold text-gray-200 border border-gray-600"><i class="fas fa-arrow-left"></i> Back to Top Rated</button>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5" id="allVideosGrid"></div>
-        <div class="pagination" id="allVideosPagination"></div>
-    </section>
+  <!-- BACK TO TOP -->
+  <div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
 
-    <div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
-    <footer class="text-center py-8"><div class="max-w-6xl mx-auto px-6"><p class="text-sm text-gray-400 mb-2 tracking-widest font-body">&copy; 2025 ELITE VAULT. All Rights Reserved.</p><p class="text-xs text-gray-500 uppercase tracking-widest font-body">All models appearing on this website are 18 or 18+</p></div></footer>
+  <!-- FOOTER -->
+  <footer class="text-center py-8 mt-16">
+    <p class="text-sm text-gray-400 tracking-widest">© 2026 ELITE VAULT. All Rights Reserved.</p>
+    <p class="text-xs text-gray-500 mt-2">All models appearing on this website are 18+</p>
+    <div class="mt-6">
+      <button class="upload-btn" id="uploadBtn"><i class="fas fa-upload"></i> UPLOAD</button>
+    </div>
+  </footer>
 
-    <script>
-        (function() {
-            const topRatedVideos = [
-                {id:1,title:"Ultimate MILF Nikki Cums Hard while Riding His Cock",date:"May 15, 2024",thumbnail:"https://i.ibb.co.com/0XQz0JQ/thumb-1.jpg",preview:"https://prog-public-ht.project1content.com/a0c/26a/b42/d58/4b6/ea1/717/9ed/5c1/75b/b2/mediabook/mediabook_320p.mp4",site:"brazzers",videoLink:"video1.html"},
-                {id:2,title:"Bathroom Fantasy with Nikki Benz",date:"April 28, 2024",thumbnail:"https://i.ibb.co.com/0XQz0JQ/thumb-1.jpg",preview:"https://prog-public-ht.project1content.com/177/535/f33/925/404/abd/520/e4b/06e/a3b/fa/mediabook/mediabook_320p.mp4",site:"bangbros",videoLink:"video2.html"},
-                {id:3,title:"Office Seduction - Nikki Takes Control",date:"April 15, 2024",thumbnail:"https://i.ibb.co.com/0XQz0JQ/thumb-1.jpg",preview:"https://example.com/preview-3.mp4",site:"blacked",videoLink:"video3.html"},
-                {id:4,title:"Nikki's Poolside Pleasure",date:"March 30, 2024",thumbnail:"https://i.ibb.co.com/0XQz0JQ/thumb-1.jpg",preview:"https://example.com/preview-4.mp4",site:"milfy",videoLink:"video4.html"}
-            ];
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+      <button class="close-modal" id="closeModalBtn"><i class="fas fa-times"></i></button>
+      <div id="loginStep">
+        <h3 class="text-xl premium-font mb-4 text-center">ADMIN ACCESS</h3>
+        <input type="text" class="modal-input" id="usernameInput" placeholder="Username">
+        <input type="password" class="modal-input" id="passwordInput" placeholder="Password">
+        <button class="modal-btn" id="loginBtn">LOGIN</button>
+        <p id="loginError" class="text-red-500 text-sm mt-2 text-center hidden">Invalid credentials</p>
+      </div>
+      <div id="addVideoStep" class="hidden">
+        <h3 class="text-xl premium-font mb-4 text-center">ADD VIDEO CARD</h3>
+        <input type="text" class="modal-input" id="videoTitle" placeholder="Title">
+        <input type="text" class="modal-input" id="videoDate" placeholder="Date (e.g. January 1, 2025)">
+        <input type="text" class="modal-input" id="videoThumbnail" placeholder="Thumbnail URL">
+        <input type="text" class="modal-input" id="videoPreview" placeholder="Preview MP4 URL">
+        <button class="modal-btn" id="submitVideoBtn">ADD VIDEO</button>
+        <button class="modal-btn mt-2" id="logoutBtn" style="background: #555;">LOGOUT</button>
+      </div>
+    </div>
+  </div>
 
-            const allVideosData = [
-                ...topRatedVideos,
-                {id:5,title:"The Perfect Maid 4",date:"April 8, 2019",thumbnail:"https://i.ibb.co.com/Hpk3sdQm/0141.jpg",preview:"https://prog-public-ht.project1content.com/76a/270/290/b13/45d/f93/fee/672/516/89e/3f/mediabook/mediabook_320p.mp4",site:"brazzers",videoLink:"The Perfect Maid 4-august taylor.html"},
-                {id:6,title:"Carnival Queen",date:"September 23, 2018",thumbnail:"https://i.ibb.co/QvLryV3f/CARNIVAL-QUEEN.jpg",preview:"https://prog-public-ht.project1content.com/eb1/b34/724/81d/439/185/010/398/cb1/df5/01/mediabook/mediabook_320p.mp4",site:"brazzers",videoLink:"Carnival Queen-august taylor.html"},
-                {id:7,title:"Buttaholics Anonymous",date:"June 12, 2018",thumbnail:"https://i.ibb.co.com/Jw3yk671/august-taylor-5.jpg",preview:"https://prog-public-ht.project1content.com/cac/b57/9fb/003/4d3/39e/835/5d8/7ec/ce8/81/mediabook/mediabook_320p.mp4",site:"brazzers",videoLink:"Buttaholics Anonymous-august taylor.html"},
-                {id:8,title:"All Dolled Up:Spring Break Edition",date:"May 16, 2018",thumbnail:"https://i.ibb.co/7JpQLP06/All-Dolled-Up-Spring-Break-Edition.jpg",preview:"https://prog-public-ht.project1content.com/1db/d58/00b/c2a/499/386/4e8/7ed/ed5/ac6/64/mediabook/mediabook_320p.mp4",site:"brazzers",videoLink:"All Dolled Up:Spring Break Edition-august taylor.html"},
-                {id:9,title:"Anal Swinger",date:"Nov 12, 2017",thumbnail:"https://i.ibb.co/yF0V5Pbh/Anal-Swinger.jpg",preview:"https://prog-public-ht.project1content.com/903/763/393/2f2/417/993/aa5/596/390/62b/fe/mediabook/mediabook_320p.mp4",site:"brazzers",videoLink:"Anal Swinger-august taylor.html"},
-                {id:10,title:"Catch The Garter Belt, Fuck The Bride",date:"Sep 22, 2017",thumbnail:"https://i.ibb.co/W46yBncN/20jhwi.jpg",preview:"https://prog-public-ht.project1content.com/7be/4a3/6b7/118/451/084/2ea/23e/267/450/54/mediabook/mediabook_320p.mp4",site:"brazzers",videoLink:"Catch The Garter Belt, Fuck The Bride-august taylor.html"},
-                {id:11,title:"My Husband's Best Friend",date:"Oct 28, 2016",thumbnail:"https://i.ibb.co/nqsHmMzC/0216.jpg",preview:"https://prog-public-ht.project1content.com/560/76e/c4a/973/4b2/6b0/d49/203/325/dff/2b/mediabook/mediabook_320p.mp4",site:"brazzers",videoLink:"My Husband's Best Friend-august taylor.html"},
-                {id:12,title:"Maid To Nurture",date:"Oct 01, 2016",thumbnail:"https://i.ibb.co/ZRLh7nqd/1z406p.jpg",preview:"https://prog-public-ht.project1content.com/536/045/8dd/819/4b6/5bb/275/d50/ae2/ae3/0c/mediabook/mediabook_320p.mp4",site:"brazzers",videoLink:"Maid To Nurture-august taylor.html"},
-                {id:13,title:"Dr. Taylor Takes Her Medicine",date:"Sept 27, 2016",thumbnail:"https://i.ibb.co/5hH5ZGg1/0153.jpg",preview:"https://prog-public-ht.project1content.com/be0/e7a/638/871/4fe/5b5/f22/590/494/317/3c/mediabook/mediabook_320p.mp4",site:"brazzers",videoLink:"Dr. Taylor Takes Her Medicine-august taylor.html"},
-                {id:14,title:"My Wife's Ex",date:"Aug 29, 2016",thumbnail:"https://i.ibb.co/Z6PfGy0q/173449413-0120.jpg",preview:"https://prog-public-ht.project1content.com/b65/c7f/baf/7b7/486/183/fec/6d6/a62/6f6/30/mediabook/mediabook_320p.mp4",site:"brazzers",videoLink:"My Wife's Ex-august taylor.html"},
-                {id:15,title:"What's My Grade Again ?",date:"June 22, 2016",thumbnail:"https://i.ibb.co/Xrxk9DMY/173442565-0206.jpg",preview:"https://prog-public-ht.project1content.com/7ce/35f/8d4/a51/446/b96/fc6/956/c26/f84/83/mediabook/mediabook_320p.mp4",site:"brazzers",videoLink:"What's My Grade Again-august taylor.html"},
-                {id:16,title:"Beady Booty",date:"May 12, 2016",thumbnail:"https://i.ibb.co/gLBTD68D/5a4086f4cd17f.jpg",preview:"https://prog-public-ht.project1content.com/903/e6b/804/e89/4b7/594/fb0/e71/884/f2d/fc/mediabook/mediabook_320p.mp4",site:"brazzers",videoLink:"Beady Booty-august taylor.html"},
-                {id:17,title:"Sharing Is Caring",date:"March 18, 2016",thumbnail:"https://i.ibb.co/HfGr3MZs/173442106-0166.jpg",preview:"https://prog-public-ht.project1content.com/a53/7f9/8c9/d92/428/286/8da/112/307/549/86/mediabook/mediabook_320p.mp4",site:"brazzers",videoLink:"Sharing Is Caring-august taylor.html"},
-                {id:18,title:"All Night Rager",date:"Sep 28, 2017",thumbnail:"https://i.ibb.co/0pQJhFSH/173444801-0469.jpg",preview:"https://prog-public-ht.project1content.com/8af/89e/ba7/b58/40c/789/953/bb8/368/b4c/5d/mediabook/mediabook_320p.mp4",site:"brazzers",videoLink:"allnightrager-ava addams.html"},
-                {id:19,title:"Working Out The Wives",date:"Jan 16, 2016",thumbnail:"https://i.ibb.co/0j6smXdc/173444070-0307.jpg",preview:"https://prog-public-ht.project1content.com/b8a/92f/868/505/467/9b0/db4/a9a/091/6d0/67/mediabook/mediabook_320p.mp4",site:"brazzers",videoLink:"Working Out The Wives-august taylor.html"},
-                {id:20,title:"Dirty Girls Learn Dirty Words",date:"Dec 29, 2015",thumbnail:"https://i.ibb.co/jvvZktZj/173443233-0380.jpg",preview:"https://prog-public-ht.project1content.com/3de/cb9/f5b/1ae/4c6/ea0/70a/380/7d4/56e/f0/mediabook/mediabook_320p.mp4",site:"brazzers",videoLink:"Dirty Girls Learn Dirty Words-august taylor.html"},
-                {id:21,title:"Shagging the Chauffeur",date:"Nov 16, 2015",thumbnail:"https://i.imgur.com/HCBowb8.jpeg",preview:"https://prog-public-ht.project1content.com/533/c88/07e/548/415/f85/c30/a9f/20b/6c6/94/mediabook/mediabook_320p.mp4",site:"brazzers",videoLink:"Shagging the Chauffeur-august taylor.html"},
-                {id:22,title:"Rubbing Down A Horny Slut",date:"August 6, 2015",thumbnail:"https://i.imgur.com/liHsQMX.jpeg",preview:"https://prog-public-ht.project1content.com/8a3/9ad/f17/23f/4d0/687/e44/cda/899/956/c2/mediabook/mediabook_320p.mp4",site:"brazzers",videoLink:"Rubbing Down A Horny Slut-august taylor.html"},
-                {id:23,title:"You're Gonna Pay For That !",date:"April 24, 2014",thumbnail:"https://i.imgur.com/DwKgyMj.jpeg",preview:"https://prog-public-ht.project1content.com/208/e52/1e9/c5a/46f/ba8/c04/b55/be8/709/c4/mediabook/mediabook_320p.mp4",site:"brazzers",videoLink:"You're Gonna Pay For That-august taylor.html"},
-                {id:24,title:"Good Cop, Slut Cop",date:"March 26, 2014",thumbnail:"https://i.ibb.co/bMVrHN4b/God-cop-Slut-cop.jpg",preview:"https://prog-public-ht.project1content.com/6ec/021/035/58e/48a/bbc/c88/232/0b5/9f3/0a/mediabook/mediabook_320p.mp4",site:"brazzers",videoLink:"Good Cop, Slut Cop-august taylor.html"},
-                {id:25,title:"Pick Up Artist",date:"March 6, 2014",thumbnail:"https://i.ibb.co/DDzbbV5x/Pickup-Artist.jpg",preview:"https://prog-public-ht.project1content.com/4b9/863/4bd/3cf/42a/da3/534/fd3/7e7/ee4/a0/mediabook/mediabook_320p.mp4",site:"brazzers",videoLink:"Pick Up Artist-august taylor.html"},
-                {id:26,title:"Wife Showers With The Babysitter",date:"September 29, 2015",thumbnail:"https://i.ibb.co/0pQJhFSH/173444801-0469.jpg",preview:"https://prog-public-ht.project1content.com/fd7/96a/013/bb9/419/282/41b/07b/390/20d/ab/mediabook/mediabook_320p.mp4",site:"brazzers",videoLink:"allnightrager-ava addams.html"},
-                {id:27,title:"4th July:Big Butt Independence",date:"July 4, 2015",thumbnail:"https://i.ibb.co/0pQJhFSH/173444801-0469.jpg",preview:"https://prog-public-ht.project1content.com/87f/1a3/8d8/68a/440/694/50f/3fc/20f/8fd/76/mediabook/mediabook_320p.mp4",site:"brazzers",videoLink:"allnightrager-ava addams.html"},
-                {id:28,title:"Brazzers House Orgy Finale",date:"June 19, 2015",thumbnail:"https://i.ibb.co/0pQJhFSH/173444801-0469.jpg",preview:"https://prog-public-ht.project1content.com/0d2/31a/ee0/d0e/475/ebe/e27/240/cb5/268/02/mediabook/mediabook_320p.mp4",site:"brazzers",videoLink:"allnightrager-ava addams.html"},
-                {id:29,title:"All Night Rager",date:"Sep 28, 2017",thumbnail:"https://i.ibb.co/0pQJhFSH/173444801-0469.jpg",preview:"https://prog-public-ht.project1content.com/8af/89e/ba7/b58/40c/789/953/bb8/368/b4c/5d/mediabook/mediabook_320p.mp4",site:"bangbros",videoLink:"allnightrager-ava addams.html"},
-                {id:30,title:"All Night Rager",date:"Sep 28, 2017",thumbnail:"https://i.ibb.co/0pQJhFSH/173444801-0469.jpg",preview:"https://prog-public-ht.project1content.com/8af/89e/ba7/b58/40c/789/953/bb8/368/b4c/5d/mediabook/mediabook_320p.mp4",site:"bangbros",videoLink:"allnightrager-ava addams.html"}
-            ];
+  <script>
+    (function() {
+      // ===== DATA =====
+      const topRatedVideos = [
+        { id: 1, title: "Ultimate MILF Nikki Cums Hard while Riding His Cock", date: "May 15, 2024", thumbnail: "https://i.ibb.co.com/0XQz0JQ/thumb-1.jpg", preview: "https://prog-public-ht.project1content.com/a0c/26a/b42/d58/4b6/ea1/717/9ed/5c1/75b/b2/mediabook/mediabook_320p.mp4", site: "brazzers", videoLink: "video1.html" },
+        { id: 2, title: "Bathroom Fantasy with Nikki Benz", date: "April 28, 2024", thumbnail: "https://i.ibb.co.com/0XQz0JQ/thumb-1.jpg", preview: "https://prog-public-ht.project1content.com/177/535/f33/925/404/abd/520/e4b/06e/a3b/fa/mediabook/mediabook_320p.mp4", site: "bangbros", videoLink: "video2.html" },
+        { id: 3, title: "Office Seduction - Nikki Takes Control", date: "April 15, 2024", thumbnail: "https://i.ibb.co.com/0XQz0JQ/thumb-1.jpg", preview: "https://example.com/preview-3.mp4", site: "blacked", videoLink: "video3.html" },
+        { id: 4, title: "Nikki's Poolside Pleasure", date: "March 30, 2024", thumbnail: "https://i.ibb.co.com/0XQz0JQ/thumb-1.jpg", preview: "https://example.com/preview-4.mp4", site: "milfy", videoLink: "video4.html" }
+      ];
 
-            // Remove top-rated videos from the "all videos" section data
-            const allVideosSectionData = allVideosData.slice(topRatedVideos.length);
+      const allVideos = [
+        { id: 5, title: "The Perfect Maid 4", date: "April 8, 2019", thumbnail: "https://media-public-ht.project1content.com/m=eaSaaTbWx/911/39e/618/723/4f5/295/7e2/0c7/e6b/454/57/poster/poster_01.jpg", preview: "https://prog-public-ht.project1content.com/911/39e/618/723/4f5/295/7e2/0c7/e6b/454/57/mediabook/mediabook_320p.mp4", site: "brazzers", videoLink: "The Perfect Maid 4-August Taylor.html" },
+        { id: 6, title: "Carnival Queen", date: "Sept 23, 2018", thumbnail: "https://i.ibb.co/TMtr12N4/the-master.jpg", preview: "https://prog-public-ht.project1content.com/051/9b5/6a1/c3e/4f9/9b0/47a/3e9/8bc/d63/38/mediabook/mediabook_320p.mp4", site: "brazzers", videoLink: "Carnival Queen-August Taylor.html" },
+        { id: 7, title: "Buttaholics Anonymous", date: "June 12, 2018", thumbnail: "https://i.ibb.co/sJdXBZ44/0068.jpg", preview: "https://prog-public-ht.project1content.com/7ab/1ef/ea5/c13/487/4bf/78c/446/530/cae/56/mediabook/mediabook_320p.mp4", site: "brazzers", videoLink: "Buttaholics Anonymous-August Taylor.html" },
+        { id: 8, title: "All Dolled Up: Spring Break Edition", date: "May 16, 2018", thumbnail: "https://i.ibb.co/pvX4Pxnr/0066.jpg", preview: "https://prog-public-ht.project1content.com/7e9/145/57d/22e/486/ba8/a66/fb2/e57/3dd/f1/mediabook/mediabook_320p.mp4", site: "brazzers", videoLink: "All Dolled Up_Spring Break Edition-August Taylor.html" },
+        { id: 9, title: "Anal Swinger", date: "Nov 12, 2017", thumbnail: "https://i.ibb.co/Q3gc0qLn/0092.jpg", preview: "https://prog-public-ht.project1content.com/fbf/10a/5bc/97f/47c/eb2/e1e/8fb/d3c/49b/69/mediabook/mediabook_320p.mp4", site: "brazzers", videoLink: "Anal Swinger-August Taylor.html" },
+        { id: 10, title: "Catch The Garter Belt,Fuck The Bride", date: "Sept 22, 2017", thumbnail: "https://i.ibb.co/TDWVCc0f/0069.jpg", preview: "https://prog-public-ht.project1content.com/330/ef6/b2a/6f6/4bf/7b1/199/4de/a8b/6ed/82/mediabook/mediabook_320p.mp4", site: "brazzers", videoLink: "Catch The Garter Belt,Fuck The Bride-August Taylor.html" },
+        { id: 11, title: "My Husband's Best Friend", date: "Oct 28, 2016", thumbnail: "https://i.ibb.co/XcDx3Q6/2s07xh.jpg", preview: "https://prog-public-ht.project1content.com/5ee/39f/f6a/8b9/42e/caf/794/5b0/3c5/9b6/8a/mediabook/mediabook_320p.mp4", site: "brazzers", videoLink: "My Husbands Best Friend-August Taylor.html" },
+        { id: 12, title: "Maid To Nurture", date: "Oct 1st, 2016", thumbnail: "https://i.ibb.co/WpYqQFKC/1syo5y.jpg", preview: "https://prog-public-ht.project1content.com/761/125/254/bce/4e7/3ba/2ae/8cc/177/556/90/mediabook/mediabook_320p.mp4", site: "brazzers", videoLink: "Maid To Nurture-August Taylor.html" },
+        { id: 13, title: "Dr. Taylor Takes Her Medicine", date: "Sept 27, 2016", thumbnail: "https://media-public-ht.project1content.com/m=eaSaaTbWx/6bb/c2b/266/b13/478/3b7/406/e5c/747/276/ee/poster/poster_01.jpg", preview: "https://prog-public-ht.project1content.com/6bb/c2b/266/b13/478/3b7/406/e5c/747/276/ee/mediabook/mediabook_320p.mp4", site: "brazzers", videoLink: "Dr. Taylor Takes Her Medicine-August Taylor.html" },
+        { id: 14, title: "My Wife's Ex", date: "August 29, 2016", thumbnail: "https://i.ibb.co/Z6PfGy0q/173449413-0120.jpg", preview: "https://prog-public-ht.project1content.com/e39/8e2/3c0/fe0/419/180/a08/7c6/a6a/078/71/mediabook/mediabook_320p.mp4", site: "brazzers", videoLink: "My Wifes Ex-August Taylor.html" },
+        { id: 15, title: "Whats My Grade Again?", date: "June 22, 2016", thumbnail: "https://media-public-ht.project1content.com/m=eeEaOFFb/22e/5ea/fb6/14c/416/d8a/e1a/5dc/70b/0cc/ab/poster/poster_01.jpg", preview: "https://prog-public-ht.project1content.com/22e/5ea/fb6/14c/416/d8a/e1a/5dc/70b/0cc/ab/mediabook/mediabook_320p.mp4", site: "brazzers", videoLink: "Whats My Grade Again-August Taylor.html" },
+        { id: 16, title: "Beady Booty", date: "May 12, 2016", thumbnail: "https://media-public-ht.project1content.com/m=eeEaOFFb/305/40f/8c7/d63/46b/aad/a6c/487/706/0b0/9d/poster/poster_01.jpg", preview: "https://prog-public-ht.project1content.com/305/40f/8c7/d63/46b/aad/a6c/487/706/0b0/9d/mediabook/mediabook_320p.mp4", site: "brazzers", videoLink: "Beady Booty-August Taylor.html" },
+        { id: 17, title: "Sharing Is Caring", date: "March 18, 2016", thumbnail: "https://i.ibb.co/HfGr3MZs/173442106-0166.jpg", preview: "https://prog-public-ht.project1content.com/584/84d/d09/88c/458/7b3/a93/823/e2c/d0d/f8/mediabook/mediabook_320p.mp4", site: "brazzers", videoLink: "Sharing Is Caring-August Taylor.html" },
+        { id: 18, title: "Working Out The Wives", date: "Jan 16, 2016", thumbnail: "https://media-public-ht.project1content.com/m=eeEaOFFb/40c/789/45a/d6c/48c/988/ee4/435/dde/0ed/89/poster/poster_01.jpg", preview: "https://prog-public-ht.project1content.com/40c/789/45a/d6c/48c/988/ee4/435/dde/0ed/89/mediabook/mediabook_320p.mp4", site: "brazzers", videoLink: "Working Out The Wives-August Taylor.html" },
+        { id: 19, title: "Dirty Girls Learn Dirty Words", date: "Dec 29, 2015", thumbnail: "https://i.ibb.co/Q0pkXXc/0272.jpg", preview: "https://prog-public-ht.project1content.com/73b/e88/2b5/8a2/450/88c/f18/702/8f0/3b7/b1/mediabook/mediabook_320p.mp4", site: "brazzers", videoLink: "Dirty Girls Learn Dirty Words-August Taylor.html" },
+        { id: 20, title: "Shagging the Chauffeur", date: "Nov 16, 2015", thumbnail: "https://media-public-ht.project1content.com/m=eeEaOFFb/a5e/f66/099/96b/4d3/9b2/90d/15e/966/f55/a6/poster/poster_01.jpg", preview: "https://prog-public-ht.project1content.com/a5e/f66/099/96b/4d3/9b2/90d/15e/966/f55/a6/mediabook/mediabook_320p.mp4", site: "brazzers", videoLink: "Shagging the Chauffeur-August Taylor.html" },
+        { id: 21, title: "Rubbing Down A Horny Milf", date: "August 6, 2015", thumbnail: "https://media-public-ht.project1content.com/m=eeEaOFFb/952/f6b/5ab/213/41b/08c/c0e/3f4/35f/ab9/c4/poster/poster_01.jpg", preview: "https://prog-public-ht.project1content.com/952/f6b/5ab/213/41b/08c/c0e/3f4/35f/ab9/c4/mediabook/mediabook_320p.mp4", site: "brazzers", videoLink: "Youre Gonna Pay For That-August Taylor.html" },
+        { id: 22, title: "You're Gonna Pay For That!", date: "April 24, 2014", thumbnail: "https://i.imgur.com/DwKgyMj.jpeg", preview: "https://prog-public-ht.project1content.com/0b5/0c3/f7a/df7/469/384/bdb/507/091/24d/c9/mediabook/mediabook_320p.mp4", site: "brazzers", videoLink: "Good Cop, Slut Cop-August Taylor.html" },
+        { id: 23, title: "Good Cop, Slut Cop", date: "March 26, 2014", thumbnail: "https://i.ibb.co/bMVrHN4b/God-cop-Slut-cop.jpg", preview: "https://prog-public-ht.project1content.com/df5/a18/56d/9e2/45b/9be/5eb/b89/48b/d22/c2/mediabook/mediabook_320p.mp4", site: "brazzers", videoLink: "Pickup Artist-August Taylor.html" },
+        { id: 24, title: "Pickup Artist", date: "March 6, 2014", thumbnail: "https://i.ibb.co/DDzbbV5x/Pickup-Artist.jpg", preview: "https://prog-public-ht.project1content.com/09d/b7e/da0/b51/486/4a2/59c/258/192/d2d/27/mediabook/mediabook_320p.mp4", site: "brazzers", videoLink: "Try My MILF Shake-August Taylor.html" },
+        { id: 25, title: "Slipping In & Out", date: "July 11, 2013", thumbnail: "https://i.ibb.co/0pQJhFSH/173444801-0469.jpg", preview: "https://prog-public-ht.project1content.com/de8/88a/3ad/597/42c/4b5/221/816/dea/c39/dc/mediabook/mediabook_320p.mp4", site: "brazzers", videoLink: "Slipping In & Out-August Taylor.html" },
+        { id: 26, title: "Deep in Alura", date: "March 18, 2013", thumbnail: "https://i.ibb.co/0pQJhFSH/173444801-0469.jpg", preview: "https://prog-public-ht.project1content.com/272/f40/161/6f4/484/8a9/b05/5d8/d19/72d/0f/mediabook/mediabook_320p.mp4", site: "brazzers", videoLink: "Deep in Alura-August Taylor.html" },
+        { id: 27, title: "We Can Fit You In", date: "February 28, 2013", thumbnail: "https://i.ibb.co/0pQJhFSH/173444801-0469.jpg", preview: "https://prog-public-ht.project1content.com/895/be8/e76/ee6/4cb/695/370/2cf/430/5dc/05/mediabook/mediabook_320p.mp4", site: "brazzers", videoLink: "We Can Fit You In-August Taylor.html" },
+        { id: 28, title: "Pick Up Pussy", date: "November 28, 2012", thumbnail: "https://i.ibb.co/0pQJhFSH/173444801-0469.jpg", preview: "https://prog-public-ht.project1content.com/e0c/f2d/4b5/ed6/410/ba5/4f0/dd7/475/549/44/mediabook/mediabook_320p.mp4", site: "brazzers", videoLink: "Pick Up Pussy-August Taylor.html" },
+        { id: 29, title: "Big Boobs Behind Bars", date: "October 19, 2012", thumbnail: "https://i.ibb.co/0pQJhFSH/173444801-0469.jpg", preview: "https://prog-public-ht.project1content.com/1a3/4da/f91/037/483/3b8/de8/d08/aa6/354/80/mediabook/mediabook_320p.mp4", site: "brazzers", videoLink: "Big Boobs Behind Bars-August Taylor.html" },
+        { id: 30, title: "All Night Rager", date: "Sep 28, 2017", thumbnail: "https://i.ibb.co/0pQJhFSH/173444801-0469.jpg", preview: "https://prog-public-ht.project1content.com/8af/89e/ba7/b58/40c/789/953/bb8/368/b4c/5d/mediabook/mediabook_320p.mp4", site: "brazzers", videoLink: "allnightrager-August Taylor.html" }
+      ];
 
-            const $ = (s) => document.querySelector(s);
-            const $$ = (s) => document.querySelectorAll(s);
-            const preloader = $('#preloader');
-            const scrollProgress = $('#scrollProgress');
-            const mainHeader = $('#mainHeader');
-            const videoGrid = $('#videoGrid');
-            const allVideosGrid = $('#allVideosGrid');
-            const viewAllBtn = $('#viewAllBtn');
-            const backToTopRated = $('#backToTopRated');
-            const allVideosSection = $('#allVideosSection');
-            const mainContent = $('#mainContent');
-            const backToTopEl = $('#backToTop');
-            const heroSlides = $$('.hero-slide');
-            const modelGalleryBtn = $('#modelGalleryBtn');
-            const sitesListContainer = $('#sitesListContainer');
-            const sitesList = $('#sitesList');
-            const dateFilterContainer = $('#dateFilterContainer');
-            const searchContainer = $('#searchContainer');
-            const searchInput = $('#searchInput');
-            const searchTrigger = $('#searchTrigger');
-            const searchResults = $('#searchResults');
+      let currentFilter = 'all';
+      let currentDateFilter = 'all';
+      let currentPage = 1;
+      let isLoggedIn = false;
 
-            let currentFilter = 'all';
-            let currentDateFilter = 'all';
-            let currentPage = 1;
-            let currentSlide = 0;
-            const slideInterval = 6000;
-            let lastScrollY = 0;
-            let ticking = false;
+      // Helper: extract year from date string like "April 8, 2019" or "Oct 1st, 2016"
+      function extractYear(dateStr) {
+        const match = dateStr.match(/\b(19|20)\d{2}\b/);
+        return match ? match[0] : NaN;
+      }
 
-            // Hide preloader quickly (fast loading)
-            window.addEventListener('load', () => {
-                setTimeout(() => preloader.classList.add('hidden'), 400);
+      document.addEventListener('DOMContentLoaded', () => {
+        renderTopRated();
+        initializeHeroSlider();
+        setupSitesList();
+        setupDateFilter();
+        setupProfileCard();
+        setupProfileTilt();
+        setupNavigationAndSearch();
+        setupUploadModal();
+        
+        document.getElementById('modelGalleryBtn').addEventListener('click', () => window.location.href = "https://example.com/model-gallery");
+        
+        document.getElementById('viewAllBtn').addEventListener('click', () => {
+          document.getElementById('mainContent').classList.add('hidden');
+          document.querySelectorAll('.divider')[0].classList.add('hidden');
+          document.getElementById('allVideosSection').classList.remove('hidden');
+          renderAllVideos(1);
+          window.scrollTo({top: 0, behavior: 'smooth'});
+        });
+        
+        document.getElementById('backToTopRated').addEventListener('click', () => {
+          document.getElementById('allVideosSection').classList.add('hidden');
+          document.getElementById('mainContent').classList.remove('hidden');
+          document.querySelectorAll('.divider')[0].classList.remove('hidden');
+          window.scrollTo({top:0, behavior:'smooth'});
+        });
+        
+        document.getElementById('sitesListBtn').addEventListener('click', function() {
+          this.classList.toggle('active');
+          document.getElementById('sitesListContainer').classList.toggle('show');
+          document.getElementById('dateFilterContainer').classList.remove('show');
+        });
+        document.getElementById('releaseDateBtn').addEventListener('click', function() {
+          this.classList.toggle('active');
+          document.getElementById('dateFilterContainer').classList.toggle('show');
+          document.getElementById('sitesListContainer').classList.remove('show');
+        });
+        
+        document.getElementById('scrollLeftBtn').addEventListener('click', () => document.getElementById('sitesList').scrollBy({left:-200, behavior:'smooth'}));
+        document.getElementById('scrollRightBtn').addEventListener('click', () => document.getElementById('sitesList').scrollBy({left:200, behavior:'smooth'}));
+        
+        window.addEventListener('scroll', handleScroll);
+        document.getElementById('backToTop').addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+      });
+
+      function handleScroll() {
+        const pos = window.scrollY;
+        document.getElementById('backToTop').classList.toggle('active', pos > 400);
+        const header = document.getElementById('mainHeader');
+        if (pos > 50) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+      }
+
+      function initializeHeroSlider() {
+        const slides = document.querySelectorAll('.hero-slide');
+        let current = 0;
+        setInterval(() => {
+          slides[current].classList.remove('active');
+          current = (current + 1) % slides.length;
+          slides[current].classList.add('active');
+        }, 5000);
+      }
+
+      function setupProfileCard() {
+        const images = document.querySelectorAll('#profileCard img');
+        let idx = 0;
+        setInterval(() => {
+          images.forEach(img => img.classList.remove('active'));
+          idx = (idx + 1) % images.length;
+          images[idx].classList.add('active');
+        }, 2700);
+      }
+
+      function setupProfileTilt() {
+        const wrapper = document.getElementById('tiltWrapper');
+        const card = document.getElementById('profileCard');
+        const glare = document.getElementById('glareElement');
+        
+        wrapper.addEventListener('mousemove', function(e) {
+          const rect = wrapper.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = ((y - centerY) / centerY) * -8;
+          const rotateY = ((x - centerX) / centerX) * 8;
+          
+          card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+          
+          const glareX = (x / rect.width) * 100;
+          const glareY = (y / rect.height) * 100;
+          glare.style.setProperty('--mouse-x', glareX + '%');
+          glare.style.setProperty('--mouse-y', glareY + '%');
+        });
+        
+        wrapper.addEventListener('mouseleave', function() {
+          card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+          glare.style.setProperty('--mouse-x', '50%');
+          glare.style.setProperty('--mouse-y', '50%');
+        });
+      }
+
+      function renderTopRated() {
+        const grid = document.getElementById('videoGrid');
+        grid.innerHTML = topRatedVideos.map(v => createCardHTML(v)).join('');
+        attachHoverEvents();
+      }
+
+      function renderAllVideos(page = 1) {
+        currentPage = page;
+        let filtered = allVideos;
+        if (currentFilter !== 'all') {
+          filtered = filtered.filter(v => v.site === currentFilter);
+        }
+        if (currentDateFilter !== 'all') {
+          filtered = filtered.filter(v => {
+            const year = extractYear(v.date);
+            return year.toString() === currentDateFilter;
+          });
+        }
+        const perPage = 8;
+        const totalPages = Math.ceil(filtered.length / perPage) || 1;
+        const start = (page - 1) * perPage;
+        const paged = filtered.slice(start, start + perPage);
+        document.getElementById('allVideosGrid').innerHTML = paged.map(v => createCardHTML(v)).join('');
+        renderPagination(totalPages);
+        attachHoverEvents();
+      }
+
+      function createCardHTML(video) {
+        return `<div class="video-card" data-link="${video.videoLink}">
+          <div class="video-container">
+            <img src="${video.thumbnail}" class="static-thumbnail" alt="">
+            <video class="video-preview" muted loop preload="none"><source src="${video.preview}" type="video/mp4"></video>
+          </div>
+          <div class="video-info">
+            <div class="video-title">${video.title}</div>
+            <div class="video-date">${video.date}</div>
+          </div>
+        </div>`;
+      }
+
+      function attachHoverEvents() {
+        document.querySelectorAll('.video-card').forEach(card => {
+          card.addEventListener('click', () => window.location.href = card.dataset.link);
+          const thumb = card.querySelector('.static-thumbnail');
+          const preview = card.querySelector('.video-preview');
+          const container = card.querySelector('.video-container');
+          container.addEventListener('mouseenter', () => {
+            thumb.style.display = 'none'; preview.style.display = 'block';
+            preview.currentTime = 0; preview.play().catch(()=>{});
+          });
+          container.addEventListener('mouseleave', () => {
+            preview.pause(); preview.style.display = 'none'; thumb.style.display = 'block';
+          });
+        });
+      }
+
+      function renderPagination(totalPages) {
+        const pag = document.getElementById('allVideosPagination');
+        pag.innerHTML = '';
+        for (let i = 1; i <= totalPages; i++) {
+          const link = document.createElement('span');
+          link.className = `page-link ${i === currentPage ? 'active' : ''}`;
+          link.textContent = i;
+          link.addEventListener('click', () => renderAllVideos(i));
+          pag.appendChild(link);
+        }
+      }
+
+      // ===== DYNAMIC SITES LIST =====
+      function setupSitesList() {
+        const container = document.getElementById('sitesList');
+        const previousFilter = currentFilter;
+
+        // Optional logo mapping
+        const siteLogos = {
+          brazzers: "https://upload.wikimedia.org/wikipedia/commons/c/cc/Brazzers_logo.svg",
+          bangbros: "https://i.ibb.co/wFkVYxrh/bangbros-seeklogo.png",
+          blacked: "https://i.ibb.co/p6WcRWY0/blacked.png",
+          devilsfilm: "https://upload.wikimedia.org/wikipedia/commons/4/47/Devil%27s_Film_logo.svg",
+          milfy: "https://i.ibb.co/DDzbbV5x/Pickup-Artist.jpg"
+        };
+
+        // Combine site names from both arrays
+        const allSiteNames = [...new Set([
+          ...topRatedVideos.map(v => v.site),
+          ...allVideos.map(v => v.site)
+        ])];
+
+        container.innerHTML = '';
+
+        // ALL SITES button
+        const allSitesItem = document.createElement('div');
+        allSitesItem.className = 'site-item all-sites' + (previousFilter === 'all' ? ' active' : '');
+        allSitesItem.dataset.site = 'all';
+        allSitesItem.textContent = 'ALL SITES';
+        container.appendChild(allSitesItem);
+
+        // Site items
+        allSiteNames.forEach(site => {
+          const item = document.createElement('div');
+          item.className = 'site-item' + (previousFilter === site ? ' active' : '');
+          item.dataset.site = site;
+
+          const logoUrl = siteLogos[site];
+          if (logoUrl) {
+            const img = document.createElement('img');
+            img.src = logoUrl;
+            img.alt = site;
+            img.loading = 'lazy';
+            img.style.height = '22px';
+            img.style.width = 'auto';
+            img.style.objectFit = 'contain';
+            img.style.display = 'block';
+
+            const textSpan = document.createElement('span');
+            textSpan.className = 'site-text';
+            textSpan.textContent = site;
+            textSpan.style.display = 'none';
+            textSpan.style.fontWeight = '600';
+            textSpan.style.fontSize = '0.9rem';
+            textSpan.style.letterSpacing = '0.5px';
+
+            img.addEventListener('error', () => {
+              img.style.display = 'none';
+              textSpan.style.display = 'block';
             });
 
-            function updateScrollProgress() {
-                const h = document.documentElement.scrollHeight - window.innerHeight;
-                const p = h > 0 ? (window.scrollY / h) * 100 : 0;
-                scrollProgress.style.width = Math.min(p, 100) + '%';
-            }
-            function handleScroll(pos) {
-                updateScrollProgress();
-                if (pos > 400) backToTopEl.classList.add('active'); else backToTopEl.classList.remove('active');
-                if (pos > 80) mainHeader.classList.add('scrolled'); else mainHeader.classList.remove('scrolled');
-                if (pos > lastScrollY && pos > 180) mainHeader.classList.add('hidden'); else mainHeader.classList.remove('hidden');
-                lastScrollY = pos;
-            }
-            window.addEventListener('scroll', () => {
-                const pos = window.scrollY;
-                if (!ticking) { requestAnimationFrame(() => { handleScroll(pos); ticking = false; }); ticking = true; }
-            }, { passive: true });
+            item.appendChild(img);
+            item.appendChild(textSpan);
+          } else {
+            const textSpan = document.createElement('span');
+            textSpan.className = 'site-text';
+            textSpan.textContent = site;
+            textSpan.style.fontWeight = '600';
+            textSpan.style.fontSize = '0.9rem';
+            textSpan.style.letterSpacing = '0.5px';
+            item.appendChild(textSpan);
+          }
 
-            function startHeroSlider() {
-                if (heroSlides.length < 2) return;
-                setInterval(() => {
-                    heroSlides[currentSlide].classList.remove('active');
-                    currentSlide = (currentSlide + 1) % heroSlides.length;
-                    heroSlides[currentSlide].classList.add('active');
-                }, slideInterval);
-            }
+          container.appendChild(item);
+        });
 
-            function createVideoCard(video) {
-                const card = document.createElement('div');
-                card.className = 'video-card';
-                card.innerHTML = `
-                    <div class="video-container">
-                        <img src="${video.thumbnail}" alt="${video.title}" class="static-thumbnail" loading="lazy">
-                        <video class="video-preview" loop muted preload="none" playsinline>
-                            <source src="${video.preview}" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="video-info">
-                        <div class="video-title">${video.title}</div>
-                        <div class="video-date">${video.date}</div>
-                    </div>`;
-                card.addEventListener('click', () => window.location.href = video.videoLink);
-                const container = card.querySelector('.video-container');
-                const thumb = card.querySelector('.static-thumbnail');
-                const preview = card.querySelector('.video-preview');
-                container.addEventListener('mouseenter', () => {
-                    thumb.style.display = 'none'; preview.style.display = 'block';
-                    preview.currentTime = 0; preview.play().catch(() => {});
-                });
-                container.addEventListener('mouseleave', () => {
-                    preview.pause(); preview.style.display = 'none'; thumb.style.display = 'block';
-                });
-                const obs = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => { if (entry.isIntersecting) { preview.load(); obs.unobserve(entry.target); } });
-                }, { threshold: 0.1 });
-                obs.observe(card);
-                return card;
-            }
+        // If previous filter not found, reset to all
+        if (!container.querySelector('.site-item.active')) {
+          container.querySelector('.site-item.all-sites').classList.add('active');
+          currentFilter = 'all';
+        }
 
-            function renderTopRatedVideos() {
-                videoGrid.innerHTML = '';
-                topRatedVideos.forEach(v => videoGrid.appendChild(createVideoCard(v)));
-            }
+        // Attach click handlers
+        container.querySelectorAll('.site-item').forEach(item => {
+          item.addEventListener('click', function() {
+            container.querySelectorAll('.site-item').forEach(i => i.classList.remove('active'));
+            this.classList.add('active');
+            currentFilter = this.dataset.site;
+            renderAllVideos(1);
+          });
+        });
+      }
 
-            function renderAllVideos(page = 1) {
-                currentPage = page;
-                const perPage = 8;
-                let filtered = [...allVideosSectionData];
-                if (currentFilter !== 'all') filtered = filtered.filter(v => v.site === currentFilter);
-                if (currentDateFilter !== 'all') {
-                    filtered = filtered.filter(v => {
-                        const year = new Date(v.date).getFullYear();
-                        if (currentDateFilter === 'older') return year < 2022;
-                        return year.toString() === currentDateFilter;
-                    });
-                }
+      // ===== DYNAMIC DATE FILTER =====
+      function setupDateFilter() {
+        const container = document.getElementById('dateFilterContainer');
+        const previousDate = currentDateFilter;
 
-                // Sort by date (newest first)
-                filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+        // Extract unique years from allVideos
+        const years = [...new Set(allVideos.map(v => extractYear(v.date)).filter(y => !isNaN(y)))].sort((a, b) => b - a);
 
-                const start = (page - 1) * perPage;
-                const paginated = filtered.slice(start, start + perPage);
-                allVideosGrid.innerHTML = '';
-                paginated.forEach(v => allVideosGrid.appendChild(createVideoCard(v)));
-                renderPagination(filtered.length, perPage, page);
-            }
+        container.innerHTML = '';
 
-            function renderPagination(total, perPage, current) {
-                const totalPages = Math.ceil(total / perPage);
-                const pag = $('#allVideosPagination');
-                pag.innerHTML = '';
-                if (totalPages <= 1) return;
-                const maxVis = 5;
-                let sp = Math.max(1, current - Math.floor(maxVis / 2));
-                let ep = Math.min(totalPages, sp + maxVis - 1);
-                if (ep - sp + 1 < maxVis) sp = Math.max(1, ep - maxVis + 1);
-                const addBtn = (label, page, active, disabled) => {
-                    const el = document.createElement('span');
-                    el.className = 'page-link' + (active ? ' active' : '');
-                    el.innerHTML = label;
-                    if (!disabled && page !== current) {
-                        el.addEventListener('click', () => {
-                            renderAllVideos(page);
-                            allVideosSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        });
-                    }
-                    if (disabled) el.style.opacity = '0.4';
-                    pag.appendChild(el);
-                };
-                addBtn('<i class="fas fa-chevron-left"></i>', current - 1, false, current <= 1);
-                for (let i = sp; i <= ep; i++) addBtn(i, i, i === current, false);
-                addBtn('<i class="fas fa-chevron-right"></i>', current + 1, false, current >= totalPages);
-            }
+        // All Dates option
+        const allOption = document.createElement('span');
+        allOption.className = 'date-option' + (previousDate === 'all' ? ' active' : '');
+        allOption.dataset.date = 'all';
+        allOption.textContent = 'All Dates';
+        container.appendChild(allOption);
 
-            function setupSitesList() {
-                const sites = [...new Set(allVideosSectionData.map(v => v.site))];
-                sitesList.innerHTML = '';
-                const allItem = document.createElement('div');
-                allItem.className = 'site-item active'; allItem.textContent = 'All Sites'; allItem.dataset.site = 'all';
-                sitesList.appendChild(allItem);
-                sites.forEach(site => {
-                    const item = document.createElement('div');
-                    item.className = 'site-item'; item.textContent = site.charAt(0).toUpperCase() + site.slice(1);
-                    item.dataset.site = site; sitesList.appendChild(item);
-                });
-                $$('.site-item').forEach(item => item.addEventListener('click', function() {
-                    $$('.site-item').forEach(i => i.classList.remove('active'));
-                    this.classList.add('active');
-                    currentFilter = this.dataset.site;
-                    renderAllVideos(1);
-                }));
-            }
+        // Dynamic year options
+        years.forEach(year => {
+          const opt = document.createElement('span');
+          opt.className = 'date-option' + (previousDate === year.toString() ? ' active' : '');
+          opt.dataset.date = year.toString();
+          opt.textContent = year;
+          container.appendChild(opt);
+        });
 
-            function setupSearch() {
-                searchTrigger.addEventListener('click', () => {
-                    searchContainer.classList.toggle('active');
-                    if (searchContainer.classList.contains('active')) searchInput.focus();
-                    else { searchInput.value = ''; searchResults.innerHTML = ''; }
-                });
-                searchInput.addEventListener('input', () => {
-                    const q = searchInput.value.toLowerCase().trim();
-                    if (!q) { searchResults.innerHTML = ''; return; }
-                    const results = allVideosData.filter(v => v.title.toLowerCase().includes(q));
-                    if (results.length === 0) {
-                        searchResults.innerHTML = '<div class="no-results" style="padding:20px;text-align:center;color:var(--text-muted);">No results found</div>';
-                    } else {
-                        searchResults.innerHTML = results.slice(0, 8).map((v, idx) => `
-                            <div class="search-result-item" data-link="${v.videoLink}" style="animation-delay:${idx*0.05}s">
-                                <img src="${v.thumbnail}" alt="${v.title}" class="search-result-thumb">
-                                <div class="search-result-info">
-                                    <h3>${v.title}</h3>
-                                    <div class="search-result-meta">
-                                        <span>${v.date}</span>
-                                        <span class="site-badge">${v.site}</span>
-                                    </div>
-                                </div>
-                            </div>`).join('');
-                        $$('.search-result-item').forEach(item => item.addEventListener('click', function() {
-                            window.location.href = this.dataset.link;
-                            searchContainer.classList.remove('active');
-                            searchInput.value = ''; searchResults.innerHTML = '';
-                        }));
-                    }
-                });
-                document.addEventListener('click', (e) => {
-                    if (!e.target.closest('.search-container')) {
-                        searchContainer.classList.remove('active');
-                        searchInput.value = ''; searchResults.innerHTML = '';
-                    }
-                });
-            }
+        // If previous selection not found, reset to all
+        if (!container.querySelector('.date-option.active')) {
+          container.querySelector('.date-option[data-date="all"]').classList.add('active');
+          currentDateFilter = 'all';
+        }
 
-            function setupNav() {
-                const map = {
-                    homeBtn:'index.html', modelsBtn:'models.html', videosBtn:'videos.html', threeDBtn:'3d.html',
-                    mobileHomeBtn:'index.html', mobileModelsBtn:'models.html', mobileVideosBtn:'videos.html', mobileThreeDBtn:'3d.html'
-                };
-                Object.entries(map).forEach(([id, url]) => {
-                    const el = document.getElementById(id);
-                    if (el) el.addEventListener('click', () => window.location.href = url);
-                });
-                document.getElementById('mobileMenuBtn').addEventListener('click', () => document.getElementById('mobileMenu').classList.toggle('active'));
-                document.querySelectorAll('#mobileMenu button').forEach(b => b.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('active')));
-            }
+        // Attach click handlers
+        container.querySelectorAll('.date-option').forEach(opt => {
+          opt.addEventListener('click', function() {
+            container.querySelectorAll('.date-option').forEach(o => o.classList.remove('active'));
+            this.classList.add('active');
+            currentDateFilter = this.dataset.date;
+            renderAllVideos(1);
+          });
+        });
+      }
 
-            function init() {
-                renderTopRatedVideos();
-                startHeroSlider();
-                setupSitesList();
-                setupSearch();
-                setupNav();
-                updateScrollProgress();
+      function setupNavigationAndSearch() {
+        const searchContainer = document.getElementById('searchContainer');
+        document.getElementById('searchTrigger').addEventListener('click', () => searchContainer.classList.toggle('active'));
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+          const q = e.target.value.toLowerCase().trim();
+          const res = document.getElementById('searchResults');
+          if (!q) { res.innerHTML = ''; return; }
+          const filtered = allVideos.filter(v => v.title.toLowerCase().includes(q)).slice(0,5);
+          res.innerHTML = filtered.length ? filtered.map(v => `<div class="search-result-item" data-link="${v.videoLink}">${v.title}</div>`).join('') : '<div class="no-results">No results</div>';
+          res.querySelectorAll('.search-result-item').forEach(el => el.addEventListener('click', () => window.location.href = el.dataset.link));
+        });
+        document.addEventListener('click', (e) => {
+          if (!e.target.closest('.search-container')) searchContainer.classList.remove('active');
+        });
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => document.getElementById('mobileMenu').classList.toggle('active'));
+      }
 
-                modelGalleryBtn.addEventListener('click', () => window.location.href = 'https://example.com/model-gallery');
-                viewAllBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    mainContent.classList.add('hidden');
-                    document.querySelector('.divider')?.classList.add('hidden');
-                    allVideosSection.classList.remove('hidden');
-                    renderAllVideos(1);
-                    allVideosSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                });
-                backToTopRated.addEventListener('click', () => {
-                    allVideosSection.classList.add('hidden');
-                    mainContent.classList.remove('hidden');
-                    document.querySelector('.divider')?.classList.remove('hidden');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-                document.getElementById('sitesListBtn').addEventListener('click', function() {
-                    this.classList.toggle('active'); sitesListContainer.classList.toggle('show');
-                    if (dateFilterContainer.classList.contains('show')) { dateFilterContainer.classList.remove('show'); document.getElementById('releaseDateBtn').classList.remove('active'); }
-                });
-                document.getElementById('releaseDateBtn').addEventListener('click', function() {
-                    this.classList.toggle('active'); dateFilterContainer.classList.toggle('show');
-                    if (sitesListContainer.classList.contains('show')) { sitesListContainer.classList.remove('show'); document.getElementById('sitesListBtn').classList.remove('active'); }
-                });
-                $$('.date-option').forEach(opt => opt.addEventListener('click', function() {
-                    $$('.date-option').forEach(o => o.classList.remove('active'));
-                    this.classList.add('active');
-                    currentDateFilter = this.dataset.date;
-                    renderAllVideos(1);
-                }));
-                document.getElementById('scrollLeftBtn').addEventListener('click', () => sitesList.scrollBy({ left: -200, behavior: 'smooth' }));
-                document.getElementById('scrollRightBtn').addEventListener('click', () => sitesList.scrollBy({ left: 200, behavior: 'smooth' }));
-                backToTopEl.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-                document.addEventListener('contextmenu', e => e.preventDefault());
-            }
+      function setupUploadModal() {
+        const modalOverlay = document.getElementById('modalOverlay');
+        const loginStep = document.getElementById('loginStep');
+        const addVideoStep = document.getElementById('addVideoStep');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const loginBtn = document.getElementById('loginBtn');
+        const submitVideoBtn = document.getElementById('submitVideoBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const loginError = document.getElementById('loginError');
 
-            document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', init) : init();
-        })();
-    </script>
+        uploadBtn.addEventListener('click', () => {
+          modalOverlay.classList.add('active');
+          loginStep.classList.remove('hidden');
+          addVideoStep.classList.add('hidden');
+        });
+        closeModalBtn.addEventListener('click', () => modalOverlay.classList.remove('active'));
+        modalOverlay.addEventListener('click', (e) => { if(e.target === modalOverlay) modalOverlay.classList.remove('active'); });
+
+        loginBtn.addEventListener('click', () => {
+          const username = document.getElementById('usernameInput').value.trim();
+          const password = document.getElementById('passwordInput').value.trim();
+          if (username === 'frm' && password === 'O-_-K') {
+            isLoggedIn = true;
+            loginStep.classList.add('hidden');
+            addVideoStep.classList.remove('hidden');
+            loginError.classList.add('hidden');
+          } else {
+            loginError.classList.remove('hidden');
+          }
+        });
+
+        logoutBtn.addEventListener('click', () => {
+          isLoggedIn = false;
+          loginStep.classList.remove('hidden');
+          addVideoStep.classList.add('hidden');
+          modalOverlay.classList.remove('active');
+        });
+
+        submitVideoBtn.addEventListener('click', () => {
+          const title = document.getElementById('videoTitle').value.trim();
+          const date = document.getElementById('videoDate').value.trim();
+          const thumbnail = document.getElementById('videoThumbnail').value.trim();
+          const preview = document.getElementById('videoPreview').value.trim();
+          if (!title || !date || !thumbnail || !preview) {
+            alert('Please fill all fields');
+            return;
+          }
+          const newVideo = {
+            id: Date.now(),
+            title,
+            date,
+            thumbnail,
+            preview,
+            site: 'custom',
+            videoLink: 'custom.html'
+          };
+          allVideos.push(newVideo);
+          // Rebuild site list and date filter to include new data
+          setupSitesList();
+          setupDateFilter();
+          renderAllVideos(1);
+          modalOverlay.classList.remove('active');
+          document.getElementById('videoTitle').value = '';
+          document.getElementById('videoDate').value = '';
+          document.getElementById('videoThumbnail').value = '';
+          document.getElementById('videoPreview').value = '';
+          alert('Video added successfully!');
+        });
+      }
+
+      document.addEventListener('contextmenu', e => e.preventDefault());
+    })();
+  </script>
 </body>
 </html>
